@@ -25,7 +25,7 @@ const path = require('path');
 const glob = require('glob');
 const mkdirp = require('mkdirp');
 
-const babel = require('babel-core');
+const babel = require('@babel/core');
 const chalk = require('chalk');
 const micromatch = require('micromatch');
 const prettier = require('prettier');
@@ -147,22 +147,22 @@ function buildFile(file, silent) {
     const options = Object.assign({}, transformOptions);
     options.plugins = options.plugins.slice();
 
-    if (!INLINE_REQUIRE_BLACKLIST.test(file)) {
-      // Remove normal plugin.
-      options.plugins = options.plugins.filter(
-        plugin =>
-          !(
-            Array.isArray(plugin) &&
-            plugin[0] === 'transform-es2015-modules-commonjs'
-          )
-      );
-      options.plugins.push([
-        'transform-inline-imports-commonjs',
-        {
-          allowTopLevelThis: true,
-        },
-      ]);
-    }
+//    if (!INLINE_REQUIRE_BLACKLIST.test(file)) {
+//      // Remove normal plugin.
+//      options.plugins = options.plugins.filter(
+//        plugin =>
+//          !(
+//            Array.isArray(plugin) &&
+//            plugin[0] === 'transform-es2015-modules-commonjs'
+//          )
+//      );
+//      options.plugins.push([
+//        'transform-inline-imports-commonjs',
+//        {
+//          allowTopLevelThis: true,
+//        },
+//      ]);
+//    }
 
     const transformed = babel.transformFileSync(file, options).code;
     const prettyCode = prettier.format(transformed, prettierConfig);

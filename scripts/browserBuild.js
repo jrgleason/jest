@@ -16,32 +16,32 @@ const rollupJson = require('rollup-plugin-json');
 const rollupBabel = require('rollup-plugin-babel');
 const rollupFlow = require('rollup-plugin-flow');
 
-const babelEs5Options = Object.assign(
-  {},
-  {
-    babelrc: false,
-    exclude: 'node_modules/!(ansi-styles|chalk|ansi-regex)/**',
-    plugins: [
-      'syntax-trailing-function-commas',
-      'transform-flow-strip-types',
-      'transform-es2015-destructuring',
-      'transform-es2015-parameters',
-      'transform-async-to-generator',
-      'transform-strict-mode',
-      'external-helpers',
-      'transform-runtime',
-    ],
-    presets: [
-      [
-        'env',
-        {
-          modules: false,
-        },
-      ],
-    ],
-    runtimeHelpers: true,
-  }
-);
+//const babelEs5Options = Object.assign(
+//  {},
+//  {
+//    babelrc: false,
+//    exclude: 'node_modules/!(ansi-styles|chalk|ansi-regex)/**',
+//    plugins: [
+//      'syntax-trailing-function-commas',
+//      'transform-flow-strip-types',
+//      'transform-es2015-destructuring',
+//      'transform-es2015-parameters',
+//      'transform-async-to-generator',
+//      'transform-strict-mode',
+//      'external-helpers',
+//      'transform-runtime',
+//    ],
+//    presets: [
+//      [
+//        'env',
+//        {
+//          modules: false,
+//        },
+//      ],
+//    ],
+//    runtimeHelpers: true,
+//  }
+//);
 
 function browserBuild(pkgName, entryPath, destination) {
   return rollup({
@@ -58,7 +58,9 @@ function browserBuild(pkgName, entryPath, destination) {
       rollupFlow(),
       rollupJson(),
       rollupCommonjs(),
-      rollupBabel(babelEs5Options),
+      rollupBabel({
+                    "presets": [["@babel/env", {"modules": false}]]
+                  }),
       rollupGlobals(),
       rollupBuiltins(),
       rollupResolve(),
