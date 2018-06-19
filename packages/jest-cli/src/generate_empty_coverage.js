@@ -4,25 +4,25 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {GlobalConfig, ProjectConfig, Path} from 'types/Config';
+                                                                    
 
 import {createInstrumenter} from 'istanbul-lib-instrument';
 import Runtime from 'jest-runtime';
 
-export type CoverageWorkerResult = {|
-  coverage: any,
-  sourceMapPath: ?string,
-|};
+                                     
+                
+                         
+   
 
 export default function(
-  source: string,
-  filename: Path,
-  globalConfig: GlobalConfig,
-  config: ProjectConfig,
-): ?CoverageWorkerResult {
+  source        ,
+  filename      ,
+  globalConfig              ,
+  config               ,
+)                        {
   const coverageOptions = {
     collectCoverage: globalConfig.collectCoverage,
     collectCoverageFrom: globalConfig.collectCoverageFrom,

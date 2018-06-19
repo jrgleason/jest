@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * @flow scrict-local
+ *       scrict-local
  */
 
 'use strict';
 
-import type {EventHandler} from 'types/Circus';
+                                               
 
-const testEventHandler: EventHandler = (event, state) => {
+const testEventHandler               = (event, state) => {
   switch (event.name) {
     case 'start_describe_definition':
     case 'finish_describe_definition': {

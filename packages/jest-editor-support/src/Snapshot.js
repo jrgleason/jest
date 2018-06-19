@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * @flow
+ *      
  */
 
 'use strict';
@@ -14,17 +14,17 @@ import traverse from '@babel/traverse';
 import {getASTfor} from './parsers/babylon_parser';
 import {utils} from 'jest-snapshot';
 
-type Node = any;
+                
 
-type SnapshotMetadata = {
-  exists: true | false,
-  name: string,
-  node: Node,
-  content?: string,
-};
+                         
+                       
+               
+             
+                   
+  
 
 const describeVariants = Object.assign(
-  (Object.create(null): {[string]: boolean, __proto__: null}),
+  (Object.create(null)                                      ),
   {
     describe: true,
     fdescribe: true,
@@ -32,7 +32,7 @@ const describeVariants = Object.assign(
   },
 );
 const base = Object.assign(
-  (Object.create(null): {[string]: boolean, __proto__: null}),
+  (Object.create(null)                                      ),
   {
     describe: true,
     it: true,
@@ -40,7 +40,7 @@ const base = Object.assign(
   },
 );
 const decorators = Object.assign(
-  (Object.create(null): {[string]: boolean, __proto__: null}),
+  (Object.create(null)                                      ),
   {
     only: true,
     skip: true,
@@ -48,10 +48,10 @@ const decorators = Object.assign(
 );
 
 const validParents = Object.assign(
-  (Object.create(null): any),
+  (Object.create(null)     ),
   base,
   describeVariants,
-  Object.assign((Object.create(null): {[string]: boolean, __proto__: null}), {
+  Object.assign((Object.create(null)                                      ), {
     fit: true,
     xit: true,
     xtest: true,
@@ -82,11 +82,11 @@ const getArrayOfParents = path => {
   return result;
 };
 
-const buildName: (
-  snapshotNode: Node,
-  parents: Array<Node>,
-  position: number,
-) => string = (snapshotNode, parents, position) => {
+const buildName   
+                     
+                       
+                   
+            = (snapshotNode, parents, position) => {
   const fullName = parents.map(parent => parent.arguments[0].value).join(' ');
 
   let describeLess = '';
@@ -100,16 +100,16 @@ const buildName: (
 };
 
 export default class Snapshot {
-  _parser: Function;
-  _matchers: Array<string>;
-  constructor(parser: any, customMatchers?: Array<string>) {
+                    
+                           
+  constructor(parser     , customMatchers                ) {
     this._parser = parser || getASTfor;
     this._matchers = ['toMatchSnapshot', 'toThrowErrorMatchingSnapshot'].concat(
       customMatchers || [],
     );
   }
 
-  getMetadata(filePath: string): Array<SnapshotMetadata> {
+  getMetadata(filePath        )                          {
     const fileNode = this._parser(filePath);
     const state = {
       found: [],

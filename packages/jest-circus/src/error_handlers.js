@@ -4,19 +4,19 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow strict-local
+ *       strict-local
  */
 
 import {dispatch} from './state';
-import type {GlobalErrorHandlers} from 'types/Circus';
+                                                      
 
-const uncaught = (error: Error) => {
+const uncaught = (error       ) => {
   dispatch({error, name: 'error'});
 };
 
 export const injectGlobalErrorHandlers = (
-  parentProcess: Process,
-): GlobalErrorHandlers => {
+  parentProcess         ,
+)                      => {
   const uncaughtException = process.listeners('uncaughtException').slice();
   const unhandledRejection = process.listeners('unhandledRejection').slice();
   parentProcess.removeAllListeners('uncaughtException');
@@ -27,8 +27,8 @@ export const injectGlobalErrorHandlers = (
 };
 
 export const restoreGlobalErrorHandlers = (
-  parentProcess: Process,
-  originalErrorHandlers: GlobalErrorHandlers,
+  parentProcess         ,
+  originalErrorHandlers                     ,
 ) => {
   parentProcess.removeListener('uncaughtException', uncaught);
   parentProcess.removeListener('unhandledRejection', uncaught);

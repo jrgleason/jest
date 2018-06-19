@@ -4,14 +4,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {ValidationOptions} from './types';
+                                               
 
 import defaultConfig from './default_config';
 
-const _validate = (config: Object, options: ValidationOptions) => {
+const _validate = (config        , options                   ) => {
   let hasDeprecationWarnings = false;
 
   for (const key in config) {
@@ -45,10 +45,10 @@ const _validate = (config: Object, options: ValidationOptions) => {
   return {hasDeprecationWarnings};
 };
 
-const validate = (config: Object, options: ValidationOptions) => {
+const validate = (config        , options                   ) => {
   _validate(options, defaultConfig); // validate against jest-validate config
 
-  const defaultedOptions: ValidationOptions = Object.assign(
+  const defaultedOptions                    = Object.assign(
     {},
     defaultConfig,
     options,

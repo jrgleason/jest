@@ -13,11 +13,11 @@ expect.extend({
 });
 
 it('works with expected non promise values', async () => {
-  await (expect([1]): any).toHaveLengthAsync(Promise.resolve(1));
+  await (expect([1])).toHaveLengthAsync(Promise.resolve(1));
 });
 
 it('works with expected non promise values and not', async () => {
-  await (expect([1, 2]): any).not.toHaveLengthAsync(Promise.resolve(1));
+  await (expect([1, 2])).not.toHaveLengthAsync(Promise.resolve(1));
 });
 
 it('works with expected promise values', async () => {

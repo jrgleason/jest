@@ -28,10 +28,10 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/* @flow */
+/*       */
 /* eslint-disable sort-keys */
 
-import type {Jasmine} from 'types/Jasmine';
+                                           
 
 import createSpy from './create_spy';
 import Env from './Env';
@@ -42,12 +42,12 @@ import SpyRegistry from './spy_registry';
 import Suite from './Suite';
 import Timer from './Timer';
 
-exports.create = function(createOptions: Object) {
+exports.create = function(createOptions        ) {
   const j$ = Object.assign({}, createOptions);
 
   j$._DEFAULT_TIMEOUT_INTERVAL = 5000;
 
-  j$.getEnv = function(options: Object) {
+  j$.getEnv = function(options        ) {
     const env = (j$.currentEnv_ = j$.currentEnv_ || new j$.Env(options));
     //jasmine. singletons in here (setTimeout blah blah).
     return env;
@@ -66,17 +66,17 @@ exports.create = function(createOptions: Object) {
 };
 
 // Interface is a reserved word in strict mode, so can't export it as ESM
-exports.interface = function(jasmine: Jasmine, env: any) {
+exports.interface = function(jasmine         , env     ) {
   const jasmineInterface = {
-    describe(description: string, specDefinitions: Function) {
+    describe(description        , specDefinitions          ) {
       return env.describe(description, specDefinitions);
     },
 
-    xdescribe(description: string, specDefinitions: Function) {
+    xdescribe(description        , specDefinitions          ) {
       return env.xdescribe(description, specDefinitions);
     },
 
-    fdescribe(description: string, specDefinitions: Function) {
+    fdescribe(description        , specDefinitions          ) {
       return env.fdescribe(description, specDefinitions);
     },
 
@@ -116,7 +116,7 @@ exports.interface = function(jasmine: Jasmine, env: any) {
       return env.fail.apply(env, arguments);
     },
 
-    spyOn(obj: Object, methodName: string, accessType?: string) {
+    spyOn(obj        , methodName        , accessType         ) {
       return env.spyOn(obj, methodName, accessType);
     },
 

@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {GlobalConfig, SnapshotUpdateState} from 'types/Config';
-import type {Context} from 'types/Context';
-import type {WatchPlugin} from './types';
+                                                                    
+                                           
+                                         
 
 import ansiEscapes from 'ansi-escapes';
 import chalk from 'chalk';
@@ -50,17 +50,17 @@ const INTERNAL_PLUGINS = [
 ];
 
 export default function watch(
-  initialGlobalConfig: GlobalConfig,
-  contexts: Array<Context>,
-  outputStream: stream$Writable | tty$WriteStream,
-  hasteMapInstances: Array<HasteMap>,
-  stdin?: stream$Readable | tty$ReadStream = process.stdin,
-  hooks?: JestHook = new JestHook(),
-): Promise<void> {
+  initialGlobalConfig              ,
+  contexts                ,
+  outputStream                                   ,
+  hasteMapInstances                 ,
+  stdin                                    = process.stdin,
+  hooks            = new JestHook(),
+)                {
   // `globalConfig` will be constantly updated and reassigned as a result of
   // watch mode interactions.
   let globalConfig = initialGlobalConfig;
-  let activePlugin: ?WatchPlugin;
+  let activePlugin              ;
 
   globalConfig = updateGlobalConfig(globalConfig, {
     mode: globalConfig.watch ? 'watch' : 'watchAll',
@@ -72,12 +72,12 @@ export default function watch(
     testNamePattern,
     testPathPattern,
     updateSnapshot,
-  }: {
-    mode?: 'watch' | 'watchAll',
-    testNamePattern?: string,
-    testPathPattern?: string,
-    updateSnapshot?: SnapshotUpdateState,
-  } = {}) => {
+  }   
+                                
+                             
+                             
+                                         
+    = {}) => {
     const previousUpdateSnapshot = globalConfig.updateSnapshot;
     globalConfig = updateGlobalConfig(globalConfig, {
       mode,
@@ -103,11 +103,11 @@ export default function watch(
     });
   };
 
-  const watchPlugins: Array<WatchPlugin> = INTERNAL_PLUGINS.map(
+  const watchPlugins                     = INTERNAL_PLUGINS.map(
     InternalPlugin => new InternalPlugin({stdin, stdout: outputStream}),
   );
 
-  watchPlugins.forEach((plugin: WatchPlugin) => {
+  watchPlugins.forEach((plugin             ) => {
     const hookSubscriber = hooks.getSubscriber();
     if (plugin.apply) {
       plugin.apply(hookSubscriber);
@@ -118,7 +118,7 @@ export default function watch(
     for (const pluginModulePath of globalConfig.watchPlugins) {
       // $FlowFixMe dynamic require
       const ThirdPartyPlugin = require(pluginModulePath);
-      const plugin: WatchPlugin = new ThirdPartyPlugin({
+      const plugin              = new ThirdPartyPlugin({
         stdin,
         stdout: outputStream,
       });
@@ -190,7 +190,7 @@ export default function watch(
     });
   }
 
-  const startRun = (globalConfig: GlobalConfig) => {
+  const startRun = (globalConfig              ) => {
     if (isRunning) {
       return null;
     }
@@ -239,7 +239,7 @@ export default function watch(
     }).catch(error => console.error(chalk.red(error.stack)));
   };
 
-  const onKeypress = (key: string) => {
+  const onKeypress = (key        ) => {
     if (key === KEYS.CONTROL_C || key === KEYS.CONTROL_D) {
       if (typeof stdin.setRawMode === 'function') {
         stdin.setRawMode(false);
@@ -367,7 +367,7 @@ export default function watch(
 
 const usage = (
   globalConfig,
-  watchPlugins: Array<WatchPlugin>,
+  watchPlugins                    ,
   delimiter = '\n',
 ) => {
   const messages = [

@@ -7,8 +7,8 @@
 'use strict';
 
 export async function toHaveLengthAsync(
-  received: any,
-  lengthPromise: Promise<number>
+  received,
+  lengthPromise
 ) {
   const length = await lengthPromise;
 

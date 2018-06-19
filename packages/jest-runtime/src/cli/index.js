@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Argv} from 'types/Argv';
-import type {EnvironmentClass} from 'types/Environment';
+                                     
+                                                        
 
 import chalk from 'chalk';
 import os from 'os';
@@ -21,9 +21,9 @@ import {readConfig, deprecationEntries} from 'jest-config';
 import Runtime from '../';
 import * as args from './args';
 
-const VERSION = (require('../../package.json').version: string);
+const VERSION = (require('../../package.json').version        );
 
-export function run(cliArgv?: Argv, cliInfo?: Array<string>) {
+export function run(cliArgv       , cliInfo                ) {
   const realFs = require('fs');
   const fs = require('graceful-fs');
   fs.gracefulify(realFs);
@@ -81,7 +81,7 @@ export function run(cliArgv?: Argv, cliInfo?: Array<string>) {
   })
     .then(hasteMap => {
       /* $FlowFixMe */
-      const Environment = (require(config.testEnvironment): EnvironmentClass);
+      const Environment = (require(config.testEnvironment)                  );
       const environment = new Environment(config);
       setGlobal(
         environment.global,

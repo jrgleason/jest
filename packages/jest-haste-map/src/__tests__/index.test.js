@@ -81,7 +81,7 @@ let mockChangedFiles;
 let mockFs;
 
 jest.mock('graceful-fs', () => ({
-  readFileSync: jest.fn((path, options) => {
+  readFileSync: jest.fn((path) => {
     // A file change can be triggered by writing into the
     // mockChangedFiles object.
     if (mockChangedFiles && path in mockChangedFiles) {
@@ -475,7 +475,7 @@ describe('HasteMap', () => {
       Object.assign({mocksPattern: '__mocks__'}, defaultConfig),
     )
       .build()
-      .then(({__hasteMapForTest: data}) => {
+      .then(() => {
         expect(console.warn.mock.calls[0][0]).toMatchSnapshot();
       });
   });
@@ -899,7 +899,7 @@ describe('HasteMap', () => {
       }),
     )
       .build()
-      .then(({__hasteMapForTest: data}) => {
+      .then(() => {
         expect(jestWorker.mock.calls.length).toBe(1);
 
         expect(mockWorker.mock.calls.length).toBe(5);
@@ -1010,7 +1010,7 @@ describe('HasteMap', () => {
       Promise.reject(new Error('watchman error')),
     );
 
-    node.mockImplementation((roots, extensions, ignore, data) =>
+    node.mockImplementation( =>
       Promise.reject(new Error('node error')),
     );
 
@@ -1028,7 +1028,7 @@ describe('HasteMap', () => {
 
   describe('file system changes processing', () => {
     function waitForItToChange(hasteMap) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         hasteMap.once('change', resolve);
       });
     }

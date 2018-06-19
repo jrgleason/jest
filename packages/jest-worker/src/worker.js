@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
@@ -17,16 +17,16 @@ import {
   PARENT_MESSAGE_OK,
 } from './types';
 
-import type {ChildProcess} from 'child_process';
-import type {Readable} from 'stream';
+                                                
+                                     
 
-import type {
-  ChildMessage,
-  QueueChildMessage,
-  OnProcessEnd,
-  OnProcessStart,
-  WorkerOptions,
-} from './types';
+             
+               
+                    
+               
+                 
+                
+                 
 
 /**
  * This class wraps the child process and provides a nice interface to
@@ -47,32 +47,32 @@ import type {
  * same call skip it.
  */
 export default class {
-  _busy: boolean;
-  _child: ChildProcess;
-  _last: ?QueueChildMessage;
-  _options: WorkerOptions;
-  _queue: ?QueueChildMessage;
-  _retries: number;
+                 
+                       
+                            
+                          
+                             
+                   
 
-  constructor(options: WorkerOptions) {
+  constructor(options               ) {
     this._options = options;
     this._queue = null;
 
     this._initialize();
   }
 
-  getStdout(): Readable {
+  getStdout()           {
     return this._child.stdout;
   }
 
-  getStderr(): Readable {
+  getStderr()           {
     return this._child.stderr;
   }
 
   send(
-    request: ChildMessage,
-    onProcessStart: OnProcessStart,
-    onProcessEnd: OnProcessEnd,
+    request              ,
+    onProcessStart                ,
+    onProcessEnd              ,
   ) {
     const item = {next: null, onProcessEnd, onProcessStart, request};
 
@@ -163,7 +163,7 @@ export default class {
     }
   }
 
-  _receive(response: any /* Should be ParentMessage */) {
+  _receive(response      /* Should be ParentMessage */) {
     const item = this._queue;
 
     if (!item) {
@@ -207,7 +207,7 @@ export default class {
     }
   }
 
-  _exit(exitCode: number) {
+  _exit(exitCode        ) {
     if (exitCode !== 0) {
       this._initialize();
     }

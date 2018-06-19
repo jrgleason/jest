@@ -4,60 +4,60 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Global} from 'types/Global';
+                                         
 
-type Mock = any;
-export type MockFunctionMetadata = {
-  ref?: any,
-  members?: {[key: string]: MockFunctionMetadata},
-  mockImpl?: () => any,
-  name?: string,
-  refID?: string | number,
-  type?: string,
-  value?: any,
-  length?: number,
-};
+                
+                                    
+            
+                                                  
+                       
+                
+                          
+                
+              
+                  
+  
 
 /**
  * Represents the result of a single call to a mock function.
  */
-type MockFunctionResult = {
-  /**
-   * True if the function threw.
-   * False if the function returned.
-   */
-  isThrow: boolean,
-  /**
-   * The value that was either thrown or returned by the function.
-   */
-  value: any,
-};
+                           
+     
+                                
+                                    
+     
+                   
+     
+                                                                  
+     
+             
+  
 
-type MockFunctionState = {
-  instances: Array<any>,
-  calls: Array<Array<any>>,
-  /**
-   * List of results of calls to the mock function.
-   */
-  results: Array<MockFunctionResult>,
-  invocationCallOrder: Array<number>,
-};
+                          
+                        
+                           
+     
+                                                   
+     
+                                     
+                                     
+  
 
-type MockFunctionConfig = {
-  isReturnValueLastSet: boolean,
-  defaultReturnValue: any,
-  mockImpl: any,
-  mockName: string,
-  specificReturnValues: Array<any>,
-  specificMockImpls: Array<any>,
-};
+                           
+                                
+                          
+                
+                   
+                                   
+                                
+  
 
 const MOCK_CONSTRUCTOR_NAME = 'mockConstructor';
 
-const FUNCTION_NAME_RESERVED_PATTERN = /[\s!-\/:-@\[-`{-~]/;
+const FUNCTION_NAME_RESERVED_PATTERN = /[\s!-/:-@[-`{-~]/;
 const FUNCTION_NAME_RESERVED_REPLACE = new RegExp(
   FUNCTION_NAME_RESERVED_PATTERN.source,
   'g',
@@ -114,70 +114,17 @@ const RESERVED_KEYWORDS = Object.assign(Object.create(null), {
   yield: true,
 });
 
-function matchArity(fn: any, length: number): any {
-  let mockConstructor;
-
-  switch (length) {
-    case 1:
-      mockConstructor = function(a) {
-        return fn.apply(this, arguments);
-      };
-      break;
-    case 2:
-      mockConstructor = function(a, b) {
-        return fn.apply(this, arguments);
-      };
-      break;
-    case 3:
-      mockConstructor = function(a, b, c) {
-        return fn.apply(this, arguments);
-      };
-      break;
-    case 4:
-      mockConstructor = function(a, b, c, d) {
-        return fn.apply(this, arguments);
-      };
-      break;
-    case 5:
-      mockConstructor = function(a, b, c, d, e) {
-        return fn.apply(this, arguments);
-      };
-      break;
-    case 6:
-      mockConstructor = function(a, b, c, d, e, f) {
-        return fn.apply(this, arguments);
-      };
-      break;
-    case 7:
-      mockConstructor = function(a, b, c, d, e, f, g) {
-        return fn.apply(this, arguments);
-      };
-      break;
-    case 8:
-      mockConstructor = function(a, b, c, d, e, f, g, h) {
-        return fn.apply(this, arguments);
-      };
-      break;
-    case 9:
-      mockConstructor = function(a, b, c, d, e, f, g, h, i) {
-        return fn.apply(this, arguments);
-      };
-      break;
-    default:
-      mockConstructor = function() {
-        return fn.apply(this, arguments);
-      };
-      break;
-  }
-
-  return mockConstructor;
+function matchArity(fn){
+  return function() {
+      return fn.apply(this, arguments);
+  };
 }
 
-function isA(typeName: string, value: any): boolean {
+function isA(typeName        , value     )          {
   return Object.prototype.toString.apply(value) === '[object ' + typeName + ']';
 }
 
-function getType(ref?: any): string | null {
+function getType(ref      )                {
   if (
     isA('Function', ref) ||
     isA('AsyncFunction', ref) ||
@@ -208,7 +155,7 @@ function getType(ref?: any): string | null {
   }
 }
 
-function isReadonlyProp(object: any, prop: string): boolean {
+function isReadonlyProp(object     , prop        )          {
   return (
     ((prop === 'arguments' ||
       prop === 'caller' ||
@@ -226,7 +173,7 @@ function isReadonlyProp(object: any, prop: string): boolean {
   );
 }
 
-function getSlots(object?: Object): Array<string> {
+function getSlots(object         )                {
   const slots = {};
   if (!object) {
     return [];
@@ -253,19 +200,19 @@ function getSlots(object?: Object): Array<string> {
 }
 
 class ModuleMockerClass {
-  _environmentGlobal: Global;
-  _mockState: WeakMap<Function, MockFunctionState>;
-  _mockConfigRegistry: WeakMap<Function, MockFunctionConfig>;
-  _spyState: Set<() => void>;
-  ModuleMocker: Class<ModuleMockerClass>;
-  _invocationCallCounter: number;
+                             
+                                                   
+                                                             
+                             
+                                         
+                                 
 
   /**
    * @see README.md
    * @param global Global object of the test environment, used to create
    * mocks
    */
-  constructor(global: Global) {
+  constructor(global        ) {
     this._environmentGlobal = global;
     this._mockState = new WeakMap();
     this._mockConfigRegistry = new WeakMap();
@@ -274,7 +221,7 @@ class ModuleMockerClass {
     this._invocationCallCounter = 1;
   }
 
-  _ensureMockConfig(f: Mock): MockFunctionConfig {
+  _ensureMockConfig(f      )                     {
     let config = this._mockConfigRegistry.get(f);
     if (!config) {
       config = this._defaultMockConfig();
@@ -283,7 +230,7 @@ class ModuleMockerClass {
     return config;
   }
 
-  _ensureMockState(f: Mock): MockFunctionState {
+  _ensureMockState(f      )                    {
     let state = this._mockState.get(f);
     if (!state) {
       state = this._defaultMockState();
@@ -292,7 +239,7 @@ class ModuleMockerClass {
     return state;
   }
 
-  _defaultMockConfig(): MockFunctionConfig {
+  _defaultMockConfig()                     {
     return {
       defaultReturnValue: undefined,
       isReturnValueLastSet: false,
@@ -303,7 +250,7 @@ class ModuleMockerClass {
     };
   }
 
-  _defaultMockState(): MockFunctionState {
+  _defaultMockState()                    {
     return {
       calls: [],
       instances: [],
@@ -312,7 +259,7 @@ class ModuleMockerClass {
     };
   }
 
-  _makeComponent(metadata: MockFunctionMetadata, restore?: () => void): Mock {
+  _makeComponent(metadata                      , restore             )       {
     if (metadata.type === 'object') {
       return new this._environmentGlobal.Object();
     } else if (metadata.type === 'array') {
@@ -541,9 +488,9 @@ class ModuleMockerClass {
   }
 
   _createMockFunction(
-    metadata: MockFunctionMetadata,
-    mockConstructor: () => any,
-  ): any {
+    metadata                      ,
+    mockConstructor           ,
+  )      {
     let name = metadata.name;
     if (!name) {
       return mockConstructor;
@@ -597,10 +544,10 @@ class ModuleMockerClass {
   }
 
   _generateMock(
-    metadata: MockFunctionMetadata,
-    callbacks: Array<() => any>,
-    refs: Object,
-  ): Mock {
+    metadata                      ,
+    callbacks                  ,
+    refs        ,
+  )       {
     const mock = this._makeComponent(metadata);
     if (metadata.refID != null) {
       refs[metadata.refID] = mock;
@@ -631,7 +578,7 @@ class ModuleMockerClass {
    * @param metadata Metadata for the mock in the schema returned by the
    * getMetadata method of this module.
    */
-  generateFromMetadata(_metadata: MockFunctionMetadata): Mock {
+  generateFromMetadata(_metadata                      )       {
     const callbacks = [];
     const refs = {};
     const mock = this._generateMock(_metadata, callbacks, refs);
@@ -643,7 +590,7 @@ class ModuleMockerClass {
    * @see README.md
    * @param component The component for which to retrieve metadata.
    */
-  getMetadata(component: any, _refs?: Map<any, any>): ?MockFunctionMetadata {
+  getMetadata(component     , _refs                )                        {
     const refs = _refs || new Map();
     const ref = refs.get(component);
     if (ref != null) {
@@ -655,7 +602,7 @@ class ModuleMockerClass {
       return null;
     }
 
-    const metadata: MockFunctionMetadata = {type};
+    const metadata                       = {type};
     if (
       type === 'constant' ||
       type === 'collection' ||
@@ -722,11 +669,11 @@ class ModuleMockerClass {
     return metadata;
   }
 
-  isMockFunction(fn: any): boolean {
+  isMockFunction(fn     )          {
     return !!(fn && fn._isMockFunction);
   }
 
-  fn(implementation?: any): any {
+  fn(implementation      )      {
     const length = implementation ? implementation.length : 0;
     const fn = this._makeComponent({length, type: 'function'});
     if (implementation) {
@@ -735,7 +682,7 @@ class ModuleMockerClass {
     return fn;
   }
 
-  spyOn(object: any, methodName: any, accessType?: string): any {
+  spyOn(object     , methodName     , accessType         )      {
     if (accessType) {
       return this._spyOnProperty(object, methodName, accessType);
     }
@@ -771,7 +718,7 @@ class ModuleMockerClass {
     return object[methodName];
   }
 
-  _spyOnProperty(obj: any, propertyName: any, accessType: string = 'get'): any {
+  _spyOnProperty(obj     , propertyName     , accessType         = 'get')      {
     if (typeof obj !== 'object' && typeof obj !== 'function') {
       throw new Error(
         'Cannot spyOn on a primitive value; ' + this._typeOf(obj) + ' given',
@@ -853,10 +800,10 @@ class ModuleMockerClass {
     this._spyState = new Set();
   }
 
-  _typeOf(value: any): string {
+  _typeOf(value     )         {
     return value == null ? '' + value : typeof value;
   }
 }
 
-export type ModuleMocker = ModuleMockerClass;
+                                             
 module.exports = new ModuleMockerClass(global);

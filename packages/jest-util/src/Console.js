@@ -4,11 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
-/* global stream$Writable */
 
-import type {LogType, LogMessage, LogCounters, LogTimers} from 'types/Console';
+                                                                               
 
 import assert from 'assert';
 import {format} from 'util';
@@ -16,19 +15,19 @@ import {Console} from 'console';
 import chalk from 'chalk';
 import clearLine from './clear_line';
 
-type Formatter = (type: LogType, message: LogMessage) => string;
+                                                                
 
 export default class CustomConsole extends Console {
-  _stdout: stream$Writable;
-  _formatBuffer: Formatter;
-  _counters: LogCounters;
-  _timers: LogTimers;
-  _groupDepth: number;
+                           
+                           
+                         
+                     
+                      
 
   constructor(
-    stdout: stream$Writable,
-    stderr: stream$Writable,
-    formatBuffer: ?Formatter,
+    stdout                 ,
+    stderr                 ,
+    formatBuffer            ,
   ) {
     super(stdout, stderr);
     this._formatBuffer = formatBuffer || ((type, message) => message);
@@ -37,18 +36,18 @@ export default class CustomConsole extends Console {
     this._groupDepth = 0;
   }
 
-  _logToParentConsole(message: string) {
+  _logToParentConsole(message        ) {
     super.log(message);
   }
 
-  _log(type: LogType, message: string) {
+  _log(type         , message        ) {
     clearLine(this._stdout);
     this._logToParentConsole(
       this._formatBuffer(type, '  '.repeat(this._groupDepth) + message),
     );
   }
 
-  assert(...args: Array<any>) {
+  assert(...args            ) {
     try {
       assert(...args);
     } catch (error) {
@@ -56,7 +55,7 @@ export default class CustomConsole extends Console {
     }
   }
 
-  count(label: string = 'default') {
+  count(label         = 'default') {
     if (!this._counters[label]) {
       this._counters[label] = 0;
     }
@@ -64,27 +63,27 @@ export default class CustomConsole extends Console {
     this._log('count', format(`${label}: ${++this._counters[label]}`));
   }
 
-  countReset(label: string = 'default') {
+  countReset(label         = 'default') {
     this._counters[label] = 0;
   }
 
-  debug(...args: Array<any>) {
+  debug(...args            ) {
     this._log('debug', format(...args));
   }
 
-  dir(...args: Array<any>) {
+  dir(...args            ) {
     this._log('dir', format(...args));
   }
 
-  dirxml(...args: Array<any>) {
+  dirxml(...args            ) {
     this._log('dirxml', format(...args));
   }
 
-  error(...args: Array<any>) {
+  error(...args            ) {
     this._log('error', format(...args));
   }
 
-  group(...args: Array<any>) {
+  group(...args            ) {
     this._groupDepth++;
 
     if (args.length > 0) {
@@ -92,7 +91,7 @@ export default class CustomConsole extends Console {
     }
   }
 
-  groupCollapsed(...args: Array<any>) {
+  groupCollapsed(...args            ) {
     this._groupDepth++;
 
     if (args.length > 0) {
@@ -106,15 +105,15 @@ export default class CustomConsole extends Console {
     }
   }
 
-  info(...args: Array<any>) {
+  info(...args            ) {
     this._log('info', format(...args));
   }
 
-  log(...args: Array<any>) {
+  log(...args            ) {
     this._log('log', format(...args));
   }
 
-  time(label: string = 'default') {
+  time(label         = 'default') {
     if (this._timers[label]) {
       return;
     }
@@ -122,7 +121,7 @@ export default class CustomConsole extends Console {
     this._timers[label] = new Date();
   }
 
-  timeEnd(label: string = 'default') {
+  timeEnd(label         = 'default') {
     const startTime = this._timers[label];
 
     if (startTime) {
@@ -133,7 +132,7 @@ export default class CustomConsole extends Console {
     }
   }
 
-  warn(...args: Array<any>) {
+  warn(...args            ) {
     this._log('warn', format(...args));
   }
 

@@ -3,20 +3,20 @@
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- * @flow
+ *      
  */
 
-import type {
-  AggregatedResult,
-  AggregatedResultWithoutCoverage,
-  CoverageMap,
-} from 'types/TestResult';
+             
+                   
+                                  
+              
+                          
 
-type PhabricatorReport = AggregatedResultWithoutCoverage & {
-  coverageMap?: ?CoverageMap,
-};
+                                                            
+                             
+  
 
-function summarize(coverageMap: CoverageMap) {
+function summarize(coverageMap             ) {
   const summaries = Object.create(null);
 
   coverageMap.files().forEach(file => {
@@ -41,7 +41,7 @@ function summarize(coverageMap: CoverageMap) {
   return summaries;
 }
 
-module.exports = function(results: AggregatedResult): PhabricatorReport {
+module.exports = function(results                  )                    {
   // $FlowFixMe: This should work, but it does not.
   return Object.assign({}, results, {
     coverageMap: results.coverageMap && summarize(results.coverageMap),

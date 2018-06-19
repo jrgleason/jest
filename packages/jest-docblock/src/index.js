@@ -4,13 +4,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import detectNewline from 'detect-newline';
 import {EOL} from 'os';
 
-type Pragmas = {[key: string]: string | string[], __proto__: null};
+                                                                   
 
 const commentEndRe = /\*\/$/;
 const commentStartRe = /^\/\*\*/;
@@ -21,23 +21,23 @@ const multilineRe = /(?:^|\r?\n) *(@[^\r\n]*?) *\r?\n *(?![^@\r\n]*\/\/[^]*)([^@
 const propertyRe = /(?:^|\r?\n) *@(\S+) *([^\r\n]*)/g;
 const stringStartRe = /(\r?\n|^) *\* ?/g;
 
-export function extract(contents: string): string {
+export function extract(contents        )         {
   const match = contents.match(docblockRe);
   return match ? match[0].trimLeft() : '';
 }
 
-export function strip(contents: string) {
+export function strip(contents        ) {
   const match = contents.match(docblockRe);
   return match && match[0] ? contents.substring(match[0].length) : contents;
 }
 
-export function parse(docblock: string): Pragmas {
+export function parse(docblock        )          {
   return parseWithComments(docblock).pragmas;
 }
 
 export function parseWithComments(
-  docblock: string,
-): {comments: string, pragmas: Pragmas} {
+  docblock        ,
+)                                       {
   const line = detectNewline(docblock) || EOL;
 
   docblock = docblock
@@ -78,11 +78,11 @@ export function parseWithComments(
 export function print({
   comments = '',
   pragmas = {},
-}: {
-  comments?: string,
-  pragmas?: Pragmas,
-  __proto__: null,
-}): string {
+}   
+                    
+                    
+                  
+ )         {
   const line = detectNewline(comments) || EOL;
   const head = '/**';
   const start = ' *';

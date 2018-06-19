@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import {
@@ -18,8 +18,8 @@ import {
 import {emptyObject} from './utils';
 
 export class AsymmetricMatcher {
-  $$typeof: Symbol;
-  inverse: boolean;
+                   
+                   
 
   constructor() {
     this.$$typeof = Symbol.for('jest.asymmetricMatcher');
@@ -27,9 +27,9 @@ export class AsymmetricMatcher {
 }
 
 class Any extends AsymmetricMatcher {
-  sample: any;
+              
 
-  constructor(sample: any) {
+  constructor(sample     ) {
     super();
     if (typeof sample === 'undefined') {
       throw new TypeError(
@@ -40,7 +40,7 @@ class Any extends AsymmetricMatcher {
     this.sample = sample;
   }
 
-  asymmetricMatch(other: any) {
+  asymmetricMatch(other     ) {
     if (this.sample == String) {
       return typeof other == 'string' || other instanceof String;
     }
@@ -98,7 +98,7 @@ class Any extends AsymmetricMatcher {
 }
 
 class Anything extends AsymmetricMatcher {
-  asymmetricMatch(other: any) {
+  asymmetricMatch(other     ) {
     return !isUndefined(other) && other !== null;
   }
 
@@ -114,15 +114,15 @@ class Anything extends AsymmetricMatcher {
 }
 
 class ArrayContaining extends AsymmetricMatcher {
-  sample: Array<any>;
+                     
 
-  constructor(sample: Array<any>, inverse: boolean = false) {
+  constructor(sample            , inverse          = false) {
     super();
     this.sample = sample;
     this.inverse = inverse;
   }
 
-  asymmetricMatch(other: Array<any>) {
+  asymmetricMatch(other            ) {
     if (!Array.isArray(this.sample)) {
       throw new Error(
         `You must provide an array to ${this.toString()}, not '` +
@@ -151,15 +151,15 @@ class ArrayContaining extends AsymmetricMatcher {
 }
 
 class ObjectContaining extends AsymmetricMatcher {
-  sample: Object;
+                 
 
-  constructor(sample: Object, inverse: boolean = false) {
+  constructor(sample        , inverse          = false) {
     super();
     this.sample = sample;
     this.inverse = inverse;
   }
 
-  asymmetricMatch(other: Object) {
+  asymmetricMatch(other        ) {
     if (typeof this.sample !== 'object') {
       throw new Error(
         `You must provide an object to ${this.toString()}, not '` +
@@ -205,9 +205,9 @@ class ObjectContaining extends AsymmetricMatcher {
 }
 
 class StringContaining extends AsymmetricMatcher {
-  sample: string;
+                 
 
-  constructor(sample: string, inverse: boolean = false) {
+  constructor(sample        , inverse          = false) {
     super();
     if (!isA('String', sample)) {
       throw new Error('Expected is not a string');
@@ -216,7 +216,7 @@ class StringContaining extends AsymmetricMatcher {
     this.inverse = inverse;
   }
 
-  asymmetricMatch(other: string) {
+  asymmetricMatch(other        ) {
     if (!isA('String', other)) {
       throw new Error('Actual is not a string');
     }
@@ -236,9 +236,9 @@ class StringContaining extends AsymmetricMatcher {
 }
 
 class StringMatching extends AsymmetricMatcher {
-  sample: RegExp;
+                 
 
-  constructor(sample: string | RegExp, inverse: boolean = false) {
+  constructor(sample                 , inverse          = false) {
     super();
     if (!isA('String', sample) && !isA('RegExp', sample)) {
       throw new Error('Expected is not a String or a RegExp');
@@ -248,7 +248,7 @@ class StringMatching extends AsymmetricMatcher {
     this.inverse = inverse;
   }
 
-  asymmetricMatch(other: string) {
+  asymmetricMatch(other        ) {
     if (!isA('String', other)) {
       throw new Error('Actual is not a string');
     }
@@ -267,21 +267,21 @@ class StringMatching extends AsymmetricMatcher {
   }
 }
 
-export const any = (expectedObject: any) => new Any(expectedObject);
+export const any = (expectedObject     ) => new Any(expectedObject);
 export const anything = () => new Anything();
-export const arrayContaining = (sample: Array<any>) =>
+export const arrayContaining = (sample            ) =>
   new ArrayContaining(sample);
-export const arrayNotContaining = (sample: Array<any>) =>
+export const arrayNotContaining = (sample            ) =>
   new ArrayContaining(sample, true);
-export const objectContaining = (sample: Object) =>
+export const objectContaining = (sample        ) =>
   new ObjectContaining(sample);
-export const objectNotContaining = (sample: Object) =>
+export const objectNotContaining = (sample        ) =>
   new ObjectContaining(sample, true);
-export const stringContaining = (expected: string) =>
+export const stringContaining = (expected        ) =>
   new StringContaining(expected);
-export const stringNotContaining = (expected: string) =>
+export const stringNotContaining = (expected        ) =>
   new StringContaining(expected, true);
-export const stringMatching = (expected: string | RegExp) =>
+export const stringMatching = (expected                 ) =>
   new StringMatching(expected);
-export const stringNotMatching = (expected: string | RegExp) =>
+export const stringNotMatching = (expected                 ) =>
   new StringMatching(expected, true);

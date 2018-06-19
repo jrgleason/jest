@@ -4,28 +4,28 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {
-  JestHookSubscriber,
-  JestHookEmitter,
-  FileChange,
-  ShouldRunTestSuite,
-  TestRunComplete,
-} from 'types/JestHooks';
+             
+                     
+                  
+             
+                     
+                  
+                         
 
-type AvailableHooks =
-  | 'onFileChange'
-  | 'onTestRunComplete'
-  | 'shouldRunTestSuite';
+                     
+                  
+                       
+                         
 
 class JestHooks {
-  _listeners: {
-    onFileChange: Array<FileChange>,
-    onTestRunComplete: Array<TestRunComplete>,
-    shouldRunTestSuite: Array<ShouldRunTestSuite>,
-  };
+               
+                                    
+                                              
+                                                  
+    
 
   constructor() {
     this._listeners = {
@@ -35,11 +35,11 @@ class JestHooks {
     };
   }
 
-  isUsed(hook: AvailableHooks) {
+  isUsed(hook                ) {
     return this._listeners[hook] && this._listeners[hook].length;
   }
 
-  getSubscriber(): JestHookSubscriber {
+  getSubscriber()                     {
     return {
       onFileChange: fn => {
         this._listeners.onFileChange.push(fn);
@@ -53,7 +53,7 @@ class JestHooks {
     };
   }
 
-  getEmitter(): JestHookEmitter {
+  getEmitter()                  {
     return {
       onFileChange: fs =>
         this._listeners.onFileChange.forEach(listener => listener(fs)),

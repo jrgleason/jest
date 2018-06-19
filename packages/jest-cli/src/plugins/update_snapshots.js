@@ -4,39 +4,39 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
-import type {GlobalConfig} from 'types/Config';
-import type {JestHookSubscriber} from 'types/JestHooks';
+                                               
+                                                        
 import {BaseWatchPlugin} from 'jest-watcher';
 
 class UpdateSnapshotsPlugin extends BaseWatchPlugin {
-  _hasSnapshotFailure: boolean;
-  isInternal: true;
+                               
+                   
 
-  constructor(options: {
-    stdin: stream$Readable | tty$ReadStream,
-    stdout: stream$Writable | tty$WriteStream,
-  }) {
+  constructor(options   
+                                            
+                                              
+   ) {
     super(options);
     this.isInternal = true;
   }
 
   run(
-    globalConfig: GlobalConfig,
-    updateConfigAndRun: Function,
-  ): Promise<boolean> {
+    globalConfig              ,
+    updateConfigAndRun          ,
+  )                   {
     updateConfigAndRun({updateSnapshot: 'all'});
     return Promise.resolve(false);
   }
 
-  apply(hooks: JestHookSubscriber) {
+  apply(hooks                    ) {
     hooks.onTestRunComplete(results => {
       this._hasSnapshotFailure = results.snapshot.failure;
     });
   }
 
-  getUsageInfo(globalConfig: GlobalConfig) {
+  getUsageInfo(globalConfig              ) {
     if (this._hasSnapshotFailure) {
       return {
         key: 'u',

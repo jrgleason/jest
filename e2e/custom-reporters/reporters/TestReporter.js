@@ -51,7 +51,7 @@ class TestReporter {
     onTestStart.path = typeof path === 'string';
   }
 
-  onTestResult(test, testResult, results) {
+  onTestResult() {
     const onTestResult = this._statsCollected.onTestResult;
 
     onTestResult.called = true;

@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 const stripAnsi = require('strip-ansi');
@@ -823,7 +823,7 @@ test('collapses big diffs to patch format', () => {
 });
 
 describe('context', () => {
-  const testDiffContextLines = (contextLines?: number) => {
+  const testDiffContextLines = (contextLines         ) => {
     test(`number of lines: ${
       typeof contextLines === 'number' ? contextLines : 'null'
     } ${

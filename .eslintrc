@@ -3,14 +3,13 @@
         'eslint:recommended',
         'import',
         'prettier',
-        'prettier/flowtype',
         'plugin:react/recommended'
     ],
     "env": {
         "jest": true,
         "node": true,
         "amd": true,
-        es6: true,
+        "es6": true,
     },
 	'parserOptions': {
 	    'sourceType': 'module',
@@ -22,17 +21,25 @@
     'plugins': [
         'markdown',
         'react',
-        'flowtype',
     ],
     'rules': {
         'import/order': 0,
         'no-console': 0,
         'import/no-duplicates': 2,
-        'flowtype/boolean-style': 2,
-        'flowtype/no-primitive-constructor-types': 2,
-        'flowtype/require-valid-file-annotation': 2,
+        'react/prop-types': 0,
     },
     overrides: [
+        {
+            files: [
+                website/**/*
+            ],
+            'parserOptions': {
+	            'sourceType': 'scripts',
+	            'ecmaFeatures': {
+                    'globalReturn': 0
+                },
+            },
+        },
         {
             files: [
                 'e2e/__tests__/**/*',
@@ -50,8 +57,8 @@
                 'packages/pretty-format/**/*.test.js',
             ],
             rules: {
-                'import/no-unresolved': "off",
-                'flowtype/require-valid-file-annotation': [2, 'always'],
+                'import/no-unresolved': 0,
+                'no-undef': 0,
             },
         },
         {
@@ -63,14 +70,6 @@
                 'react/react-in-jsx-scope': 0,
                 'react/prop-types': 0,
                 'react/jsx-no-undef': 0,
-            },
-        },
-        {
-            files: [
-                'e2e/__tests__/**/*',
-            ],
-            rules: {
-                'import/no-unresolved': "off",
             },
         },
     ],

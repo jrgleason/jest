@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import diff from '../';
@@ -16,7 +16,7 @@ describe('invalid arg', () => {
   describe('length', () => {
     test('is not a number', () => {
       expect(() => {
-        diff(('0': any), 0, isCommon, foundSubsequence);
+        diff(('0'     ), 0, isCommon, foundSubsequence);
       }).toThrow(/aLength/);
     });
     test('Infinity is not a safe integer', () => {
@@ -50,25 +50,25 @@ describe('invalid arg', () => {
   describe('callback', () => {
     test('null is not a function', () => {
       expect(() => {
-        diff(0, 0, (null: any), foundSubsequence);
+        diff(0, 0, (null     ), foundSubsequence);
       }).toThrow(/isCommon/);
     });
     test('undefined is not a function', () => {
       expect(() => {
-        diff(0, 0, isCommon, (undefined: any));
+        diff(0, 0, isCommon, (undefined     ));
       }).toThrow(/foundSubsequence/);
     });
   });
 });
 
 // Return length of longest common subsequence according to Object.is method.
-const countCommonObjectIs = (a: Array<any>, b: Array<any>): number => {
+const countCommonObjectIs = (a            , b            )         => {
   let n = 0;
   diff(
     a.length,
     b.length,
-    (aIndex: number, bIndex: number) => Object.is(a[aIndex], b[bIndex]),
-    (nCommon: number) => {
+    (aIndex        , bIndex        ) => Object.is(a[aIndex], b[bIndex]),
+    (nCommon        ) => {
       n += nCommon;
     },
   );
@@ -76,13 +76,13 @@ const countCommonObjectIs = (a: Array<any>, b: Array<any>): number => {
 };
 
 // Return length of longest common subsequence according to === operator.
-const countCommonStrictEquality = (a: Array<any>, b: Array<any>): number => {
+const countCommonStrictEquality = (a            , b            )         => {
   let n = 0;
   diff(
     a.length,
     b.length,
-    (aIndex: number, bIndex: number) => a[aIndex] === b[bIndex],
-    (nCommon: number) => {
+    (aIndex        , bIndex        ) => a[aIndex] === b[bIndex],
+    (nCommon        ) => {
       n += nCommon;
     },
   );
@@ -115,30 +115,30 @@ describe('input callback encapsulates comparison', () => {
   });
 });
 
-const assertMin = (name: string, val: number, min: number) => {
+const assertMin = (name        , val        , min        ) => {
   if (val < min) {
     throw new RangeError(`${name} value ${val} is less than min ${min}`);
   }
 };
 
-const assertMax = (name: string, val: number, max: number) => {
+const assertMax = (name        , val        , max        ) => {
   if (max < val) {
     throw new RangeError(`${name} value ${val} is greater than max ${max}`);
   }
 };
 
-const assertEnd = (name: string, val: number, end: number) => {
+const assertEnd = (name        , val        , end        ) => {
   if (end <= val) {
     throw new RangeError(`${name} value ${val} is not less than end ${end}`);
   }
 };
 
 const assertCommonItems = (
-  a: Array<any> | string,
-  b: Array<any> | string,
-  nCommon: number,
-  aCommon: number,
-  bCommon: number,
+  a                     ,
+  b                     ,
+  nCommon        ,
+  aCommon        ,
+  bCommon        ,
 ) => {
   for (; nCommon !== 0; nCommon -= 1, aCommon += 1, bCommon += 1) {
     if (a[aCommon] !== b[bCommon]) {
@@ -151,21 +151,21 @@ const assertCommonItems = (
 
 // Return array of items in a longest common subsequence of array-like objects.
 const findCommonItems = (
-  a: Array<any> | string,
-  b: Array<any> | string,
-): Array<any> => {
+  a                     ,
+  b                     ,
+)             => {
   const array = [];
   diff(
     a.length,
     b.length,
-    (aIndex: number, bIndex: number) => {
+    (aIndex        , bIndex        ) => {
       assertMin('input aIndex', aIndex, 0);
       assertEnd('input aIndex', aIndex, a.length);
       assertMin('input bIndex', bIndex, 0);
       assertEnd('input bIndex', bIndex, b.length);
       return a[aIndex] === b[bIndex];
     },
-    (nCommon: number, aCommon: number, bCommon: number) => {
+    (nCommon        , aCommon        , bCommon        ) => {
       assertMin('output nCommon', nCommon, 1);
       assertMin('output aCommon', aCommon, 0);
       assertMax('output aCommon + nCommon', aCommon + nCommon, a.length);
@@ -182,9 +182,9 @@ const findCommonItems = (
 
 // Assert that array-like objects have the expected common items.
 const expectCommonItems = (
-  a: Array<any> | string,
-  b: Array<any> | string,
-  expected: Array<any>,
+  a                     ,
+  b                     ,
+  expected            ,
 ) => {
   expect(findCommonItems(a, b)).toEqual(expected);
 
@@ -665,11 +665,11 @@ describe('all common items inside recursive', () => {
 });
 
 const assertCommonSubstring = (
-  a: string,
-  b: string,
-  nCommon: number,
-  aCommon: number,
-  bCommon: number,
+  a        ,
+  b        ,
+  nCommon        ,
+  aCommon        ,
+  bCommon        ,
 ) => {
   const aSubstring = a.slice(aCommon, aCommon + nCommon);
   const bSubstring = b.slice(bCommon, bCommon + nCommon);
@@ -681,19 +681,19 @@ const assertCommonSubstring = (
 };
 
 // Return array of substrings in a longest common subsequence of strings.
-const findCommonSubstrings = (a: string, b: string): Array<string> => {
+const findCommonSubstrings = (a        , b        )                => {
   const array = [];
   diff(
     a.length,
     b.length,
-    (aIndex: number, bIndex: number) => {
+    (aIndex        , bIndex        ) => {
       assertMin('input aIndex', aIndex, 0);
       assertEnd('input aIndex', aIndex, a.length);
       assertMin('input bIndex', bIndex, 0);
       assertEnd('input bIndex', bIndex, b.length);
       return a[aIndex] === b[bIndex];
     },
-    (nCommon: number, aCommon: number, bCommon: number) => {
+    (nCommon        , aCommon        , bCommon        ) => {
       assertMin('output nCommon', nCommon, 1);
       assertMin('output aCommon', aCommon, 0);
       assertMax('output aCommon + nCommon', aCommon + nCommon, a.length);

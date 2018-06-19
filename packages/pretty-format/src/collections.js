@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Config, Printer, Refs} from 'types/PrettyFormat';
+                                                              
 
-const getSymbols = Object.getOwnPropertySymbols || (obj => []);
+const getSymbols = Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols: function(){};
 
 const isSymbol = key =>
   // $FlowFixMe string literal `symbol`. This value is not a valid `typeof` return value
@@ -22,17 +22,17 @@ export function printIteratorEntries(
   // Flow 0.51.0: property `@@iterator` of $Iterator not found in Object
   // To allow simplistic getRecordIterator in immutable.js
   // replaced Iterator<[any, any]> with any
-  iterator: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
+  iterator     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
   // Too bad, so sad that separator for ECMAScript Map has been ' => '
   // What a distracting diff if you change a data structure to/from
   // ECMAScript Object or Immutable.Map/OrderedMap which use the default.
-  separator: string = ': ',
-): string {
+  separator         = ': ',
+)         {
   let result = '';
   let current = iterator.next();
 
@@ -78,13 +78,13 @@ export function printIteratorEntries(
 // with spacing, indentation, and comma
 // without surrounding punctuation (braces or brackets)
 export function printIteratorValues(
-  iterator: Iterator<any>,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string {
+  iterator               ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         {
   let result = '';
   let current = iterator.next();
 
@@ -117,13 +117,13 @@ export function printIteratorValues(
 // with spacing, indentation, and comma
 // without surrounding punctuation (for example, brackets)
 export function printListItems(
-  list: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string {
+  list     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         {
   let result = '';
 
   if (list.length) {
@@ -153,13 +153,13 @@ export function printListItems(
 // with spacing, indentation, and comma
 // without surrounding punctuation (for example, braces)
 export function printObjectProperties(
-  val: Object,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string {
+  val        ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         {
   let result = '';
   let keys = Object.keys(val).sort();
   const symbols = getSymbols(val);

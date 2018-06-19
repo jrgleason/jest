@@ -4,35 +4,35 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {GlobalConfig} from 'types/Config';
-import type {
-  AggregatedResult,
-  AssertionResult,
-  Suite,
-  TestResult,
-} from 'types/TestResult';
-import type {Test} from 'types/TestRunner';
+                                               
+             
+                   
+                  
+        
+             
+                          
+                                           
 
 import chalk from 'chalk';
 import {ICONS} from '../constants';
 import DefaultReporter from './default_reporter';
 
 export default class VerboseReporter extends DefaultReporter {
-  _globalConfig: GlobalConfig;
+                              
 
-  constructor(globalConfig: GlobalConfig) {
+  constructor(globalConfig              ) {
     super(globalConfig);
     this._globalConfig = globalConfig;
   }
 
-  static filterTestResults(testResults: Array<AssertionResult>) {
+  static filterTestResults(testResults                        ) {
     return testResults.filter(({status}) => status !== 'pending');
   }
 
-  static groupTestsBySuites(testResults: Array<AssertionResult>) {
+  static groupTestsBySuites(testResults                        ) {
     const root = {suites: [], tests: [], title: ''};
     testResults.forEach(testResult => {
       let targetSuite = root;
@@ -54,9 +54,9 @@ export default class VerboseReporter extends DefaultReporter {
   }
 
   onTestResult(
-    test: Test,
-    result: TestResult,
-    aggregatedResults: AggregatedResult,
+    test      ,
+    result            ,
+    aggregatedResults                  ,
   ) {
     super.testFinished(test.context.config, result, aggregatedResults);
     if (!result.skipped) {
@@ -77,12 +77,12 @@ export default class VerboseReporter extends DefaultReporter {
     super.forceFlushBufferedOutput();
   }
 
-  _logTestResults(testResults: Array<AssertionResult>) {
+  _logTestResults(testResults                        ) {
     this._logSuite(VerboseReporter.groupTestsBySuites(testResults), 0);
     this._logLine();
   }
 
-  _logSuite(suite: Suite, indentLevel: number) {
+  _logSuite(suite       , indentLevel        ) {
     if (suite.title) {
       this._logLine(suite.title, indentLevel);
     }
@@ -92,7 +92,7 @@ export default class VerboseReporter extends DefaultReporter {
     suite.suites.forEach(suite => this._logSuite(suite, indentLevel + 1));
   }
 
-  _getIcon(status: string) {
+  _getIcon(status        ) {
     if (status === 'failed') {
       return chalk.red(ICONS.failed);
     } else if (status === 'pending') {
@@ -102,13 +102,13 @@ export default class VerboseReporter extends DefaultReporter {
     }
   }
 
-  _logTest(test: AssertionResult, indentLevel: number) {
+  _logTest(test                 , indentLevel        ) {
     const status = this._getIcon(test.status);
     const time = test.duration ? ` (${test.duration.toFixed(0)}ms)` : '';
     this._logLine(status + ' ' + chalk.dim(test.title + time), indentLevel);
   }
 
-  _logTests(tests: Array<AssertionResult>, indentLevel: number) {
+  _logTests(tests                        , indentLevel        ) {
     if (this._globalConfig.expand) {
       tests.forEach(test => this._logTest(test, indentLevel));
     } else {
@@ -128,14 +128,14 @@ export default class VerboseReporter extends DefaultReporter {
     }
   }
 
-  _logSkippedTests(count: number, indentLevel: number) {
+  _logSkippedTests(count        , indentLevel        ) {
     const icon = this._getIcon('pending');
     const text = chalk.dim(`skipped ${count} test${count === 1 ? '' : 's'}`);
 
     this._logLine(`${icon} ${text}`, indentLevel);
   }
 
-  _logLine(str?: string, indentLevel?: number) {
+  _logLine(str         , indentLevel         ) {
     const indentation = '  '.repeat(indentLevel || 0);
     this.log(indentation + (str || ''));
   }

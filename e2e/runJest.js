@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 'use strict';
 
@@ -18,18 +18,18 @@ const {sync: spawnSync} = execa;
 
 const JEST_PATH = path.resolve(__dirname, '../packages/jest-cli/bin/jest.js');
 
-type RunJestOptions = {
-  nodePath?: string,
-  skipPkgJsonCheck?: boolean, // don't complain if can't find package.json
-};
+                       
+                    
+                                                                          
+  
 
 // return the result of the spawned process:
 //  [ 'status', 'signal', 'output', 'pid', 'stdout', 'stderr',
 //    'envPairs', 'options', 'args', 'file' ]
 function runJest(
-  dir: string,
-  args?: Array<string>,
-  options: RunJestOptions = {},
+  dir        ,
+  args                ,
+  options                 = {},
 ) {
   const isRelative = dir[0] !== '/';
 
@@ -74,7 +74,7 @@ function runJest(
 //   'success', 'startTime', 'numTotalTests', 'numTotalTestSuites',
 //   'numRuntimeErrorTestSuites', 'numPassedTests', 'numFailedTests',
 //   'numPendingTests', 'testResults'
-runJest.json = function(dir: string, args?: Array<string>, ...rest) {
+runJest.json = function(dir        , args                , ...rest) {
   args = [...(args || []), '--json'];
   const result = runJest(dir, args, ...rest);
   try {
@@ -94,10 +94,10 @@ runJest.json = function(dir: string, args?: Array<string>, ...rest) {
 
 // Runs `jest` until a given output is achieved, then kills it with `SIGTERM`
 runJest.until = async function(
-  dir: string,
-  args?: Array<string>,
-  text: string,
-  options: RunJestOptions = {},
+  dir        ,
+  args                ,
+  text        ,
+  options                 = {},
 ) {
   const isRelative = dir[0] !== '/';
 

@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Path} from 'types/Config';
-import type {ErrorWithCode} from 'types/Errors';
+                                       
+                                                
 
 import browserResolve from 'browser-resolve';
 import fs from 'fs';
@@ -16,19 +16,19 @@ import path from 'path';
 import isBuiltinModule from './is_builtin_module';
 import nodeModulesPaths from './node_modules_paths';
 
-type ResolverOptions = {|
-  basedir: Path,
-  browser?: boolean,
-  extensions?: Array<string>,
-  moduleDirectory?: Array<string>,
-  paths?: ?Array<Path>,
-  rootDir: ?Path,
-|};
+                         
+                
+                    
+                             
+                                  
+                       
+                 
+   
 
 export default function defaultResolver(
-  path: Path,
-  options: ResolverOptions,
-): Path {
+  path      ,
+  options                 ,
+)       {
   const resolve = options.browser ? browserResolve.sync : resolveSync;
 
   return resolve(path, {
@@ -40,9 +40,9 @@ export default function defaultResolver(
   });
 }
 
-const REGEX_RELATIVE_IMPORT = /^(?:\.\.?(?:\/|$)|\/|([A-Za-z]:)?[\\\/])/;
+const REGEX_RELATIVE_IMPORT = /^(?:\.\.?(?:/|$)|/|([A-Za-z]:)?[\\/])/;
 
-function resolveSync(target: Path, options: ResolverOptions): Path {
+function resolveSync(target      , options                 )       {
   const basedir = options.basedir;
   const extensions = options.extensions || ['.js'];
   const paths = options.paths || [];
@@ -73,7 +73,7 @@ function resolveSync(target: Path, options: ResolverOptions): Path {
     return target;
   }
 
-  const err: ErrorWithCode = new Error(
+  const err                = new Error(
     "Cannot find module '" + target + "' from '" + basedir + "'",
   );
   err.code = 'MODULE_NOT_FOUND';
@@ -82,7 +82,7 @@ function resolveSync(target: Path, options: ResolverOptions): Path {
   /*
    * contextual helper functions
    */
-  function tryResolve(name: Path): ?Path {
+  function tryResolve(name      )        {
     const dir = path.dirname(name);
     let result;
     if (isDirectory(dir)) {
@@ -96,7 +96,7 @@ function resolveSync(target: Path, options: ResolverOptions): Path {
     return result;
   }
 
-  function resolveAsFile(name: Path): ?Path {
+  function resolveAsFile(name      )        {
     if (isFile(name)) {
       return name;
     }
@@ -111,7 +111,7 @@ function resolveSync(target: Path, options: ResolverOptions): Path {
     return undefined;
   }
 
-  function resolveAsDirectory(name: Path): ?Path {
+  function resolveAsDirectory(name      )        {
     if (!isDirectory(name)) {
       return undefined;
     }
@@ -121,7 +121,9 @@ function resolveSync(target: Path, options: ResolverOptions): Path {
     try {
       const body = fs.readFileSync(pkgfile, 'utf8');
       pkgmain = JSON.parse(body).main;
-    } catch (e) {}
+    } catch (e) {
+        //TODO: WTF
+    }
 
     if (pkgmain && !isCurrentDirectory(pkgmain)) {
       const resolveTarget = path.resolve(name, pkgmain);
@@ -138,7 +140,7 @@ function resolveSync(target: Path, options: ResolverOptions): Path {
 /*
  * helper functions
  */
-function isFile(file: Path): boolean {
+function isFile(file      )          {
   let result;
 
   try {
@@ -154,7 +156,7 @@ function isFile(file: Path): boolean {
   return result;
 }
 
-function isDirectory(dir: Path): boolean {
+function isDirectory(dir      )          {
   let result;
 
   try {
@@ -170,6 +172,6 @@ function isDirectory(dir: Path): boolean {
   return result;
 }
 
-function isCurrentDirectory(testPath: Path): boolean {
+function isCurrentDirectory(testPath      )          {
   return path.resolve('.') === path.resolve(testPath);
 }

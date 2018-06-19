@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @jest-environment jsdom
- * @flow
+ *      
  */
 /* eslint-env browser*/
 
@@ -17,7 +17,7 @@ const toPrettyPrintTo = require('./expect_util').getPrettyPrint([
   DOMCollection,
 ]);
 
-const expect: any = global.expect;
+const expect      = global.expect;
 expect.extend({toPrettyPrintTo});
 
 describe('DOMCollection Plugin', () => {

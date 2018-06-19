@@ -28,14 +28,14 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/* @flow */
+/*       */
 
 import CallTracker from './call_tracker';
 
 import createSpy from './create_spy';
 import SpyStrategy from './spy_strategy';
 
-const formatErrorMsg = (domain: string, usage?: string) => {
+const formatErrorMsg = (domain        , usage         ) => {
   const usageDefinition = usage ? '\nUsage: ' + usage : '';
   return msg => domain + ' : ' + msg + usageDefinition;
 };
@@ -52,7 +52,7 @@ function isSpy(putativeSpy) {
 
 const getErrorMsg = formatErrorMsg('<spyOn>', 'spyOn(<object>, <methodName>)');
 
-export default function SpyRegistry(options: Object) {
+export default function SpyRegistry(options        ) {
   options = options || {};
   const currentSpies =
     options.currentSpies ||
@@ -64,7 +64,7 @@ export default function SpyRegistry(options: Object) {
     this.respy = allow;
   };
 
-  this.spyOn = function(obj, methodName, accessType?: string) {
+  this.spyOn = function(obj, methodName, accessType         ) {
     if (accessType) {
       return this._spyOnProperty(obj, methodName, accessType);
     }

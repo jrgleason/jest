@@ -4,20 +4,20 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import fs from 'fs';
 import path from 'path';
 import TestReconciler from '../test_reconciler';
-import type {TestFileAssertionStatus, TestAssertionStatus} from '../types';
+                                                                           
 
 const fixtures = path.resolve(__dirname, '../../../../fixtures');
 
 function reconcilerWithFile(
-  parser: TestReconciler,
-  file: string,
-): TestFileAssertionStatus[] {
+  parser                ,
+  file        ,
+)                            {
   const exampleJSON = fs.readFileSync(`${fixtures}/failing-jsons/${file}`);
   const json = JSON.parse(exampleJSON.toString());
   if (!parser) console.error('no parser for ', file);
@@ -25,8 +25,8 @@ function reconcilerWithFile(
 }
 
 describe('Test Reconciler', () => {
-  let parser: TestReconciler;
-  let results: TestFileAssertionStatus[];
+  let parser                ;
+  let results                           ;
 
   const dangerFilePath =
     '/Users/orta/dev/projects/danger/' +
@@ -43,7 +43,7 @@ describe('Test Reconciler', () => {
     });
     it('passes a passing method', () => {
       const testName = 'does not validate without josh';
-      const status: any = parser.stateForTestAssertion(
+      const status      = parser.stateForTestAssertion(
         dangerFilePath,
         testName,
       );
@@ -56,7 +56,7 @@ describe('Test Reconciler', () => {
         'validates when all Travis environment' +
         ' vars are set and Josh K says so';
 
-      const status: any = parser.stateForTestAssertion(
+      const status      = parser.stateForTestAssertion(
         dangerFilePath,
         testName,
       );
@@ -72,7 +72,7 @@ Expected value to be falsy, instead received
 
     it('skips a skipped method', () => {
       const testName = 'does not pull it out of the env';
-      const status: any = parser.stateForTestAssertion(
+      const status      = parser.stateForTestAssertion(
         dangerFilePath,
         testName,
       );
@@ -102,7 +102,7 @@ Expected value to be falsy, instead received
 
       const succeededTests = results
         .map(r => r.assertions || [])
-        .reduce((sum: number, assertions: TestAssertionStatus[]) => {
+        .reduce((sum        , assertions                       ) => {
           const success = assertions.filter(a => a.status === 'KnownSuccess');
           return sum + success.length;
         }, 0);
@@ -128,7 +128,7 @@ Expected value to be falsy, instead received
         ],
       };
 
-      function verifyTest(key: string, expectedStatus?: string) {
+      function verifyTest(key        , expectedStatus         ) {
         const test = parser.stateForTestAssertion(
           targetTests[key][0],
           targetTests[key][1],
@@ -167,7 +167,7 @@ Expected value to be falsy, instead received
 });
 
 describe('Terse Messages', () => {
-  let parser: TestReconciler;
+  let parser                ;
 
   beforeEach(() => {
     parser = new TestReconciler();

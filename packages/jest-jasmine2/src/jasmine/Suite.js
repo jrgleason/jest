@@ -28,14 +28,14 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/* @flow */
+/*       */
 /* eslint-disable sort-keys */
 
 import {convertDescriptorToString} from 'jest-util';
 import ExpectationFailed from '../expectation_failed';
 import expectationResultFactory from '../expectation_result_factory';
 
-export default function Suite(attrs: Object) {
+export default function Suite(attrs        ) {
   this.id = attrs.id;
   this.parentSuite = attrs.parentSuite;
   this.description = convertDescriptorToString(attrs.description);
@@ -76,7 +76,7 @@ Suite.prototype.disable = function() {
   this.disabled = true;
 };
 
-Suite.prototype.pend = function(message) {
+Suite.prototype.pend = function() {
   this.markedPending = true;
 };
 

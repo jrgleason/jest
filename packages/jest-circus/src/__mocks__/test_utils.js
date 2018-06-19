@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * @flow strict-local
+ *       strict-local
  */
 
 'use strict';
@@ -25,7 +25,7 @@ const BABEL_REGISTER_PATH = require.resolve('babel-register');
 
 ConditionalTest.skipSuiteOnWindows();
 
-export const runTest = (source: string) => {
+export const runTest = (source        ) => {
   const filename = crypto
     .createHash('md5')
     .update(source)

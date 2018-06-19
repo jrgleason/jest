@@ -4,21 +4,21 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {ValidationOptions} from './types';
+                                               
 
 import chalk from 'chalk';
 import getType from 'jest-get-type';
 import {format, ValidationError, ERROR} from './utils';
 
 export const errorMessage = (
-  option: string,
-  received: any,
-  defaultValue: any,
-  options: ValidationOptions,
-): void => {
+  option        ,
+  received     ,
+  defaultValue     ,
+  options                   ,
+)       => {
   const message = `  Option ${chalk.bold(`"${option}"`)} must be of type:
     ${chalk.bold.green(getType(defaultValue))}
   but instead received:

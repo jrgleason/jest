@@ -4,23 +4,23 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Config, Printer, Refs} from 'types/PrettyFormat';
+                                                              
 
 import escapeHTML from './escape_html';
 
 // Return empty string if keys is empty.
 export const printProps = (
-  keys: Array<string>,
-  props: Object,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string => {
+  keys               ,
+  props        ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         => {
   const indentationNext = indentation + config.indent;
   const colors = config.colors;
   return keys
@@ -57,13 +57,13 @@ export const printProps = (
 
 // Return empty string if children is empty.
 export const printChildren = (
-  children: Array<any>,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string => {
+  children            ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         => {
   return children
     .map(
       child =>
@@ -76,12 +76,12 @@ export const printChildren = (
     .join('');
 };
 
-export const printText = (text: string, config: Config): string => {
+export const printText = (text        , config        )         => {
   const contentColor = config.colors.content;
   return contentColor.open + escapeHTML(text) + contentColor.close;
 };
 
-export const printComment = (comment: string, config: Config): string => {
+export const printComment = (comment        , config        )         => {
   const commentColor = config.colors.comment;
   return (
     commentColor.open +
@@ -97,12 +97,12 @@ export const printComment = (comment: string, config: Config): string => {
 // Too bad, so sad: the traditional (but unnecessary) space
 // in a self-closing tagColor requires a second test of printedProps.
 export const printElement = (
-  type: string,
-  printedProps: string,
-  printedChildren: string,
-  config: Config,
-  indentation: string,
-): string => {
+  type        ,
+  printedProps        ,
+  printedChildren        ,
+  config        ,
+  indentation        ,
+)         => {
   const tagColor = config.colors.tag;
   return (
     tagColor.open +
@@ -129,7 +129,7 @@ export const printElement = (
   );
 };
 
-export const printElementAsLeaf = (type: string, config: Config) => {
+export const printElementAsLeaf = (type        , config        ) => {
   const tagColor = config.colors.tag;
   return (
     tagColor.open +

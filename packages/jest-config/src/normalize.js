@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Argv} from 'types/Argv';
-import type {InitialOptions, ReporterConfig} from 'types/Config';
+                                     
+                                                                 
 
 import crypto from 'crypto';
 import glob from 'glob';
@@ -43,9 +43,9 @@ const createConfigError = message =>
   new ValidationError(ERROR, message, DOCUMENTATION_NOTE);
 
 const mergeOptionWithPreset = (
-  options: InitialOptions,
-  preset: InitialOptions,
-  optionName: string,
+  options                ,
+  preset                ,
+  optionName        ,
 ) => {
   if (options[optionName] && preset[optionName]) {
     options[optionName] = Object.assign(
@@ -58,9 +58,9 @@ const mergeOptionWithPreset = (
 };
 
 const setupPreset = (
-  options: InitialOptions,
-  optionsPreset: string,
-): InitialOptions => {
+  options                ,
+  optionsPreset        ,
+)                 => {
   let preset;
   const presetPath = replaceRootDirInPath(options.rootDir, optionsPreset);
   const presetModule = Resolver.findNodeModule(
@@ -82,7 +82,7 @@ const setupPreset = (
     } catch (e) {}
 
     // $FlowFixMe
-    preset = (require(presetModule): InitialOptions);
+    preset = (require(presetModule)                );
   } catch (error) {
     if (error instanceof SyntaxError) {
       throw createConfigError(
@@ -106,7 +106,7 @@ const setupPreset = (
   return Object.assign({}, preset, options);
 };
 
-const setupBabelJest = (options: InitialOptions) => {
+const setupBabelJest = (options                ) => {
   const transform = options.transform;
   let babelJest;
   if (transform) {
@@ -136,8 +136,8 @@ const setupBabelJest = (options: InitialOptions) => {
 };
 
 const normalizeCollectCoverageOnlyFrom = (
-  options: InitialOptions,
-  key: string,
+  options                ,
+  key        ,
 ) => {
   const collectCoverageOnlyFrom = Array.isArray(options[key])
     ? options[key] // passed from argv
@@ -152,7 +152,7 @@ const normalizeCollectCoverageOnlyFrom = (
   }, Object.create(null));
 };
 
-const normalizeCollectCoverageFrom = (options: InitialOptions, key: string) => {
+const normalizeCollectCoverageFrom = (options                , key        ) => {
   let value;
   if (!options[key]) {
     value = [];
@@ -178,8 +178,8 @@ const normalizeCollectCoverageFrom = (options: InitialOptions, key: string) => {
 };
 
 const normalizeUnmockedModulePathPatterns = (
-  options: InitialOptions,
-  key: string,
+  options                ,
+  key        ,
 ) => {
   // _replaceRootDirTags is specifically well-suited for substituting
   // <rootDir> in paths (it deals with properly interpreting relative path
@@ -192,7 +192,7 @@ const normalizeUnmockedModulePathPatterns = (
   );
 };
 
-const normalizePreprocessor = (options: InitialOptions): InitialOptions => {
+const normalizePreprocessor = (options                )                 => {
   if (options.scriptPreprocessor && options.transform) {
     throw createConfigError(
       `  Options: ${chalk.bold('scriptPreprocessor')} and ${chalk.bold(
@@ -228,7 +228,7 @@ const normalizePreprocessor = (options: InitialOptions): InitialOptions => {
   return options;
 };
 
-const normalizeMissingOptions = (options: InitialOptions): InitialOptions => {
+const normalizeMissingOptions = (options                )                 => {
   if (!options.name) {
     options.name = crypto
       .createHash('md5')
@@ -243,7 +243,7 @@ const normalizeMissingOptions = (options: InitialOptions): InitialOptions => {
   return options;
 };
 
-const normalizeRootDir = (options: InitialOptions): InitialOptions => {
+const normalizeRootDir = (options                )                 => {
   // Assert that there *is* a rootDir
   if (!options.hasOwnProperty('rootDir')) {
     throw createConfigError(
@@ -254,7 +254,7 @@ const normalizeRootDir = (options: InitialOptions): InitialOptions => {
   return options;
 };
 
-const normalizeReporters = (options: InitialOptions, basedir) => {
+const normalizeReporters = (options                , basedir) => {
   const reporters = options.reporters;
   if (!reporters || !Array.isArray(reporters)) {
     return options;
@@ -262,7 +262,7 @@ const normalizeReporters = (options: InitialOptions, basedir) => {
 
   validateReporters(reporters);
   options.reporters = reporters.map(reporterConfig => {
-    const normalizedReporterConfig: ReporterConfig =
+    const normalizedReporterConfig                 =
       typeof reporterConfig === 'string'
         ? // if reporter config is a string, we wrap it in an array
           // and pass an empty object for options argument, to normalize
@@ -293,7 +293,7 @@ const normalizeReporters = (options: InitialOptions, basedir) => {
   return options;
 };
 
-const buildTestPathPattern = (argv: Argv): string => {
+const buildTestPathPattern = (argv      )         => {
   const patterns = [];
 
   if (argv._) {
@@ -303,7 +303,7 @@ const buildTestPathPattern = (argv: Argv): string => {
     patterns.push(...argv.testPathPattern);
   }
 
-  const replacePosixSep = (pattern: string) => {
+  const replacePosixSep = (pattern        ) => {
     if (path.sep === '/') {
       return pattern;
     }
@@ -319,7 +319,7 @@ const buildTestPathPattern = (argv: Argv): string => {
   }
 };
 
-const showTestPathPatternError = (testPathPattern: string) => {
+const showTestPathPatternError = (testPathPattern        ) => {
   clearLine(process.stdout);
 
   console.log(
@@ -330,7 +330,7 @@ const showTestPathPatternError = (testPathPattern: string) => {
   );
 };
 
-export default function normalize(options: InitialOptions, argv: Argv) {
+export default function normalize(options                , argv      ) {
   const {hasDeprecationWarnings} = validate(options, {
     comment: DOCUMENTATION_NOTE,
     deprecatedConfig: DEPRECATED_CONFIG,
@@ -370,7 +370,7 @@ export default function normalize(options: InitialOptions, argv: Argv) {
   const babelJest = setupBabelJest(options);
   const newOptions = Object.assign({}, DEFAULT_CONFIG);
   // Cast back to exact type
-  options = (options: InitialOptions);
+  options = (options                );
 
   if (options.resolver) {
     newOptions.resolver = resolve(

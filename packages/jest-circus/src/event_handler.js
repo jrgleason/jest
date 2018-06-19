@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow strict-local
+ *       strict-local
  */
 
-import type {EventHandler} from 'types/Circus';
+                                               
 
 import {
   addErrorToEachTestUnderDescribe,
@@ -25,7 +25,7 @@ import {
 // To pass this value from Runtime object to state we need to use global[sym]
 const TEST_TIMEOUT_SYMBOL = Symbol.for('TEST_TIMEOUT_SYMBOL');
 
-const handler: EventHandler = (event, state): void => {
+const handler               = (event, state)       => {
   switch (event.name) {
     case 'include_test_location_in_result': {
       state.includeTestLocationInResult = true;

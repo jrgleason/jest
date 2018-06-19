@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Config, Printer, NewPlugin, Refs} from 'types/PrettyFormat';
+                                                                         
 import {printIteratorEntries, printIteratorValues} from '../collections';
 
 // SENTINEL constants are from https://github.com/facebook/immutable-js
@@ -27,14 +27,14 @@ const SPACE = ' ';
 const LAZY = '…'; // Seq is lazy if it calls a method like filter
 
 const printImmutableEntries = (
-  val: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-  type: string,
-): string =>
+  val     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+  type        ,
+)         =>
   ++depth > config.maxDepth
     ? printAsLeaf(getImmutableName(type))
     : getImmutableName(type) +
@@ -66,13 +66,13 @@ const getRecordEntries = val => {
 };
 
 const printImmutableRecord = (
-  val: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string => {
+  val     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         => {
   // _name property is defined only for an Immutable Record instance
   // which was constructed with a second optional descriptive name arg
   const name = getImmutableName(val._name || 'Record');
@@ -93,13 +93,13 @@ const printImmutableRecord = (
 };
 
 const printImmutableSeq = (
-  val: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string => {
+  val     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         => {
   const name = getImmutableName('Seq');
 
   if (++depth > config.maxDepth) {
@@ -148,14 +148,14 @@ const printImmutableSeq = (
 };
 
 const printImmutableValues = (
-  val: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-  type: string,
-): string =>
+  val     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+  type        ,
+)         =>
   ++depth > config.maxDepth
     ? printAsLeaf(getImmutableName(type))
     : getImmutableName(type) +
@@ -172,13 +172,13 @@ const printImmutableValues = (
       ']';
 
 export const serialize = (
-  val: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string => {
+  val     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         => {
   if (val[IS_MAP_SENTINEL]) {
     return printImmutableEntries(
       val,
@@ -235,8 +235,8 @@ export const serialize = (
 
 // Explicitly comparing sentinel properties to true avoids false positive
 // when mock identity-obj-proxy returns the key as the value for any key.
-export const test = (val: any) =>
+export const test = (val     ) =>
   val &&
   (val[IS_ITERABLE_SENTINEL] === true || val[IS_RECORD_SENTINEL] === true);
 
-export default ({serialize, test}: NewPlugin);
+export default ({serialize, test}           );

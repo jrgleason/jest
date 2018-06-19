@@ -4,19 +4,19 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Config, NewPlugin, Printer, Refs} from 'types/PrettyFormat';
+                                                                         
 
 export const serialize = (
-  val: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string => {
+  val     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         => {
   // Serialize a non-default name, even if config.printFunctionName is false.
   const name = val.getMockName();
   const nameString = name === 'jest.fn()' ? '' : ' ' + name;
@@ -44,6 +44,6 @@ export const serialize = (
   return '[MockFunction' + nameString + ']' + callsString;
 };
 
-export const test = (val: any) => val && !!val._isMockFunction;
+export const test = (val     ) => val && !!val._isMockFunction;
 
-export default ({serialize, test}: NewPlugin);
+export default ({serialize, test}           );

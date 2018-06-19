@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Path} from 'types/Config';
-import type {ChangedFilesPromise, Options, Repos} from 'types/ChangedFiles';
+                                       
+                                                                            
 
 import git from './git';
 import hg from './hg';
@@ -22,9 +22,9 @@ const findGitRoot = dir => mutex(() => git.getRoot(dir));
 const findHgRoot = dir => mutex(() => hg.getRoot(dir));
 
 export const getChangedFilesForRoots = async (
-  roots: Array<Path>,
-  options: Options,
-): ChangedFilesPromise => {
+  roots             ,
+  options         ,
+)                      => {
   const repos = await findRepos(roots);
 
   const gitPromises = Array.from(repos.git).map(repo =>
@@ -48,7 +48,7 @@ export const getChangedFilesForRoots = async (
   return {changedFiles, repos};
 };
 
-export const findRepos = async (roots: Array<Path>): Promise<Repos> => {
+export const findRepos = async (roots             )                 => {
   const gitRepos = await Promise.all(
     roots.reduce((promises, root) => promises.concat(findGitRoot(root)), []),
   );

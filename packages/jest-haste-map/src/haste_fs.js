@@ -4,44 +4,44 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Glob, Path} from 'types/Config';
-import type {FileData} from 'types/HasteMap';
+                                             
+                                             
 
 import path from 'path';
 import micromatch from 'micromatch';
 import H from './constants';
 
 export default class HasteFS {
-  _files: FileData;
+                   
 
-  constructor(files: FileData) {
+  constructor(files          ) {
     this._files = files;
   }
 
-  getModuleName(file: Path): ?string {
+  getModuleName(file      )          {
     return (this._files[file] && this._files[file][H.ID]) || null;
   }
 
-  getDependencies(file: Path): ?Array<string> {
+  getDependencies(file      )                 {
     return (this._files[file] && this._files[file][H.DEPENDENCIES]) || null;
   }
 
-  getSha1(file: Path): ?string {
+  getSha1(file      )          {
     return (this._files[file] && this._files[file][H.SHA1]) || null;
   }
 
-  exists(file: Path): boolean {
+  exists(file      )          {
     return !!this._files[file];
   }
 
-  getAllFiles(): Array<string> {
+  getAllFiles()                {
     return Object.keys(this._files);
   }
 
-  matchFiles(pattern: RegExp | string): Array<Path> {
+  matchFiles(pattern                 )              {
     if (!(pattern instanceof RegExp)) {
       pattern = new RegExp(pattern);
     }
@@ -54,7 +54,7 @@ export default class HasteFS {
     return files;
   }
 
-  matchFilesWithGlob(globs: Array<Glob>, root: ?Path): Set<Path> {
+  matchFilesWithGlob(globs             , root       )            {
     const files = new Set();
     for (const file in this._files) {
       const filePath = root ? path.relative(root, file) : file;

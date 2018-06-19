@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {InternalHasteMap} from 'types/HasteMap';
-import type {CrawlerOptions} from '../types';
+                                                     
+                                             
 
 import normalizePathSep from '../lib/normalize_path_sep';
 import path from 'path';
@@ -18,7 +18,7 @@ import H from '../constants';
 const watchmanURL =
   'https://facebook.github.io/watchman/docs/troubleshooting.html';
 
-function WatchmanError(error: Error): Error {
+function WatchmanError(error       )        {
   error.message =
     `Watchman error: ${error.message.trim()}. Make sure watchman ` +
     `is running for this project. See ${watchmanURL}.`;
@@ -26,8 +26,8 @@ function WatchmanError(error: Error): Error {
 }
 
 module.exports = async function watchmanCrawl(
-  options: CrawlerOptions,
-): Promise<InternalHasteMap> {
+  options                ,
+)                            {
   const fields = ['name', 'exists', 'mtime_ms'];
   const {data, extensions, ignore, roots} = options;
   const defaultWatchExpression = [

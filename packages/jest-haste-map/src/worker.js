@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {HasteImpl, WorkerMessage, WorkerMetadata} from './types';
+                                                                      
 
 import crypto from 'crypto';
 import path from 'path';
@@ -19,8 +19,8 @@ import extractRequires from './lib/extract_requires';
 
 const PACKAGE_JSON = path.sep + 'package.json';
 
-let hasteImpl: ?HasteImpl = null;
-let hasteImplModulePath: ?string = null;
+let hasteImpl             = null;
+let hasteImplModulePath          = null;
 
 function computeSha1(content) {
   return crypto
@@ -29,7 +29,7 @@ function computeSha1(content) {
     .digest('hex');
 }
 
-export async function worker(data: WorkerMessage): Promise<WorkerMetadata> {
+export async function worker(data               )                          {
   if (
     data.hasteImplModulePath &&
     data.hasteImplModulePath !== hasteImplModulePath
@@ -39,7 +39,7 @@ export async function worker(data: WorkerMessage): Promise<WorkerMetadata> {
     }
     hasteImplModulePath = data.hasteImplModulePath;
     // $FlowFixMe: dynamic require
-    hasteImpl = (require(hasteImplModulePath): HasteImpl);
+    hasteImpl = (require(hasteImplModulePath)           );
   }
 
   const filePath = data.filePath;
@@ -89,7 +89,7 @@ export async function worker(data: WorkerMessage): Promise<WorkerMetadata> {
   return {dependencies, id, module, sha1};
 }
 
-export async function getSha1(data: WorkerMessage): Promise<WorkerMetadata> {
+export async function getSha1(data               )                          {
   const sha1 = data.computeSha1
     ? computeSha1(fs.readFileSync(data.filePath))
     : null;

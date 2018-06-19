@@ -4,13 +4,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Context} from 'types/Context';
-import type {Glob, GlobalConfig, Path} from 'types/Config';
-import type {Test} from 'types/TestRunner';
-import type {ChangedFilesPromise} from 'types/ChangedFiles';
+                                           
+                                                           
+                                           
+                                                            
 
 import path from 'path';
 import micromatch from 'micromatch';
@@ -19,30 +19,30 @@ import testPathPatternToRegExp from './test_path_pattern_to_regexp';
 import {escapePathForRegex} from 'jest-regex-util';
 import {replaceRootDirInPath} from 'jest-config';
 
-type SearchResult = {|
-  noSCM?: boolean,
-  stats?: {[key: string]: number},
-  collectCoverageFrom?: Array<string>,
-  tests: Array<Test>,
-  total?: number,
-|};
+                      
+                  
+                                  
+                                      
+                     
+                 
+   
 
-export type TestSelectionConfig = {|
-  input?: string,
-  findRelatedTests?: boolean,
-  onlyChanged?: boolean,
-  paths?: Array<Path>,
-  shouldTreatInputAsPattern?: boolean,
-  testPathPattern?: string,
-  watch?: boolean,
-|};
+                                    
+                 
+                             
+                        
+                      
+                                      
+                           
+                  
+   
 
-type FilterResult = {
-  test: string,
-  message: string,
-};
+                     
+               
+                  
+  
 
-const globsToMatcher = (globs: ?Array<Glob>) => {
+const globsToMatcher = (globs              ) => {
   if (globs == null || globs.length === 0) {
     return () => true;
   }
@@ -51,7 +51,7 @@ const globsToMatcher = (globs: ?Array<Glob>) => {
   return path => matchers.some(each => each(path));
 };
 
-const regexToMatcher = (testRegex: string) => {
+const regexToMatcher = (testRegex        ) => {
   if (!testRegex) {
     return () => true;
   }
@@ -68,17 +68,17 @@ const toTests = (context, tests) =>
   }));
 
 export default class SearchSource {
-  _context: Context;
-  _rootPattern: RegExp;
-  _testIgnorePattern: ?RegExp;
-  _testPathCases: {
-    roots: (path: Path) => boolean,
-    testMatch: (path: Path) => boolean,
-    testRegex: (path: Path) => boolean,
-    testPathIgnorePatterns: (path: Path) => boolean,
-  };
+                    
+                       
+                              
+                   
+                                   
+                                       
+                                       
+                                                    
+    
 
-  constructor(context: Context) {
+  constructor(context         ) {
     const {config} = context;
     this._context = context;
     this._rootPattern = new RegExp(
@@ -100,9 +100,9 @@ export default class SearchSource {
   }
 
   _filterTestPathsWithStats(
-    allPaths: Array<Test>,
-    testPathPattern?: string,
-  ): SearchResult {
+    allPaths             ,
+    testPathPattern         ,
+  )               {
     const data = {
       stats: {},
       tests: [],
@@ -130,27 +130,27 @@ export default class SearchSource {
     return data;
   }
 
-  _getAllTestPaths(testPathPattern: string): SearchResult {
+  _getAllTestPaths(testPathPattern        )               {
     return this._filterTestPathsWithStats(
       toTests(this._context, this._context.hasteFS.getAllFiles()),
       testPathPattern,
     );
   }
 
-  isTestFilePath(path: Path): boolean {
+  isTestFilePath(path      )          {
     return Object.keys(this._testPathCases).every(key =>
       this._testPathCases[key](path),
     );
   }
 
-  findMatchingTests(testPathPattern: string): SearchResult {
+  findMatchingTests(testPathPattern        )               {
     return this._getAllTestPaths(testPathPattern);
   }
 
   findRelatedTests(
-    allPaths: Set<Path>,
-    collectCoverage: boolean,
-  ): SearchResult {
+    allPaths           ,
+    collectCoverage         ,
+  )               {
     const dependencyResolver = new DependencyResolver(
       this._context.resolver,
       this._context.hasteFS,
@@ -181,7 +181,7 @@ export default class SearchSource {
     return {collectCoverageFrom, tests};
   }
 
-  findTestsByPaths(paths: Array<Path>): SearchResult {
+  findTestsByPaths(paths             )               {
     return {
       tests: toTests(
         this._context,
@@ -193,9 +193,9 @@ export default class SearchSource {
   }
 
   findRelatedTestsFromPattern(
-    paths: Array<Path>,
-    collectCoverage: boolean,
-  ): SearchResult {
+    paths             ,
+    collectCoverage         ,
+  )               {
     if (Array.isArray(paths) && paths.length) {
       const resolvedPaths = paths.map(p => path.resolve(process.cwd(), p));
       return this.findRelatedTests(new Set(resolvedPaths), collectCoverage);
@@ -204,8 +204,8 @@ export default class SearchSource {
   }
 
   async findTestRelatedToChangedFiles(
-    changedFilesPromise: ChangedFilesPromise,
-    collectCoverage: boolean,
+    changedFilesPromise                     ,
+    collectCoverage         ,
   ) {
     const {repos, changedFiles} = await changedFilesPromise;
     // no SCM (git/hg/...) is found in any of the roots.
@@ -216,9 +216,9 @@ export default class SearchSource {
   }
 
   _getTestPaths(
-    globalConfig: GlobalConfig,
-    changedFilesPromise: ?ChangedFilesPromise,
-  ): Promise<SearchResult> {
+    globalConfig              ,
+    changedFilesPromise                      ,
+  )                        {
     const paths = globalConfig.nonFlagArgs;
 
     if (globalConfig.onlyChanged) {
@@ -246,9 +246,9 @@ export default class SearchSource {
   }
 
   async getTestPaths(
-    globalConfig: GlobalConfig,
-    changedFilesPromise: ?ChangedFilesPromise,
-  ): Promise<SearchResult> {
+    globalConfig              ,
+    changedFilesPromise                      ,
+  )                        {
     const searchResult = await this._getTestPaths(
       globalConfig,
       changedFilesPromise,
@@ -260,7 +260,7 @@ export default class SearchSource {
       const tests = searchResult.tests;
 
       // $FlowFixMe: dynamic require.
-      const filter: Array<FilterResult> = require(filterPath);
+      const filter                      = require(filterPath);
       const filterResult = await filter(tests.map(test => test.path));
 
       if (!Array.isArray(filterResult.filtered)) {

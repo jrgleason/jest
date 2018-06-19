@@ -4,16 +4,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {
-  AggregatedResult,
-  SerializableError,
-  TestResult,
-} from 'types/TestResult';
+             
+                   
+                    
+             
+                          
 
-export const makeEmptyAggregatedTestResult = (): AggregatedResult => {
+export const makeEmptyAggregatedTestResult = ()                   => {
   return {
     numFailedTestSuites: 0,
     numFailedTests: 0,
@@ -49,9 +49,9 @@ export const makeEmptyAggregatedTestResult = (): AggregatedResult => {
 };
 
 export const buildFailureTestResult = (
-  testPath: string,
-  err: SerializableError,
-): TestResult => {
+  testPath        ,
+  err                   ,
+)             => {
   return {
     console: null,
     displayName: '',
@@ -84,9 +84,9 @@ export const buildFailureTestResult = (
 
 // Add individual test result to an aggregated test result
 export const addResult = (
-  aggregatedResults: AggregatedResult,
-  testResult: TestResult,
-): void => {
+  aggregatedResults                  ,
+  testResult            ,
+)       => {
   aggregatedResults.testResults.push(testResult);
   aggregatedResults.numTotalTests +=
     testResult.numPassingTests +

@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {AggregatedResult, TestResult} from 'types/TestResult';
-import type {ProjectConfig, Path} from 'types/Config';
-import type {ReporterOnStartOptions} from 'types/Reporters';
+                                                                   
+                                                      
+                                                            
 
 import chalk from 'chalk';
 import stringLength from 'string-length';
@@ -29,7 +29,7 @@ const RUNNING = chalk.reset.inverse.yellow.bold(RUNNING_TEXT) + ' ';
  * shifting the whole list.
  */
 class CurrentTestList {
-  _array: Array<{testPath: Path, config: ProjectConfig} | null>;
+                                                                
 
   constructor() {
     this._array = [];
@@ -63,17 +63,17 @@ class CurrentTestList {
  * from the terminal.
  */
 export default class Status {
-  _cache: ?{content: string, clear: string};
-  _callback: () => void;
-  _currentTests: CurrentTestList;
-  _done: boolean;
-  _emitScheduled: boolean;
-  _estimatedTime: number;
-  _height: number;
-  _interval: IntervalID;
-  _aggregatedResults: AggregatedResult;
-  _lastUpdated: number;
-  _showStatus: boolean;
+                                            
+                        
+                                 
+                 
+                          
+                         
+                  
+                        
+                                       
+                       
+                       
 
   constructor() {
     this._cache = null;
@@ -85,13 +85,13 @@ export default class Status {
     this._showStatus = false;
   }
 
-  onChange(callback: () => void) {
+  onChange(callback            ) {
     this._callback = callback;
   }
 
   runStarted(
-    aggregatedResults: AggregatedResult,
-    options: ReporterOnStartOptions,
+    aggregatedResults                  ,
+    options                        ,
   ) {
     this._estimatedTime = (options && options.estimatedTime) || 0;
     this._showStatus = options && options.showStatus;
@@ -106,7 +106,7 @@ export default class Status {
     this._emit();
   }
 
-  testStarted(testPath: Path, config: ProjectConfig) {
+  testStarted(testPath      , config               ) {
     this._currentTests.add(testPath, config);
     if (!this._showStatus) {
       this._emit();
@@ -116,9 +116,9 @@ export default class Status {
   }
 
   testFinished(
-    config: ProjectConfig,
-    testResult: TestResult,
-    aggregatedResults: AggregatedResult,
+    config               ,
+    testResult            ,
+    aggregatedResults                  ,
   ) {
     const {testFilePath} = testResult;
     this._aggregatedResults = aggregatedResults;
@@ -136,7 +136,7 @@ export default class Status {
     }
 
     // $FlowFixMe
-    const width: number = process.stdout.columns;
+    const width         = process.stdout.columns;
     let content = '\n';
     this._currentTests.get().forEach(record => {
       if (record) {

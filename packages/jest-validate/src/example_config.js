@@ -4,26 +4,26 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {ValidationOptions} from './types';
+                                               
 
-const config: ValidationOptions = {
+const config = {
   comment: '  A comment',
-  condition: (option, validOption) => true,
-  deprecate: (config, option, deprecatedOptions, options) => false,
+  condition: => true,
+  deprecate: => false,
   deprecatedConfig: {
-    key: config => {},
+    key: => {},
   },
-  error: (option, received, defaultValue, options) => {},
+  error: () => {},
   exampleConfig: {key: 'value', test: 'case'},
   title: {
     deprecation: 'Deprecation Warning',
     error: 'Validation Error',
     warning: 'Validation Warning',
   },
-  unknown: (config, option, options) => {},
+  unknown: => {},
 };
 
 export default config;

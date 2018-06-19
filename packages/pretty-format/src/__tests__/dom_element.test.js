@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @jest-environment jsdom
- * @flow
+ *      
  */
 /* eslint-env browser*/
 
@@ -15,7 +15,7 @@ const prettyFormat = require('../');
 const {DOMElement} = prettyFormat.plugins;
 const toPrettyPrintTo = require('./expect_util').getPrettyPrint([DOMElement]);
 
-const expect: any = global.expect;
+const expect      = global.expect;
 expect.extend({toPrettyPrintTo});
 
 describe('pretty-format', () => {

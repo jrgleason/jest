@@ -4,15 +4,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
-import type {GlobalConfig} from 'types/Config';
-import type {WatchPlugin, UsageData} from '../types';
+                                               
+                                                     
 
 export const filterInteractivePlugins = (
-  watchPlugins: Array<WatchPlugin>,
-  globalConfig: GlobalConfig,
-): Array<WatchPlugin> => {
+  watchPlugins                    ,
+  globalConfig              ,
+)                     => {
   const usageInfos = watchPlugins.map(
     p => p.getUsageInfo && p.getUsageInfo(globalConfig),
   );
@@ -28,11 +28,11 @@ export const filterInteractivePlugins = (
 };
 
 export const getSortedUsageRows = (
-  watchPlugins: Array<WatchPlugin>,
-  globalConfig: GlobalConfig,
-): Array<UsageData> => {
+  watchPlugins                    ,
+  globalConfig              ,
+)                   => {
   return filterInteractivePlugins(watchPlugins, globalConfig)
-    .sort((a: WatchPlugin, b: WatchPlugin) => {
+    .sort((a             , b             ) => {
       if (a.isInternal) {
         return -1;
       }

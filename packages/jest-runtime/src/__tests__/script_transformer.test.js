@@ -14,7 +14,7 @@ jest
   .mock('fs')
   .mock('graceful-fs')
   .mock('jest-haste-map', () => ({
-    getCacheFilePath: (cacheDir, baseDir, version) => cacheDir + baseDir,
+    getCacheFilePath: (cacheDir, baseDir) => cacheDir + baseDir,
   }))
   .mock('jest-util', () => {
     const util = require.requireActual('jest-util');
@@ -31,7 +31,7 @@ jest.mock(
     };
 
     return {
-      getCacheKey: jest.fn((content, filename, configStr) => 'ab'),
+      getCacheKey: jest.fn(() => 'ab'),
       process: (content, filename, config) => {
         return `
           const TRANSFORMED = {
@@ -50,7 +50,7 @@ jest.mock(
   'preprocessor-with-sourcemaps',
   () => {
     return {
-      getCacheKey: jest.fn((content, filename, configStr) => 'ab'),
+      getCacheKey: jest.fn(() => 'ab'),
       process: jest.fn(),
     };
   },
@@ -61,8 +61,8 @@ jest.mock(
   'css-preprocessor',
   () => {
     return {
-      getCacheKey: jest.fn((content, filename, configStr) => 'cd'),
-      process: (content, filename, config) => {
+      getCacheKey: jest.fn( => 'cd'),
+      process: (content, filename) => {
         return `
           module.exports = {
             filename: ${filename},

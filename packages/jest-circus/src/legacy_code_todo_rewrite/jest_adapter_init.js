@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {TestResult, Status} from 'types/TestResult';
-import type {GlobalConfig, Path, ProjectConfig} from 'types/Config';
-import type {Event, TestEntry} from 'types/Circus';
+                                                         
+                                                                    
+                                                   
 
 import {extractExpectedAssertionsErrors, getState, setState} from 'expect';
 import {formatExecError, formatResultsErrors} from 'jest-message-util';
@@ -27,13 +27,13 @@ export const initialize = ({
   localRequire,
   parentProcess,
   testPath,
-}: {
-  config: ProjectConfig,
-  globalConfig: GlobalConfig,
-  localRequire: Path => any,
-  testPath: Path,
-  parentProcess: Process,
-}) => {
+}   
+                        
+                             
+                            
+                 
+                         
+ ) => {
   Object.assign(global, globals);
 
   global.xit = global.it.skip;
@@ -43,9 +43,9 @@ export const initialize = ({
   global.fdescribe = global.describe.only;
 
   global.test.concurrent = (
-    testName: string,
-    testFn: () => Promise<any>,
-    timeout?: number,
+    testName        ,
+    testFn                    ,
+    timeout         ,
   ) => {
     // For concurrent tests we first run the function that returns promise, and then register a
     // nomral test that will be waiting on the returned promise (when we start the test, the promise
@@ -58,9 +58,9 @@ export const initialize = ({
   };
 
   global.test.concurrent.only = (
-    testName: string,
-    testFn: () => Promise<any>,
-    timeout?: number,
+    testName        ,
+    testFn                    ,
+    timeout         ,
   ) => {
     const promise = testFn();
     global.test.only(testName, () => promise, timeout);
@@ -103,11 +103,11 @@ export const runAndTransformResultsToJestFormat = async ({
   config,
   globalConfig,
   testPath,
-}: {
-  config: ProjectConfig,
-  globalConfig: GlobalConfig,
-  testPath: string,
-}): Promise<TestResult> => {
+}   
+                        
+                             
+                   
+ )                      => {
   const runResult = await run();
 
   let numFailingTests = 0;
@@ -115,7 +115,7 @@ export const runAndTransformResultsToJestFormat = async ({
   let numPendingTests = 0;
 
   const assertionResults = runResult.testResults.map(testResult => {
-    let status: Status;
+    let status        ;
     if (testResult.status === 'skip') {
       status = 'pending';
       numPendingTests += 1;
@@ -197,7 +197,7 @@ export const runAndTransformResultsToJestFormat = async ({
   };
 };
 
-const eventHandler = (event: Event) => {
+const eventHandler = (event       ) => {
   switch (event.name) {
     case 'test_start': {
       setState({currentTestName: getTestID(event.test)});
@@ -211,7 +211,7 @@ const eventHandler = (event: Event) => {
   }
 };
 
-const _addExpectedAssertionErrors = (test: TestEntry) => {
+const _addExpectedAssertionErrors = (test           ) => {
   const failures = extractExpectedAssertionsErrors();
   const errors = failures.map(failure => failure.error);
   test.errors = test.errors.concat(errors);
@@ -220,7 +220,7 @@ const _addExpectedAssertionErrors = (test: TestEntry) => {
 // Get suppressed errors from ``jest-matchers`` that weren't throw during
 // test execution and add them to the test result, potentially failing
 // a passing test.
-const _addSuppressedErrors = (test: TestEntry) => {
+const _addSuppressedErrors = (test           ) => {
   const {suppressedErrors} = getState();
   setState({suppressedErrors: []});
   if (suppressedErrors.length) {

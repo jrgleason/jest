@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 /**
@@ -12,7 +12,7 @@
  * returning a promise from `it/test` and `before/afterEach/All` blocks.
  */
 
-import type {Global} from 'types/Global';
+                                         
 
 import isGeneratorFn from 'is-generator-fn';
 import co from 'co';
@@ -107,7 +107,7 @@ function promisifyIt(originalFn, env) {
   };
 }
 
-function makeConcurrent(originalFn: Function, env) {
+function makeConcurrent(originalFn          , env) {
   return function(specName, fn, timeout) {
     if (env != null && !env.specFilter({getFullName: () => specName || ''})) {
       return originalFn.call(env, specName, () => Promise.resolve(), timeout);
@@ -130,7 +130,7 @@ function makeConcurrent(originalFn: Function, env) {
   };
 }
 
-export function install(global: Global) {
+export function install(global        ) {
   const jasmine = global.jasmine;
 
   const env = jasmine.getEnv();

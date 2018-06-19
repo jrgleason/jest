@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import {
@@ -14,21 +14,21 @@ import {
   isImmutableUnorderedSet,
 } from './jasmine_utils';
 
-type GetPath = {
-  hasEndProp?: boolean,
-  lastTraversedObject: ?Object,
-  traversedPath: Array<string>,
-  value?: any,
-};
+                
+                       
+                               
+                               
+              
+  
 
-export const hasOwnProperty = (object: Object, value: string) =>
+export const hasOwnProperty = (object        , value        ) =>
   Object.prototype.hasOwnProperty.call(object, value) ||
   Object.prototype.hasOwnProperty.call(object.constructor.prototype, value);
 
 export const getPath = (
-  object: Object,
-  propertyPath: string | Array<string>,
-): GetPath => {
+  object        ,
+  propertyPath                        ,
+)          => {
   if (!Array.isArray(propertyPath)) {
     propertyPath = propertyPath.split('.');
   }
@@ -76,7 +76,7 @@ export const getPath = (
 
 // Strip properties from object that are not present in the subset. Useful for
 // printing the diff for toMatchObject() without adding unrelated noise.
-export const getObjectSubset = (object: Object, subset: Object) => {
+export const getObjectSubset = (object        , subset        ) => {
   if (Array.isArray(object)) {
     if (Array.isArray(subset) && subset.length === object.length) {
       return subset.map((sub, i) => getObjectSubset(object[i], sub));
@@ -106,7 +106,7 @@ export const getObjectSubset = (object: Object, subset: Object) => {
 const IteratorSymbol = Symbol.iterator;
 
 const hasIterator = object => !!(object != null && object[IteratorSymbol]);
-export const iterableEquality = (a: any, b: any) => {
+export const iterableEquality = (a     , b     ) => {
   if (
     typeof a !== 'object' ||
     typeof b !== 'object' ||
@@ -199,7 +199,7 @@ const isObjectWithKeys = a =>
   !(a instanceof Array) &&
   !(a instanceof Date);
 
-export const subsetEquality = (object: Object, subset: Object) => {
+export const subsetEquality = (object        , subset        ) => {
   if (!isObjectWithKeys(subset)) {
     return undefined;
   }
@@ -212,7 +212,7 @@ export const subsetEquality = (object: Object, subset: Object) => {
   );
 };
 
-export const typeEquality = (a: any, b: any) => {
+export const typeEquality = (a     , b     ) => {
   if (a == null || b == null || a.constructor.name === b.constructor.name) {
     return undefined;
   }
@@ -220,10 +220,10 @@ export const typeEquality = (a: any, b: any) => {
   return false;
 };
 
-export const partition = <T>(
-  items: Array<T>,
-  predicate: T => boolean,
-): [Array<T>, Array<T>] => {
+export const partition =    (
+  items          ,
+  predicate              ,
+)                       => {
   const result = [[], []];
 
   items.forEach(item => result[predicate(item) ? 0 : 1].push(item));
@@ -232,7 +232,7 @@ export const partition = <T>(
 };
 
 // Copied from https://github.com/graingert/angular.js/blob/a43574052e9775cbc1d7dd8a086752c979b0f020/src/Angular.js#L685-L693
-export const isError = (value: any) => {
+export const isError = (value     ) => {
   switch (Object.prototype.toString.call(value)) {
     case '[object Error]':
       return true;
@@ -245,13 +245,13 @@ export const isError = (value: any) => {
   }
 };
 
-export function emptyObject(obj: any) {
+export function emptyObject(obj     ) {
   return obj && typeof obj === 'object' ? !Object.keys(obj).length : false;
 }
 
 const MULTILINE_REGEXP = /[\r\n]/;
 
-export const isOneline = (expected: any, received: any) =>
+export const isOneline = (expected     , received     ) =>
   typeof expected === 'string' &&
   typeof received === 'string' &&
   (!MULTILINE_REGEXP.test(expected) || !MULTILINE_REGEXP.test(received));

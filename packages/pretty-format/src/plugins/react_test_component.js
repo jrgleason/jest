@@ -4,16 +4,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {
-  Config,
-  Printer,
-  NewPlugin,
-  ReactTestObject,
-  Refs,
-} from 'types/PrettyFormat';
+             
+         
+          
+            
+                  
+       
+                            
 
 import {
   printChildren,
@@ -35,13 +35,13 @@ const getPropKeys = object => {
 };
 
 export const serialize = (
-  object: ReactTestObject,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string =>
+  object                 ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         =>
   ++depth > config.maxDepth
     ? printElementAsLeaf(object.type, config)
     : printElement(
@@ -74,6 +74,6 @@ export const serialize = (
         indentation,
       );
 
-export const test = (val: any) => val && val.$$typeof === testSymbol;
+export const test = (val     ) => val && val.$$typeof === testSymbol;
 
-export default ({serialize, test}: NewPlugin);
+export default ({serialize, test}           );

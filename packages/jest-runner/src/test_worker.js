@@ -4,13 +4,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {GlobalConfig, Path, ProjectConfig} from 'types/Config';
-import type {SerializableError, TestResult} from 'types/TestResult';
-import type {RawModuleMap} from 'types/HasteMap';
-import type {ErrorWithCode} from 'types/Errors';
+                                                                    
+                                                                    
+                                                 
+                                                
 
 import exit from 'exit';
 import HasteMap from 'jest-haste-map';
@@ -18,12 +18,12 @@ import {separateMessageFromStack} from 'jest-message-util';
 import Runtime from 'jest-runtime';
 import runTest from './run_test';
 
-export type WorkerData = {|
-  config: ProjectConfig,
-  globalConfig: GlobalConfig,
-  path: Path,
-  rawModuleMap: ?RawModuleMap,
-|};
+                           
+                        
+                             
+             
+                              
+   
 
 // Make sure uncaught errors are logged before we exit.
 process.on('uncaughtException', err => {
@@ -31,7 +31,7 @@ process.on('uncaughtException', err => {
   exit(1);
 });
 
-const formatError = (error: string | ErrorWithCode): SerializableError => {
+const formatError = (error                        )                    => {
   if (typeof error === 'string') {
     const {message, stack} = separateMessageFromStack(error);
     return {
@@ -74,7 +74,7 @@ export async function worker({
   globalConfig,
   path,
   rawModuleMap,
-}: WorkerData): Promise<TestResult> {
+}            )                      {
   try {
     return await runTest(
       path,

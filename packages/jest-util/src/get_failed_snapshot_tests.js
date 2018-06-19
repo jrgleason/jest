@@ -1,10 +1,10 @@
 /**
- * @flow
+ *      
  */
 
-import type {AggregatedResult} from 'types/TestResult';
+                                                       
 
-function getFailedSnapshotTests(testResults: AggregatedResult) {
+function getFailedSnapshotTests(testResults                  ) {
   const failedTestPaths = [];
   if (testResults.numFailedTests === 0 || !testResults.testResults) {
     return failedTestPaths;

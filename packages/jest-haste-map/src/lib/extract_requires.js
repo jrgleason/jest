@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 const blockCommentRe = /\/\*[^]*?\*\//g;
@@ -18,9 +18,9 @@ const replacePatterns = {
   REQUIRE_RE: /(?:^|[^.]\s*)(\brequire\s*?\(\s*?)([`'"])([^`'"]+)(\2\s*?\))/g,
 };
 
-export default function extractRequires(code: string): Array<string> {
+export default function extractRequires(code        )                {
   const dependencies = new Set();
-  const addDependency = (match, pre, quot, dep, post) => {
+  const addDependency = (match, pre, quot, dep) => {
     dependencies.add(dep);
     return match;
   };

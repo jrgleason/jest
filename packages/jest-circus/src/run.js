@@ -4,16 +4,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow strict-local
+ *       strict-local
  */
 
-import type {
-  RunResult,
-  TestEntry,
-  TestContext,
-  Hook,
-  DescribeBlock,
-} from 'types/Circus';
+             
+            
+            
+              
+       
+                
+                      
 
 import {getState, dispatch} from './state';
 import {
@@ -28,7 +28,7 @@ import {
 
 const Promise = getOriginalPromise();
 
-const run = async (): Promise<RunResult> => {
+const run = async ()                     => {
   const {rootDescribeBlock} = getState();
   dispatch({name: 'run_start'});
   await _runTestsForDescribeBlock(rootDescribeBlock);
@@ -39,7 +39,7 @@ const run = async (): Promise<RunResult> => {
   );
 };
 
-const _runTestsForDescribeBlock = async (describeBlock: DescribeBlock) => {
+const _runTestsForDescribeBlock = async (describeBlock               ) => {
   dispatch({describeBlock, name: 'run_describe_start'});
   const {beforeAll, afterAll} = getAllHooksForDescribe(describeBlock);
 
@@ -60,7 +60,7 @@ const _runTestsForDescribeBlock = async (describeBlock: DescribeBlock) => {
   dispatch({describeBlock, name: 'run_describe_finish'});
 };
 
-const _runTest = async (test: TestEntry): Promise<void> => {
+const _runTest = async (test           )                => {
   dispatch({name: 'test_start', test});
   const testContext = Object.create(null);
   const {hasFocusedTests, testNamePattern} = getState();
@@ -103,12 +103,12 @@ const _callHook = ({
   test,
   describeBlock,
   testContext,
-}: {
-  hook: Hook,
-  describeBlock?: DescribeBlock,
-  test?: TestEntry,
-  testContext?: TestContext,
-}): Promise<mixed> => {
+}   
+             
+                                
+                   
+                            
+ )                 => {
   dispatch({hook, name: 'hook_start'});
   const timeout = hook.timeout || getState().testTimeout;
   return callAsyncFn(hook.fn, testContext, {isHook: true, timeout})
@@ -119,9 +119,9 @@ const _callHook = ({
 };
 
 const _callTest = async (
-  test: TestEntry,
-  testContext: TestContext,
-): Promise<void> => {
+  test           ,
+  testContext             ,
+)                => {
   dispatch({name: 'test_fn_start', test});
   const timeout = test.timeout || getState().testTimeout;
   invariant(test.fn, `Tests with no 'fn' should have 'mode' set to 'skipped'`);

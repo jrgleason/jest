@@ -4,24 +4,24 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {GlobalConfig, SnapshotUpdateState} from 'types/Config';
+                                                                    
 
-type Options = {
-  testNamePattern?: string,
-  testPathPattern?: string,
-  noSCM?: boolean,
-  updateSnapshot?: SnapshotUpdateState,
-  mode?: 'watch' | 'watchAll',
-  passWithNoTests?: boolean,
-  onlyFailures?: boolean,
-};
+                
+                           
+                           
+                  
+                                       
+                              
+                            
+                         
+  
 
-export default (globalConfig: GlobalConfig, options: Options): GlobalConfig => {
+export default (globalConfig              , options         )               => {
   // $FlowFixMe Object.assign
-  const newConfig: GlobalConfig = Object.assign({}, globalConfig);
+  const newConfig               = Object.assign({}, globalConfig);
 
   if (!options) {
     options = {};

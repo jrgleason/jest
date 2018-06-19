@@ -4,29 +4,29 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
 
-export type ValueType =
-  | 'array'
-  | 'boolean'
-  | 'function'
-  | 'null'
-  | 'number'
-  | 'object'
-  | 'regexp'
-  | 'map'
-  | 'set'
-  | 'date'
-  | 'string'
-  | 'symbol'
-  | 'undefined';
+                       
+           
+             
+              
+          
+            
+            
+            
+         
+         
+          
+            
+            
+                
 
 // get the type of a value with handling the edge cases like `typeof []`
 // and `typeof null`
-const getType = (value: any): ValueType => {
+const getType = (value     )            => {
   if (value === undefined) {
     return 'undefined';
   } else if (value === null) {

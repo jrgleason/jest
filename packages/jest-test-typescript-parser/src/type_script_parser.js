@@ -4,24 +4,24 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import {readFileSync} from 'fs';
 
 import ts from 'typescript';
-import {Expect, ItBlock, Node} from 'jest-editor-support';
+import {Expect, ItBlock} from 'jest-editor-support';
 
-export function parse(file: string) {
+export function parse(file        ) {
   const sourceFile = ts.createSourceFile(
     file,
     readFileSync(file).toString(),
     ts.ScriptTarget.ES3,
   );
 
-  const itBlocks: Array<ItBlock> = [];
-  const expects: Array<Expect> = [];
-  function searchNodes(node: ts.Node) {
+  const itBlocks                 = [];
+  const expects                = [];
+  function searchNodes(node         ) {
     if (node.kind === ts.SyntaxKind.CallExpression) {
       let {text} = node.expression;
       if (!text) {
@@ -63,11 +63,11 @@ export function parse(file: string) {
   };
 }
 
-function getNode<T: Node>(
-  file: ts.SourceFile,
-  expression: ts.CallExpression,
-  node: T,
-): T {
+function getNode         (
+  file               ,
+  expression                   ,
+  node   ,
+)    {
   const start = file.getLineAndCharacterOfPosition(expression.getStart(file));
   // TypeScript parser is 0 based, so we have to increment by 1 to normalize
   node.start = {

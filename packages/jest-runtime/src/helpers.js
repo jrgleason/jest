@@ -1,8 +1,8 @@
-// @flow
+//      
 import chalk from 'chalk';
 const DOT = ' \u2022 ';
 
-export const enhanceUnexpectedTokenMessage = (e: Error) => {
+export const enhanceUnexpectedTokenMessage = (e       ) => {
   e.stack =
     `${chalk.bold.red('Jest encountered an unexpected token')}
 

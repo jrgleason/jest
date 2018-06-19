@@ -4,16 +4,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import chalk from 'chalk';
 import {KEYS} from 'jest-watcher';
 
 export default (
-  pipe: stream$Writable | tty$WriteStream,
-  stdin: stream$Readable | tty$ReadStream = process.stdin,
-): Promise<void> => {
+  pipe                                   ,
+  stdin                                   = process.stdin,
+)                => {
   return new Promise((resolve, reject) => {
     if (typeof stdin.setRawMode === 'function') {
       const messages = [
@@ -28,7 +28,7 @@ export default (
       stdin.setRawMode(true);
       stdin.resume();
       stdin.setEncoding('utf8');
-      stdin.on('data', (key: string) => {
+      stdin.on('data', (key        ) => {
         if (key === KEYS.ENTER) {
           resolve();
         } else if (

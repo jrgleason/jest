@@ -4,29 +4,29 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {InternalHasteMap} from 'types/HasteMap';
-import type {IgnoreMatcher, CrawlerOptions} from '../types';
+                                                     
+                                                            
 
 import fs from 'fs';
 import path from 'path';
 import {spawn} from 'child_process';
 import H from '../constants';
 
-type Callback = (result: Array<[/* id */ string, /* mtime */ number]>) => void;
+                                                                               
 
 function find(
-  roots: Array<string>,
-  extensions: Array<string>,
-  ignore: IgnoreMatcher,
-  callback: Callback,
-): void {
+  roots               ,
+  extensions               ,
+  ignore               ,
+  callback          ,
+)       {
   const result = [];
   let activeCalls = 0;
 
-  function search(directory: string): void {
+  function search(directory        )       {
     activeCalls++;
     fs.readdir(directory, (err, names) => {
       activeCalls--;
@@ -71,11 +71,11 @@ function find(
 }
 
 function findNative(
-  roots: Array<string>,
-  extensions: Array<string>,
-  ignore: IgnoreMatcher,
-  callback: Callback,
-): void {
+  roots               ,
+  extensions               ,
+  ignore               ,
+  callback          ,
+)       {
   const args = [].concat(roots);
   args.push('-type', 'f');
   if (extensions.length) {
@@ -122,8 +122,8 @@ function findNative(
 }
 
 module.exports = function nodeCrawl(
-  options: CrawlerOptions,
-): Promise<InternalHasteMap> {
+  options                ,
+)                            {
   const {data, extensions, forceNodeFilesystemAPI, ignore, roots} = options;
 
   return new Promise(resolve => {

@@ -4,13 +4,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {AggregatedResult, TestResult} from 'types/TestResult';
-import type {GlobalConfig, ReporterConfig} from 'types/Config';
-import type {Context} from 'types/Context';
-import type {Reporter, Test} from 'types/TestRunner';
+                                                                   
+                                                               
+                                           
+                                                     
 
 import chalk from 'chalk';
 import {formatExecError} from 'jest-message-util';
@@ -36,23 +36,23 @@ const SLOW_TEST_TIME = 3000;
 // and required implicitly through the `runner` ProjectConfig option.
 TestRunner;
 
-export type TestSchedulerOptions = {|
-  startRun: (globalConfig: GlobalConfig) => *,
-|};
-export type TestSchedulerContext = {|
-  firstRun: boolean,
-  previousSuccess: boolean,
-|};
+                                     
+                                              
+   
+                                     
+                    
+                           
+   
 export default class TestScheduler {
-  _dispatcher: ReporterDispatcher;
-  _globalConfig: GlobalConfig;
-  _options: TestSchedulerOptions;
-  _context: TestSchedulerContext;
+                                  
+                              
+                                 
+                                 
 
   constructor(
-    globalConfig: GlobalConfig,
-    options: TestSchedulerOptions,
-    context: TestSchedulerContext,
+    globalConfig              ,
+    options                      ,
+    context                      ,
   ) {
     this._dispatcher = new ReporterDispatcher();
     this._globalConfig = globalConfig;
@@ -61,15 +61,15 @@ export default class TestScheduler {
     this._setupReporters();
   }
 
-  addReporter(reporter: Reporter) {
+  addReporter(reporter          ) {
     this._dispatcher.register(reporter);
   }
 
-  removeReporter(ReporterClass: Function) {
+  removeReporter(ReporterClass          ) {
     this._dispatcher.unregister(ReporterClass);
   }
 
-  async scheduleTests(tests: Array<Test>, watcher: TestWatcher) {
+  async scheduleTests(tests             , watcher             ) {
     const onStart = this._dispatcher.onTestStart.bind(this._dispatcher);
     const timings = [];
     const contexts = new Set();
@@ -95,7 +95,7 @@ export default class TestScheduler {
         timings.length > 0 &&
         timings.every(timing => timing < SLOW_TEST_TIME));
 
-    const onResult = async (test: Test, testResult: TestResult) => {
+    const onResult = async (test      , testResult            ) => {
       if (watcher.isInterrupted()) {
         return Promise.resolve();
       }
@@ -174,7 +174,7 @@ export default class TestScheduler {
     contexts.forEach(({config}) => {
       if (!testRunners[config.runner]) {
         // $FlowFixMe
-        testRunners[config.runner] = new (require(config.runner): TestRunner)(
+        testRunners[config.runner] = new (require(config.runner)            )(
           this._globalConfig,
         );
       }
@@ -223,8 +223,8 @@ export default class TestScheduler {
   }
 
   _partitionTests(
-    testRunners: {[key: string]: TestRunner, __proto__: null},
-    tests: Array<Test>,
+    testRunners                                              ,
+    tests             ,
   ) {
     if (Object.keys(testRunners).length > 1) {
       return tests.reduce((testRuns, test) => {
@@ -245,7 +245,7 @@ export default class TestScheduler {
     }
   }
 
-  _shouldAddDefaultReporters(reporters?: Array<ReporterConfig>): boolean {
+  _shouldAddDefaultReporters(reporters                        )          {
     return (
       !reporters ||
       !!reporters.find(reporterConfig => reporterConfig[0] === 'default')
@@ -279,7 +279,7 @@ export default class TestScheduler {
     }
   }
 
-  _setupDefaultReporters(collectCoverage: boolean) {
+  _setupDefaultReporters(collectCoverage         ) {
     this.addReporter(
       this._globalConfig.verbose
         ? new VerboseReporter(this._globalConfig)
@@ -293,7 +293,7 @@ export default class TestScheduler {
     this.addReporter(new SummaryReporter(this._globalConfig));
   }
 
-  _addCustomReporters(reporters: Array<ReporterConfig>) {
+  _addCustomReporters(reporters                       ) {
     const customReporters = reporters.filter(
       reporterConfig => reporterConfig[0] !== 'default',
     );
@@ -321,8 +321,8 @@ export default class TestScheduler {
    * to make dealing with them less painful.
    */
   _getReporterProps(
-    reporter: ReporterConfig,
-  ): {path: string, options?: Object} {
+    reporter                ,
+  )                                   {
     if (typeof reporter === 'string') {
       return {options: this._options, path: reporter};
     } else if (Array.isArray(reporter)) {
@@ -334,10 +334,10 @@ export default class TestScheduler {
   }
 
   _bailIfNeeded(
-    contexts: Set<Context>,
-    aggregatedResults: AggregatedResult,
-    watcher: TestWatcher,
-  ): Promise<void> {
+    contexts              ,
+    aggregatedResults                  ,
+    watcher             ,
+  )                {
     if (this._globalConfig.bail && aggregatedResults.numFailedTests !== 0) {
       if (watcher.isWatchMode()) {
         watcher.setState({interrupted: true});
@@ -354,7 +354,7 @@ export default class TestScheduler {
   }
 }
 
-const createAggregatedResults = (numTotalTestSuites: number) => {
+const createAggregatedResults = (numTotalTestSuites        ) => {
   const result = makeEmptyAggregatedTestResult();
   result.numTotalTestSuites = numTotalTestSuites;
   result.startTime = Date.now();

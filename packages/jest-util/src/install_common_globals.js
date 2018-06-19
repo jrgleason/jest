@@ -4,18 +4,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {ConfigGlobals} from 'types/Config';
-import type {Global} from 'types/Global';
+                                                
+                                         
 
 import createProcessObject from './create_process_object';
 import deepCyclicCopy from './deep_cyclic_copy';
 
 const DTRACE = Object.keys(global).filter(key => key.startsWith('DTRACE'));
 
-export default function(globalObject: Global, globals: ConfigGlobals) {
+export default function(globalObject        , globals               ) {
   globalObject.process = createProcessObject();
 
   // Keep a reference to "Promise", since "jasmine_light.js" needs it.

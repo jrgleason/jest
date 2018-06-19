@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 // This list is compiled after the MDN list of the most common MIME types (see
@@ -18,7 +18,7 @@
 // Feel free to add any extensions that cannot contain any "@providesModule"
 // annotation.
 
-const extensions: Set<string> = new Set([
+const extensions              = new Set([
   // JSONs are never haste modules, except for "package.json", which is handled.
   '.json',
 

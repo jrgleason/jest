@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 // This diff-sequences package implements the linear space variation in
@@ -52,24 +52,24 @@
 // Find shortest edit script: path with minimum number of non-diagonal edges
 
 // Input callback function compares items at indexes in the sequences.
-type IsCommon = (
-  aIndex: number, // caller can assume: 0 <= aIndex && aIndex < aLength
-  bIndex: number, // caller can assume: 0 <= bIndex && bIndex < bLength
-) => boolean;
+                 
+                                                                       
+                                                                       
+             
 
 // Output callback function receives the number of adjacent items
 // and starting indexes of each common subsequence.
-type FoundSubsequence = (
-  nCommon: number, // caller can assume: 0 < nCommon
-  aCommon: number, // caller can assume: 0 <= aCommon && aCommon < aLength
-  bCommon: number, // caller can assume: 0 <= bCommon && bCommon < bLength
-) => void;
+                         
+                                                    
+                                                                          
+                                                                          
+          
 
 // Either original functions or wrapped to swap indexes if graph is transposed.
-type Callbacks = {|
-  foundSubsequence: FoundSubsequence,
-  isCommon: IsCommon,
-|};
+                   
+                                     
+                     
+   
 
 // Indexes in sequence a of last point of forward or reverse paths in graph.
 // Myers algorithm indexes by diagonal k which for negative is bad deopt in V8.
@@ -77,29 +77,29 @@ type Callbacks = {|
 // and also updates the index arrays in place to cut memory in half.
 // kF = 2 * iF - d
 // kR = d - 2 * iR
-type Indexes = Array<number>;
+                             
 
 // Division of index intervals in sequences a and b at the middle change.
 // Invariant: intervals do not have common items at the start or end.
-type Division = {|
-  // The end of interval preceding division is open like array slice method.
-  nChangePreceding: number, // number of change items
-  aEndPreceding: number,
-  bEndPreceding: number,
+                  
+                                                                            
+                                                     
+                        
+                        
 
-  nCommonPreceding: number, // 0 if no common items preceding middle change
-  aCommonPreceding: number, // ignore prop value if nCommonPreceding === 0
-  bCommonPreceding: number, // ignore prop value if nCommonPreceding === 0
+                                                                           
+                                                                          
+                                                                          
 
-  nCommonFollowing: number, // 0 if no common items following middle change
-  aCommonFollowing: number, // ignore prop value if nCommonFollowing === 0
-  bCommonFollowing: number, // ignore prop value if nCommonFollowing === 0
+                                                                           
+                                                                          
+                                                                          
 
-  // The start of interval following division is closed like array slice method.
-  nChangeFollowing: number, // number of change items
-  aStartFollowing: number,
-  bStartFollowing: number,
-|};
+                                                                                
+                                                     
+                          
+                          
+   
 
 const pkg = 'diff-sequences'; // for error messages
 const NOT_YET_SET = 0; // small int instead of undefined to avoid deopt in V8
@@ -107,11 +107,11 @@ const NOT_YET_SET = 0; // small int instead of undefined to avoid deopt in V8
 // Return the number of common items that follow in forward direction.
 // The length of what Myers paper calls a “snake” in a forward path.
 const countCommonItemsF = (
-  aIndex: number,
-  aEnd: number,
-  bIndex: number,
-  bEnd: number,
-  isCommon: IsCommon,
+  aIndex        ,
+  aEnd        ,
+  bIndex        ,
+  bEnd        ,
+  isCommon          ,
 ) => {
   let nCommon = 0;
   while (aIndex < aEnd && bIndex < bEnd && isCommon(aIndex, bIndex)) {
@@ -125,11 +125,11 @@ const countCommonItemsF = (
 // Return the number of common items that precede in reverse direction.
 // The length of what Myers paper calls a “snake” in a reverse path.
 const countCommonItemsR = (
-  aStart: number,
-  aIndex: number,
-  bStart: number,
-  bIndex: number,
-  isCommon: IsCommon,
+  aStart        ,
+  aIndex        ,
+  bStart        ,
+  bIndex        ,
+  isCommon          ,
 ) => {
   let nCommon = 0;
   while (aStart <= aIndex && bStart <= bIndex && isCommon(aIndex, bIndex)) {
@@ -143,14 +143,14 @@ const countCommonItemsR = (
 // A simple function to extend forward paths from (d - 1) to d changes
 // when forward and reverse paths cannot yet overlap.
 const extendPathsF = (
-  d: number,
-  aEnd: number,
-  bEnd: number,
-  bF: number, // bIndex = bF + aIndex - kF
-  isCommon: IsCommon,
-  aIndexesF: Indexes, // update indexes in sequence a of paths in diagonals kF
-  iMaxF: number, // return the value because optimization might decrease it
-): number => {
+  d        ,
+  aEnd        ,
+  bEnd        ,
+  bF        , // bIndex = bF + aIndex - kF
+  isCommon          ,
+  aIndexesF         , // update indexes in sequence a of paths in diagonals kF
+  iMaxF        , // return the value because optimization might decrease it
+)         => {
   // Unroll the first iteration.
   let iF = 0;
   let kF = -d; // kF = 2 * iF - d
@@ -196,14 +196,14 @@ const extendPathsF = (
 // A simple function to extend reverse paths from (d - 1) to d changes
 // when reverse and forward paths cannot yet overlap.
 const extendPathsR = (
-  d: number,
-  aStart: number,
-  bStart: number,
-  bR: number, // bIndex = bR + aIndex - kR
-  isCommon: IsCommon,
-  aIndexesR: Indexes, // update indexes in sequence a of paths in diagonals kR
-  iMaxR: number, // return the value because optimization might decrease it
-): number => {
+  d        ,
+  aStart        ,
+  bStart        ,
+  bR        , // bIndex = bR + aIndex - kR
+  isCommon          ,
+  aIndexesR         , // update indexes in sequence a of paths in diagonals kR
+  iMaxR        , // return the value because optimization might decrease it
+)         => {
   // Unroll the first iteration.
   let iR = 0;
   let kR = d; // kR = d - 2 * iR
@@ -255,18 +255,18 @@ const extendPathsR = (
 // A complete function to extend forward paths from (d - 1) to d changes.
 // Return true if a path overlaps reverse path of (d - 1) changes in its diagonal.
 const extendOverlappablePathsF = (
-  d: number,
-  aStart: number,
-  aEnd: number,
-  bStart: number,
-  bEnd: number,
-  isCommon: IsCommon,
-  aIndexesF: Indexes, // update indexes in sequence a of paths in diagonals kF
-  iMaxF: number,
-  aIndexesR: Indexes,
-  iMaxR: number,
-  division: Division, // update prop values if return true
-): boolean => {
+  d        ,
+  aStart        ,
+  aEnd        ,
+  bStart        ,
+  bEnd        ,
+  isCommon          ,
+  aIndexesF         , // update indexes in sequence a of paths in diagonals kF
+  iMaxF        ,
+  aIndexesR         ,
+  iMaxR        ,
+  division          , // update prop values if return true
+)          => {
   const bF = bStart - aStart; // bIndex = bF + aIndex - kF
   const aLength = aEnd - aStart;
   const bLength = bEnd - bStart;
@@ -388,18 +388,18 @@ const extendOverlappablePathsF = (
 // A complete function to extend reverse paths from (d - 1) to d changes.
 // Return true if a path overlaps forward path of d changes in its diagonal.
 const extendOverlappablePathsR = (
-  d: number,
-  aStart: number,
-  aEnd: number,
-  bStart: number,
-  bEnd: number,
-  isCommon: IsCommon,
-  aIndexesF: Indexes,
-  iMaxF: number,
-  aIndexesR: Indexes, // update indexes in sequence a of paths in diagonals kR
-  iMaxR: number,
-  division: Division, // update prop values if return true
-): boolean => {
+  d        ,
+  aStart        ,
+  aEnd        ,
+  bStart        ,
+  bEnd        ,
+  isCommon          ,
+  aIndexesF         ,
+  iMaxF        ,
+  aIndexesR         , // update indexes in sequence a of paths in diagonals kR
+  iMaxR        ,
+  division          , // update prop values if return true
+)          => {
   const bR = bEnd - aEnd; // bIndex = bR + aIndex - kR
   const aLength = aEnd - aStart;
   const bLength = bEnd - bStart;
@@ -529,15 +529,15 @@ const extendOverlappablePathsR = (
 // DO NOT CALL if start === end, because interval cannot contain common items
 // and because this function will throw the “no overlap” error.
 const divide = (
-  nChange: number,
-  aStart: number,
-  aEnd: number,
-  bStart: number,
-  bEnd: number,
-  isCommon: IsCommon,
-  aIndexesF: Indexes, // temporary memory, not input nor output
-  aIndexesR: Indexes, // temporary memory, not input nor output
-  division: Division, // output
+  nChange        ,
+  aStart        ,
+  aEnd        ,
+  bStart        ,
+  bEnd        ,
+  isCommon          ,
+  aIndexesF         , // temporary memory, not input nor output
+  aIndexesR         , // temporary memory, not input nor output
+  division          , // output
 ) => {
   const bF = bStart - aStart; // bIndex = bF + aIndex - kF
   const bR = bEnd - aEnd; // bIndex = bR + aIndex - kR
@@ -652,16 +652,16 @@ const divide = (
 // DO NOT CALL if start === end, because interval cannot contain common items
 // and because divide function will throw the “no overlap” error.
 const findSubsequences = (
-  nChange: number,
-  aStart: number,
-  aEnd: number,
-  bStart: number,
-  bEnd: number,
-  transposed: boolean,
-  callbacks: Array<Callbacks>,
-  aIndexesF: Indexes, // temporary memory, not input nor output
-  aIndexesR: Indexes, // temporary memory, not input nor output
-  division: Division, // temporary memory, not input nor output
+  nChange        ,
+  aStart        ,
+  aEnd        ,
+  bStart        ,
+  bEnd        ,
+  transposed         ,
+  callbacks                  ,
+  aIndexesF         , // temporary memory, not input nor output
+  aIndexesR         , // temporary memory, not input nor output
+  division          , // temporary memory, not input nor output
 ) => {
   if (bEnd - bStart < aEnd - aStart) {
     // Transpose graph so it has portrait instead of landscape orientation.
@@ -757,7 +757,7 @@ const findSubsequences = (
   }
 };
 
-const validateLength = (name: string, arg: any) => {
+const validateLength = (name        , arg     ) => {
   const type = typeof arg;
   if (type !== 'number') {
     throw new TypeError(`${pkg}: ${name} typeof ${type} is not a number`);
@@ -770,7 +770,7 @@ const validateLength = (name: string, arg: any) => {
   }
 };
 
-const validateCallback = (name: string, arg: any) => {
+const validateCallback = (name        , arg     ) => {
   const type = typeof arg;
   if (type !== 'function') {
     throw new TypeError(`${pkg}: ${name} typeof ${type} is not a function`);
@@ -782,10 +782,10 @@ const validateCallback = (name: string, arg: any) => {
 // return by output function the number of adjacent items and starting indexes
 // of each common subsequence.
 export default (
-  aLength: number,
-  bLength: number,
-  isCommon: IsCommon,
-  foundSubsequence: FoundSubsequence,
+  aLength        ,
+  bLength        ,
+  isCommon          ,
+  foundSubsequence                  ,
 ) => {
   validateLength('aLength', aLength);
   validateLength('bLength', bLength);

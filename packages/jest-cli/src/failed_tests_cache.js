@@ -4,17 +4,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Test} from 'types/TestRunner';
-import type {TestResult} from 'types/TestResult';
-import type {GlobalConfig} from 'types/Config';
+                                           
+                                                 
+                                               
 
 export default class FailedTestsCache {
-  _enabledTestsMap: ?{[key: string]: {[key: string]: boolean}};
+                                                               
 
-  filterTests(tests: Array<Test>): Array<Test> {
+  filterTests(tests             )              {
     if (!this._enabledTestsMap) {
       return tests;
     }
@@ -22,7 +22,7 @@ export default class FailedTestsCache {
     return tests.filter(testResult => this._enabledTestsMap[testResult.path]);
   }
 
-  setTestResults(testResults: Array<TestResult>) {
+  setTestResults(testResults                   ) {
     this._enabledTestsMap = (testResults || [])
       .filter(testResult => testResult.numFailingTests)
       .reduce((suiteMap, testResult) => {
@@ -37,12 +37,12 @@ export default class FailedTestsCache {
     this._enabledTestsMap = Object.freeze(this._enabledTestsMap);
   }
 
-  updateConfig(globalConfig: GlobalConfig): GlobalConfig {
+  updateConfig(globalConfig              )               {
     if (!this._enabledTestsMap) {
       return globalConfig;
     }
     // $FlowFixMe Object.assign
-    const newConfig: GlobalConfig = Object.assign({}, globalConfig);
+    const newConfig               = Object.assign({}, globalConfig);
     newConfig.enabledTestsMap = this._enabledTestsMap;
     return Object.freeze(newConfig);
   }

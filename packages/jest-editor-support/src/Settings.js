@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Options, SpawnOptions} from './types';
+                                                   
 
 import {ChildProcess} from 'child_process';
 import EventEmitter from 'events';
@@ -25,29 +25,29 @@ import {createProcess} from './Process';
 
 // For now, this is all we care about inside the config
 
-type Glob = string;
+                   
 
-type ConfigRepresentation = {
-  testRegex: string,
-  testMatch: Array<Glob>,
-};
+                             
+                    
+                         
+  
 
-type ConfigRepresentations = Array<ConfigRepresentation>;
+                                                         
 
 export default class Settings extends EventEmitter {
-  getConfigProcess: ChildProcess;
-  jestVersionMajor: number | null;
-  _createProcess: (
-    workspace: ProjectWorkspace,
-    args: Array<string>,
-    options: SpawnOptions,
-  ) => ChildProcess;
-  configs: ConfigRepresentations;
-  settings: ConfigRepresentation;
-  workspace: ProjectWorkspace;
-  spawnOptions: SpawnOptions;
+                                 
+                                  
+                   
+                                
+                        
+                          
+                    
+                                 
+                                 
+                              
+                             
 
-  constructor(workspace: ProjectWorkspace, options?: Options) {
+  constructor(workspace                  , options          ) {
     super();
     this.workspace = workspace;
     this._createProcess = (options && options.createProcess) || createProcess;
@@ -62,14 +62,14 @@ export default class Settings extends EventEmitter {
     this.configs = [this.settings];
   }
 
-  getConfigs(completed: any) {
+  getConfigs(completed     ) {
     this.getConfigProcess = this._createProcess(
       this.workspace,
       ['--showConfig'],
       this.spawnOptions,
     );
 
-    this.getConfigProcess.stdout.on('data', (data: Buffer) => {
+    this.getConfigProcess.stdout.on('data', (data        ) => {
       const settings = JSON.parse(data.toString());
       this.jestVersionMajor = parseInt(settings.version.split('.').shift(), 10);
       this.configs =
@@ -83,7 +83,7 @@ export default class Settings extends EventEmitter {
     });
   }
 
-  getConfig(completed: any, index: number = 0) {
+  getConfig(completed     , index         = 0) {
     this.getConfigs(() => {
       this.settings = this.configs[index];
       completed();

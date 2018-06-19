@@ -4,19 +4,19 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {
-  TestFileAssertionStatus,
-  TestAssertionStatus,
-  TestReconciliationState,
-} from './types';
+             
+                          
+                      
+                          
+                 
 
-import type {
-  FormattedAssertionResult,
-  FormattedTestResults,
-} from 'types/TestResult';
+             
+                           
+                       
+                          
 
 import path from 'path';
 
@@ -28,7 +28,7 @@ import path from 'path';
  *  at a file level, generating useful error messages and providing a nice API.
  */
 export default class TestReconciler {
-  fileStatuses: {[key: string]: TestFileAssertionStatus};
+                                                         
 
   constructor() {
     this.fileStatuses = {};
@@ -39,15 +39,15 @@ export default class TestReconciler {
   // stored in the this.fileStatuses, no dup is better 3) client will most likely need to process
   // all the results anyway.
   updateFileWithJestStatus(
-    results: FormattedTestResults,
-  ): TestFileAssertionStatus[] {
+    results                      ,
+  )                            {
     // Loop through all files inside the report from Jest
-    const statusList: TestFileAssertionStatus[] = [];
+    const statusList                            = [];
     results.testResults.forEach(file => {
       // Did the file pass/fail?
       const status = this.statusToReconcilationState(file.status);
       // Create our own simpler representation
-      const fileStatus: TestFileAssertionStatus = {
+      const fileStatus                          = {
         assertions: this.mapAssertions(file.name, file.assertionResults),
         file: file.name,
         message: file.message,
@@ -64,9 +64,9 @@ export default class TestReconciler {
   // is useful enough to make it for ourselves
 
   mapAssertions(
-    filename: string,
-    assertions: Array<FormattedAssertionResult>,
-  ): Array<TestAssertionStatus> {
+    filename        ,
+    assertions                                 ,
+  )                             {
     // Is it jest < 17? e.g. Before I added this to the JSON
     if (!assertions) {
       return [];
@@ -98,7 +98,7 @@ export default class TestReconciler {
   }
 
   // Do everything we can to try make a one-liner from the error report
-  sanitizeShortErrorMessage(string: string): string {
+  sanitizeShortErrorMessage(string        )         {
     if (string.includes('does not match stored snapshot')) {
       return 'Snapshot has changed';
     }
@@ -117,13 +117,13 @@ export default class TestReconciler {
   }
 
   // Pull the line out from the stack trace
-  lineOfError(message: string, filePath: string): ?number {
+  lineOfError(message        , filePath        )          {
     const filename = path.basename(filePath);
     const restOfTrace = message.split(filename, 2)[1];
     return restOfTrace ? parseInt(restOfTrace.split(':')[1], 10) : null;
   }
 
-  statusToReconcilationState(status: string): TestReconciliationState {
+  statusToReconcilationState(status        )                          {
     switch (status) {
       case 'passed':
         return 'KnownSuccess';
@@ -136,7 +136,7 @@ export default class TestReconciler {
     }
   }
 
-  stateForTestFile(file: string): TestReconciliationState {
+  stateForTestFile(file        )                          {
     const results = this.fileStatuses[file];
     if (!results) {
       return 'Unknown';
@@ -144,15 +144,15 @@ export default class TestReconciler {
     return results.status;
   }
 
-  assertionsForTestFile(file: string): TestAssertionStatus[] | null {
+  assertionsForTestFile(file        )                               {
     const results = this.fileStatuses[file];
     return results ? results.assertions : null;
   }
 
   stateForTestAssertion(
-    file: string,
-    name: string,
-  ): TestAssertionStatus | null {
+    file        ,
+    name        ,
+  )                             {
     const results = this.fileStatuses[file];
     if (!results || !results.assertions) {
       return null;

@@ -22,8 +22,9 @@ let filesToBuild = new Map();
 const exists = filename => {
   try {
     return fs.statSync(filename).isFile();
-  } catch (e) {}
-  return false;
+  } catch (e) {
+    return false;
+  }
 };
 const rebuild = filename => filesToBuild.set(filename, true);
 
@@ -47,7 +48,9 @@ getPackages().forEach(p => {
               ' (deleted)' +
               '\n'
           );
-        } catch (e) {}
+        } catch (e) {
+          // TODO: What should we do?
+        }
       }
     });
   } catch (e) {
@@ -61,7 +64,9 @@ setInterval(() => {
     filesToBuild = new Map();
     try {
       execSync(`${BUILD_CMD} ${files.join(' ')}`, {stdio: [0, 1, 2]});
-    } catch (e) {}
+    } catch (e) {
+      // TODO: What should we do?
+    }
   }
 }, 100);
 

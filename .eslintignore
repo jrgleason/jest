@@ -10,3 +10,5 @@ website/node_modules
 website/i18n/*.js
 website/translated_docs
 !.eslintrc.js
+// TODO: Remove
+website/versioned_docs

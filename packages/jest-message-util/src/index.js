@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Glob, Path} from 'types/Config';
-import type {AssertionResult, SerializableError} from 'types/TestResult';
+                                             
+                                                                         
 
 import fs from 'fs';
 import path from 'path';
@@ -35,20 +35,20 @@ try {
   // node internals in the browser though, so no issue.
 }
 
-type StackTraceConfig = {
-  rootDir: string,
-  testMatch: Array<Glob>,
-};
+                         
+                  
+                         
+  
 
-type StackTraceOptions = {
-  noStackTrace: boolean,
-};
+                          
+                        
+  
 
 const PATH_NODE_MODULES = `${path.sep}node_modules${path.sep}`;
 const PATH_JEST_PACKAGES = `${path.sep}jest${path.sep}packages${path.sep}`;
 
 // filter for noisy stack trace lines
-const JASMINE_IGNORE = /^\s+at(?:(?:.jasmine\-)|\s+jasmine\.buildExpectationResult)/;
+const JASMINE_IGNORE = /^\s+at(?:(?:.jasmine-)|\s+jasmine\.buildExpectationResult)/;
 const JEST_INTERNALS_IGNORE = /^\s+at.*?jest(-.*?)?(\/|\\)(build|node_modules|packages)(\/|\\)/;
 const ANONYMOUS_FN_IGNORE = /^\s+at <anonymous>.*$/;
 const ANONYMOUS_PROMISE_IGNORE = /^\s+at (new )?Promise \(<anonymous>\).*$/;
@@ -60,11 +60,11 @@ const STACK_INDENT = '      ';
 const ANCESTRY_SEPARATOR = ' \u203A ';
 const TITLE_BULLET = chalk.bold('\u25cf ');
 const STACK_TRACE_COLOR = chalk.dim;
-const STACK_PATH_REGEXP = /\s*at.*\(?(\:\d*\:\d*|native)\)?/;
+const STACK_PATH_REGEXP = /\s*at.*\(?(:\d*:\d*|native)\)?/;
 const EXEC_ERROR_MESSAGE = 'Test suite failed to run';
 const ERROR_TEXT = 'Error: ';
 
-const indentAllLines = (lines: string, indent: string) =>
+const indentAllLines = (lines        , indent        ) =>
   lines
     .split('\n')
     .map(line => (line ? indent + line : line))
@@ -80,9 +80,9 @@ const trimPaths = string =>
   string.match(STACK_PATH_REGEXP) ? trim(string) : string;
 
 const getRenderedCallsite = (
-  fileContent: string,
-  line: number,
-  column?: number,
+  fileContent        ,
+  line        ,
+  column         ,
 ) => {
   let renderedCallsite = codeFrameColumns(
     fileContent,
@@ -100,11 +100,11 @@ const getRenderedCallsite = (
 // `before/after each` hooks). If it's thrown, none of the tests in the file
 // are executed.
 export const formatExecError = (
-  error?: Error | SerializableError | string,
-  config: StackTraceConfig,
-  options: StackTraceOptions,
-  testPath: ?Path,
-  reuseMessage: ?boolean,
+  error                                     ,
+  config                  ,
+  options                   ,
+  testPath       ,
+  reuseMessage          ,
 ) => {
   if (!error || typeof error === 'number') {
     error = new Error(`Expected an Error, but "${String(error)}" was thrown`);
@@ -153,7 +153,7 @@ export const formatExecError = (
   return TITLE_INDENT + TITLE_BULLET + messageToUse + stack + '\n';
 };
 
-const removeInternalStackEntries = (lines, options: StackTraceOptions) => {
+const removeInternalStackEntries = (lines, options                   ) => {
   let pathCounter = 0;
 
   return lines.filter(line => {
@@ -201,7 +201,7 @@ const removeInternalStackEntries = (lines, options: StackTraceOptions) => {
   });
 };
 
-const formatPaths = (config: StackTraceConfig, relativeTestPath, line) => {
+const formatPaths = (config                  , relativeTestPath, line) => {
   // Extract the file path from the trace line.
   const match = line.match(/(^\s*at .*?\(?)([^()]+)(:[0-9]+:[0-9]+\)?.*$)/);
   if (!match) {
@@ -221,7 +221,7 @@ const formatPaths = (config: StackTraceConfig, relativeTestPath, line) => {
   return STACK_TRACE_COLOR(match[1]) + filePath + STACK_TRACE_COLOR(match[3]);
 };
 
-const getTopFrame = (lines: string[]) => {
+const getTopFrame = (lines          ) => {
   for (const line of lines) {
     if (line.includes(PATH_NODE_MODULES) || line.includes(PATH_JEST_PACKAGES)) {
       continue;
@@ -238,10 +238,10 @@ const getTopFrame = (lines: string[]) => {
 };
 
 export const formatStackTrace = (
-  stack: string,
-  config: StackTraceConfig,
-  options: StackTraceOptions,
-  testPath: ?Path,
+  stack        ,
+  config                  ,
+  options                   ,
+  testPath       ,
 ) => {
   let lines = stack.split(/\n/);
   let renderedCallsite = '';
@@ -284,11 +284,11 @@ export const formatStackTrace = (
 };
 
 export const formatResultsErrors = (
-  testResults: Array<AssertionResult>,
-  config: StackTraceConfig,
-  options: StackTraceOptions,
-  testPath: ?Path,
-): ?string => {
+  testResults                        ,
+  config                  ,
+  options                   ,
+  testPath       ,
+)          => {
   const failedResults = testResults.reduce((errors, result) => {
     result.failureMessages.forEach(content => errors.push({content, result}));
     return errors;
@@ -326,12 +326,12 @@ export const formatResultsErrors = (
 // jasmine and worker farm sometimes don't give us access to the actual
 // Error object, so we have to regexp out the message from the stack string
 // to format it.
-export const separateMessageFromStack = (content: string) => {
+export const separateMessageFromStack = (content        ) => {
   if (!content) {
     return {message: '', stack: ''};
   }
 
-  const messageMatch = content.match(/(^(.|\n)*?(?=\n\s*at\s.*\:\d*\:\d*))/);
+  const messageMatch = content.match(/(^(.|\n)*?(?=\n\s*at\s.*:\d*:\d*))/);
   let message = messageMatch ? messageMatch[0] : 'Error';
   const stack = messageMatch ? content.slice(message.length) : content;
   // If the error is a plain error instead of a SyntaxError or TypeError

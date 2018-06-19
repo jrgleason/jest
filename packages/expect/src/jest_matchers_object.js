@@ -4,15 +4,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import {AsymmetricMatcher} from './asymmetric_matchers';
-import type {
-  Expect,
-  MatchersObject,
-  SyncExpectationResult,
-} from 'types/Matchers';
+             
+         
+                 
+                        
+                        
 
 // Global matchers object holds the list of available matchers and
 // the state, that can hold matcher specific values that change over time.
@@ -38,16 +38,16 @@ if (!global[JEST_MATCHERS_OBJECT]) {
 
 export const getState = () => global[JEST_MATCHERS_OBJECT].state;
 
-export const setState = (state: Object) => {
+export const setState = (state        ) => {
   Object.assign(global[JEST_MATCHERS_OBJECT].state, state);
 };
 
 export const getMatchers = () => global[JEST_MATCHERS_OBJECT].matchers;
 
 export const setMatchers = (
-  matchers: MatchersObject,
-  isInternal: boolean,
-  expect: Expect,
+  matchers                ,
+  isInternal         ,
+  expect        ,
 ) => {
   Object.keys(matchers).forEach(key => {
     const matcher = matchers[key];
@@ -59,19 +59,19 @@ export const setMatchers = (
       // expect is defined
 
       class CustomMatcher extends AsymmetricMatcher {
-        sample: any;
+                    
 
-        constructor(sample: any, inverse: boolean = false) {
+        constructor(sample     , inverse          = false) {
           super();
           this.sample = sample;
           this.inverse = inverse;
         }
 
-        asymmetricMatch(other: any) {
+        asymmetricMatch(other     ) {
           const {pass} = ((matcher(
-            (other: any),
-            (this.sample: any),
-          ): any): SyncExpectationResult);
+            (other     ),
+            (this.sample     ),
+          )     )                       );
 
           return this.inverse ? !pass : pass;
         }
@@ -89,11 +89,11 @@ export const setMatchers = (
         }
       }
 
-      expect[key] = (sample: any) => new CustomMatcher(sample);
+      expect[key] = (sample     ) => new CustomMatcher(sample);
       if (!expect.not) {
         expect.not = {};
       }
-      expect.not[key] = (sample: any) => new CustomMatcher(sample, true);
+      expect.not[key] = (sample     ) => new CustomMatcher(sample, true);
     }
   });
 

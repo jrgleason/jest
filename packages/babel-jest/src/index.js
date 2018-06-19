@@ -4,16 +4,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Path, ProjectConfig} from 'types/Config';
-import type {
-  CacheKeyOptions,
-  Transformer,
-  TransformOptions,
-  TransformedSource,
-} from 'types/Transform';
+                                                      
+             
+                  
+              
+                   
+                    
+                         
 
 import crypto from 'crypto';
 import fs from 'fs';
@@ -28,7 +28,7 @@ const BABEL_CONFIG_KEY = 'babel';
 const PACKAGE_JSON = 'package.json';
 const THIS_FILE = fs.readFileSync(__filename);
 
-const createTransformer = (options: any): Transformer => {
+const createTransformer = (options     )              => {
   const cache = Object.create(null);
 
   const getBabelRC = filename => {
@@ -83,11 +83,11 @@ const createTransformer = (options: any): Transformer => {
   return {
     canInstrument: true,
     getCacheKey(
-      fileData: string,
-      filename: Path,
-      configString: string,
-      {instrument, rootDir}: CacheKeyOptions,
-    ): string {
+      fileData        ,
+      filename      ,
+      configString        ,
+      {instrument, rootDir}                 ,
+    )         {
       return crypto
         .createHash('md5')
         .update(THIS_FILE)
@@ -104,11 +104,11 @@ const createTransformer = (options: any): Transformer => {
         .digest('hex');
     },
     process(
-      src: string,
-      filename: Path,
-      config: ProjectConfig,
-      transformOptions?: TransformOptions,
-    ): string | TransformedSource {
+      src        ,
+      filename      ,
+      config               ,
+      transformOptions                   ,
+    )                             {
       const altExts = config.moduleFileExtensions.map(
         extension => '.' + extension,
       );
@@ -141,4 +141,4 @@ const createTransformer = (options: any): Transformer => {
 };
 
 module.exports = createTransformer();
-(module.exports: any).createTransformer = createTransformer;
+(module.exports     ).createTransformer = createTransformer;

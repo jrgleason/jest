@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 // See: https://github.com/facebook/jest/pull/5154
 export default function convertDescriptorToString(
-  descriptor: string | Function,
+  descriptor                   ,
 ) {
   if (
     typeof descriptor === 'string' ||

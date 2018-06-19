@@ -4,15 +4,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {EnvironmentClass} from 'types/Environment';
-import type {GlobalConfig, Path, ProjectConfig} from 'types/Config';
-import type {Resolver} from 'types/Resolve';
-import type {TestFramework} from 'types/TestRunner';
-import type {TestResult} from 'types/TestResult';
-import type RuntimeClass from 'jest-runtime';
+                                                        
+                                                                    
+                                            
+                                                    
+                                                 
+                                             
 
 import fs from 'graceful-fs';
 import {
@@ -27,10 +27,10 @@ import {getTestEnvironment} from 'jest-config';
 import * as docblock from 'jest-docblock';
 import sourcemapSupport from 'source-map-support';
 
-type RunTestInternalResult = {
-  leakDetector: ?LeakDetector,
-  result: TestResult,
-};
+                              
+                              
+                     
+  
 
 // Keeping the core of "runTest" as a separate function (as "runTestInternal")
 // is key to be able to detect memory leaks. Since all variables are local to
@@ -42,11 +42,11 @@ type RunTestInternalResult = {
 // references to verify if there is a leak, which is not maintainable and error
 // prone. That's why "runTestInternal" CANNOT be inlined inside "runTest".
 async function runTestInternal(
-  path: Path,
-  globalConfig: GlobalConfig,
-  config: ProjectConfig,
-  resolver: Resolver,
-): Promise<RunTestInternalResult> {
+  path      ,
+  globalConfig              ,
+  config               ,
+  resolver          ,
+)                                 {
   const testSource = fs.readFileSync(path, 'utf8');
   const parsedDocblock = docblock.parse(docblock.extract(testSource));
   const customEnvironment = parsedDocblock['jest-environment'];
@@ -62,15 +62,15 @@ async function runTestInternal(
   }
 
   /* $FlowFixMe */
-  const TestEnvironment = (require(testEnvironment): EnvironmentClass);
+  const TestEnvironment = (require(testEnvironment)                  );
   const testFramework = ((process.env.JEST_CIRCUS === '1'
     ? require('jest-circus/runner') // eslint-disable-line import/no-extraneous-dependencies
     : /* $FlowFixMe */
-      require(config.testRunner)): TestFramework);
+      require(config.testRunner))               );
   /* $FlowFixMe */
-  const Runtime = (require(config.moduleLoader || 'jest-runtime'): Class<
-    RuntimeClass,
-  >);
+  const Runtime = (require(config.moduleLoader || 'jest-runtime')        
+                 
+   );
 
   let runtime = undefined;
 
@@ -128,7 +128,9 @@ async function runTestInternal(
             map: JSON.parse(fs.readFileSync(sourceMapSource)),
             url: source,
           };
-        } catch (e) {}
+        } catch () {
+            // TODO: What now?
+        }
       }
       return null;
     },
@@ -148,7 +150,7 @@ async function runTestInternal(
   try {
     await environment.setup();
 
-    let result: TestResult;
+    let result            ;
 
     try {
       result = await testFramework(
@@ -197,11 +199,11 @@ async function runTestInternal(
 }
 
 export default async function runTest(
-  path: Path,
-  globalConfig: GlobalConfig,
-  config: ProjectConfig,
-  resolver: Resolver,
-): Promise<TestResult> {
+  path      ,
+  globalConfig              ,
+  config               ,
+  resolver          ,
+)                      {
   const {leakDetector, result} = await runTestInternal(
     path,
     globalConfig,

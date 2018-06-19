@@ -4,16 +4,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {ConsoleBuffer} from 'types/Console';
+                                                 
 
 import path from 'path';
 import chalk from 'chalk';
 import slash from 'slash';
 
-export default (root: string, verbose: boolean, buffer: ConsoleBuffer) => {
+export default (root        , verbose         , buffer               ) => {
   const TITLE_INDENT = verbose ? '  ' : '    ';
   const CONSOLE_INDENT = TITLE_INDENT + '  ';
 

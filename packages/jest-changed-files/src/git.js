@@ -4,19 +4,19 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Path} from 'types/Config';
-import type {Options, SCMAdapter} from 'types/ChangedFiles';
+                                       
+                                                            
 
 import path from 'path';
 import childProcess from 'child_process';
 
 const findChangedFilesUsingCommand = async (
-  args: Array<string>,
-  cwd: Path,
-): Promise<Array<Path>> => {
+  args               ,
+  cwd      ,
+)                       => {
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn('git', args, {cwd});
     let stdout = '';
@@ -44,12 +44,12 @@ const findChangedFilesUsingCommand = async (
   });
 };
 
-const adapter: SCMAdapter = {
+const adapter             = {
   findChangedFiles: async (
-    cwd: string,
-    options?: Options,
-  ): Promise<Array<Path>> => {
-    const changedSince: ?string =
+    cwd        ,
+    options          ,
+  )                       => {
+    const changedSince          =
       options && (options.withAncestor ? 'HEAD^' : options.changedSince);
 
     if (options && options.lastCommit) {
@@ -79,7 +79,7 @@ const adapter: SCMAdapter = {
     }
   },
 
-  getRoot: async (cwd: string): Promise<?string> => {
+  getRoot: async (cwd        )                   => {
     return new Promise(resolve => {
       try {
         let stdout = '';

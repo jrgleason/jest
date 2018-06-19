@@ -3,10 +3,10 @@
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- * @flow
+ *      
  */
 
-import type {ReporterConfig} from 'types/Config';
+                                                 
 
 import {ValidationError} from 'jest-validate';
 import chalk from 'chalk';
@@ -25,9 +25,9 @@ const ERROR = `${BULLET}Reporter Validation Error`;
  * and that's what counts most at this time.
  */
 export function createReporterError(
-  reporterIndex: number,
-  reporterValue: Array<ReporterConfig> | string,
-): ValidationError {
+  reporterIndex        ,
+  reporterValue                                ,
+)                  {
   const errorMessage =
     `  Reporter at index ${reporterIndex} must be of type:\n` +
     `    ${chalk.bold.green(validReporterTypes.join(' or '))}\n` +
@@ -38,13 +38,13 @@ export function createReporterError(
 }
 
 export function createArrayReporterError(
-  arrayReporter: ReporterConfig,
-  reporterIndex: number,
-  valueIndex: number,
-  value: string | Object,
-  expectedType: string,
-  valueName: string,
-): ValidationError {
+  arrayReporter                ,
+  reporterIndex        ,
+  valueIndex        ,
+  value                 ,
+  expectedType        ,
+  valueName        ,
+)                  {
   const errorMessage =
     `  Unexpected value for ${valueName} ` +
     `at index ${valueIndex} of reporter at index ${reporterIndex}\n` +
@@ -63,8 +63,8 @@ export function createArrayReporterError(
 }
 
 export function validateReporters(
-  reporterConfig: Array<ReporterConfig | string>,
-): boolean {
+  reporterConfig                                ,
+)          {
   return reporterConfig.every((reporter, index) => {
     if (Array.isArray(reporter)) {
       validateArrayReporter(reporter, index);
@@ -77,8 +77,8 @@ export function validateReporters(
 }
 
 function validateArrayReporter(
-  arrayReporter: ReporterConfig,
-  reporterIndex: number,
+  arrayReporter                ,
+  reporterIndex        ,
 ) {
   const [path, options] = arrayReporter;
   if (typeof path !== 'string') {

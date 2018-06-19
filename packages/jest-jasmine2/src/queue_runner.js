@@ -4,32 +4,32 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 // Try getting the real promise object from the context, if available. Someone
 // could have overridden it in a test.
-const Promise: Class<Promise> =
+const Promise                 =
   global[Symbol.for('jest-native-promise')] || global.Promise;
 
 import PCancelable from './p_cancelable';
 import pTimeout from './p_timeout';
 
-type Options = {
-  clearTimeout: (timeoutID: number) => void,
-  fail: () => void,
-  onException: (error: Error) => void,
-  queueableFns: Array<QueueableFn>,
-  setTimeout: (func: () => void, delay: number) => number,
-  userContext: any,
-};
+                
+                                            
+                   
+                                      
+                                   
+                                                          
+                   
+  
 
-type QueueableFn = {
-  fn: (next: () => void) => void,
-  timeout?: () => number,
-};
+                    
+                                 
+                         
+  
 
-export default function queueRunner(options: Options) {
+export default function queueRunner(options         ) {
   const token = new PCancelable((onCancel, resolve) => {
     onCancel(resolve);
   });
@@ -61,7 +61,7 @@ export default function queueRunner(options: Options) {
       return promise;
     }
 
-    const timeoutMs: number = timeout();
+    const timeoutMs         = timeout();
 
     return pTimeout(
       promise,

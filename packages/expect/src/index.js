@@ -4,21 +4,21 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {
-  Expect,
-  ExpectationObject,
-  AsyncExpectationResult,
-  SyncExpectationResult,
-  ExpectationResult,
-  MatcherState,
-  MatchersObject,
-  RawMatcherFn,
-  ThrowingMatcherFn,
-  PromiseMatcherFn,
-} from 'types/Matchers';
+             
+         
+                    
+                         
+                        
+                    
+               
+                 
+               
+                    
+                   
+                        
 
 import * as matcherUtils from 'jest-matcher-utils';
 import {iterableEquality, subsetEquality} from './utils';
@@ -50,7 +50,7 @@ import {
 import extractExpectedAssertionsErrors from './extract_expected_assertions_errors';
 
 class JestAssertionError extends Error {
-  matcherResult: any;
+                     
 }
 
 const isPromise = obj => {
@@ -62,7 +62,7 @@ const isPromise = obj => {
 };
 
 const createToThrowErrorMatchingSnapshotMatcher = function(matcher) {
-  return function(received: any, testName?: string) {
+  return function(received     , testName         ) {
     return matcher.apply(this, [received, testName, true]);
   };
 };
@@ -77,7 +77,7 @@ const getPromiseMatcher = (name, matcher) => {
   return null;
 };
 
-const expect = (actual: any, ...rest): ExpectationObject => {
+const expect = (actual     , ...rest)                    => {
   if (rest.length !== 0) {
     throw new Error('Expect takes at most one argument.');
   }
@@ -139,12 +139,12 @@ const getMessage = message => {
 };
 
 const makeResolveMatcher = (
-  matcherName: string,
-  matcher: RawMatcherFn,
-  isNot: boolean,
-  actual: Promise<any>,
-  outerErr: JestAssertionError,
-): PromiseMatcherFn => (...args) => {
+  matcherName        ,
+  matcher              ,
+  isNot         ,
+  actual              ,
+  outerErr                    ,
+)                   => (...args) => {
   const matcherStatement = `.resolves.${isNot ? 'not.' : ''}${matcherName}`;
   if (!isPromise(actual)) {
     throw new JestAssertionError(
@@ -181,12 +181,12 @@ const makeResolveMatcher = (
 };
 
 const makeRejectMatcher = (
-  matcherName: string,
-  matcher: RawMatcherFn,
-  isNot: boolean,
-  actual: Promise<any>,
-  outerErr: JestAssertionError,
-): PromiseMatcherFn => (...args) => {
+  matcherName        ,
+  matcher              ,
+  isNot         ,
+  actual              ,
+  outerErr                    ,
+)                   => (...args) => {
   const matcherStatement = `.rejects.${isNot ? 'not.' : ''}${matcherName}`;
   if (!isPromise(actual)) {
     throw new JestAssertionError(
@@ -223,19 +223,19 @@ const makeRejectMatcher = (
 };
 
 const makeThrowingMatcher = (
-  matcher: RawMatcherFn,
-  isNot: boolean,
-  actual: any,
-  err?: JestAssertionError,
-): ThrowingMatcherFn => {
-  return function throwingMatcher(...args): any {
+  matcher              ,
+  isNot         ,
+  actual     ,
+  err                     ,
+)                    => {
+  return function throwingMatcher(...args)      {
     let throws = true;
     const utils = Object.assign({}, matcherUtils, {
       iterableEquality,
       subsetEquality,
     });
 
-    const matcherContext: MatcherState = Object.assign(
+    const matcherContext               = Object.assign(
       // When throws is disabled, the matcher will not throw errors during test
       // execution but instead add them to the global matcher state. If a
       // matcher throws, test execution is normally stopped immediately. The
@@ -250,7 +250,7 @@ const makeThrowingMatcher = (
       },
     );
 
-    const processResult = (result: SyncExpectationResult) => {
+    const processResult = (result                       ) => {
       _validateResult(result);
 
       getState().assertionCalls++;
@@ -285,7 +285,7 @@ const makeThrowingMatcher = (
       }
     };
 
-    const handlError = (error: Error) => {
+    const handlError = (error       ) => {
       if (
         matcher[INTERNAL_MATCHER_FLAG] === true &&
         !(error instanceof JestAssertionError) &&
@@ -299,19 +299,19 @@ const makeThrowingMatcher = (
       throw error;
     };
 
-    let potentialResult: ExpectationResult;
+    let potentialResult                   ;
 
     try {
       potentialResult = matcher.apply(matcherContext, [actual].concat(args));
 
-      if (isPromise((potentialResult: any))) {
-        const asyncResult = ((potentialResult: any): AsyncExpectationResult);
+      if (isPromise((potentialResult     ))) {
+        const asyncResult = ((potentialResult     )                        );
 
         return asyncResult
           .then(aResult => processResult(aResult))
           .catch(error => handlError(error));
       } else {
-        const syncResult = ((potentialResult: any): SyncExpectationResult);
+        const syncResult = ((potentialResult     )                       );
 
         return processResult(syncResult);
       }
@@ -321,7 +321,7 @@ const makeThrowingMatcher = (
   };
 };
 
-expect.extend = (matchers: MatchersObject): void =>
+expect.extend = (matchers                )       =>
   setMatchers(matchers, false, expect);
 
 expect.anything = anything;
@@ -357,7 +357,7 @@ const _validateResult = result => {
   }
 };
 
-function assertions(expected: number) {
+function assertions(expected        ) {
   const error = new Error();
   if (Error.captureStackTrace) {
     Error.captureStackTrace(error, assertions);
@@ -389,4 +389,4 @@ expect.getState = getState;
 expect.setState = setState;
 expect.extractExpectedAssertionsErrors = extractExpectedAssertionsErrors;
 
-module.exports = (expect: Expect);
+module.exports = (expect        );

@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
@@ -14,9 +14,9 @@ import v8 from 'v8';
 import vm from 'vm';
 
 export default class {
-  _isReferenceBeingHeld: boolean;
+                                 
 
-  constructor(value: ?Object) {
+  constructor(value         ) {
     if (this._isPrimitive(value)) {
       throw new TypeError(
         [
@@ -49,7 +49,7 @@ export default class {
     value = null;
   }
 
-  isLeaking(): boolean {
+  isLeaking()          {
     this._runGarbageCollector();
 
     return this._isReferenceBeingHeld;
@@ -68,7 +68,7 @@ export default class {
     }
   }
 
-  _isPrimitive(value: any): boolean {
+  _isPrimitive(value     )          {
     return value !== Object(value);
   }
 }

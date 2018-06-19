@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import prettyFormat from 'pretty-format';
 
-export default function isError(potentialError: any) {
+export default function isError(potentialError     ) {
   // duck-type Error, see #2549
   const isError =
     typeof potentialError === 'object' &&

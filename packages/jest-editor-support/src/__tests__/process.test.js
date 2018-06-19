@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
@@ -20,7 +20,7 @@ describe('createProcess', () => {
   });
 
   it('spawns the process', () => {
-    const workspace: any = {pathToJest: ''};
+    const workspace      = {pathToJest: ''};
     const args = [];
     createProcess(workspace, args);
 
@@ -28,7 +28,7 @@ describe('createProcess', () => {
   });
 
   it('spawns the command from workspace.pathToJest', () => {
-    const workspace: any = {pathToJest: 'jest'};
+    const workspace      = {pathToJest: 'jest'};
     const args = [];
     createProcess(workspace, args);
 
@@ -37,7 +37,7 @@ describe('createProcess', () => {
   });
 
   it('spawns the first arg from workspace.pathToJest split on " "', () => {
-    const workspace: any = {pathToJest: 'npm test --'};
+    const workspace      = {pathToJest: 'npm test --'};
     const args = [];
     createProcess(workspace, args);
 
@@ -46,7 +46,7 @@ describe('createProcess', () => {
   });
 
   it('fails to spawn the first quoted arg from workspace.pathToJest', () => {
-    const workspace: any = {
+    const workspace      = {
       pathToJest:
         '"../build scripts/test" --coverageDirectory="../code coverage"',
     };
@@ -60,7 +60,7 @@ describe('createProcess', () => {
   });
 
   it('appends args', () => {
-    const workspace: any = {pathToJest: 'npm test --'};
+    const workspace      = {pathToJest: 'npm test --'};
     const args = ['--option', 'value', '--another'];
     createProcess(workspace, args);
 
@@ -68,7 +68,7 @@ describe('createProcess', () => {
   });
 
   it('sets the --config arg to workspace.pathToConfig', () => {
-    const workspace: any = {
+    const workspace      = {
       pathToConfig: 'non-standard.jest.js',
       pathToJest: 'npm test --',
     };
@@ -88,7 +88,7 @@ describe('createProcess', () => {
   it('defines the "CI" environment variable', () => {
     const expected = Object.assign({}, process.env, {CI: 'true'});
 
-    const workspace: any = {pathToJest: ''};
+    const workspace      = {pathToJest: ''};
     const args = [];
     createProcess(workspace, args);
 
@@ -96,7 +96,7 @@ describe('createProcess', () => {
   });
 
   it('sets the current working directory of the child process', () => {
-    const workspace: any = {
+    const workspace      = {
       pathToJest: '',
       rootPath: 'root directory',
     };
@@ -107,7 +107,7 @@ describe('createProcess', () => {
   });
 
   it('should not set the "shell" property when "options" are not provided', () => {
-    const workspace: any = {pathToJest: ''};
+    const workspace      = {pathToJest: ''};
     const args = [];
     createProcess(workspace, args);
 
@@ -116,9 +116,9 @@ describe('createProcess', () => {
 
   it('should set the "shell" property when "options" are provided', () => {
     const expected = {};
-    const workspace: any = {pathToJest: ''};
+    const workspace      = {pathToJest: ''};
     const args = [];
-    const options: any = {shell: expected};
+    const options      = {shell: expected};
     createProcess(workspace, args, options);
 
     expect(spawn.mock.calls[0][2].shell).toBe(expected);

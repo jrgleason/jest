@@ -10,6 +10,6 @@
 require('../this-directory-is-covered/ExcludedFromCoverage');
 
 it('strips flowtypes using babel-jest and .babelrc', () => {
-  const a: string = 'a';
+  const a = 'a';
   expect(a).toBe('a');
 });

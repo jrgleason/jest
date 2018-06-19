@@ -4,23 +4,23 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {InitialOptions} from 'types/Config';
-import type {Argv} from 'types/Argv';
+                                                 
+                                     
 
 const specialArgs = ['_', '$0', 'h', 'help', 'config'];
 import {isJSONString} from './utils';
 
 export default function setFromArgv(
-  options: InitialOptions,
-  argv: Argv,
-): InitialOptions {
+  options                ,
+  argv      ,
+)                 {
   // $FlowFixMe: Seems like flow doesn't approve of string values
   const argvToOptions = Object.keys(argv)
     .filter(key => argv[key] !== undefined && specialArgs.indexOf(key) === -1)
-    .reduce((options: {[key: string]: mixed}, key) => {
+    .reduce((options                        , key) => {
       switch (key) {
         case 'coverage':
           options.collectCoverage = argv[key];

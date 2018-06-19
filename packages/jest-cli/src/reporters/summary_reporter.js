@@ -4,13 +4,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {AggregatedResult, SnapshotSummary} from 'types/TestResult';
-import type {GlobalConfig} from 'types/Config';
-import type {Context} from 'types/Context';
-import type {ReporterOnStartOptions} from 'types/Reporters';
+                                                                        
+                                               
+                                           
+                                                            
 
 import chalk from 'chalk';
 import BaseReporter from './base_reporter';
@@ -49,10 +49,10 @@ const NPM_EVENTS = new Set([
 ]);
 
 export default class SummaryReporter extends BaseReporter {
-  _estimatedTime: number;
-  _globalConfig: GlobalConfig;
+                         
+                              
 
-  constructor(globalConfig: GlobalConfig) {
+  constructor(globalConfig              ) {
     super();
     this._globalConfig = globalConfig;
     this._estimatedTime = 0;
@@ -63,21 +63,21 @@ export default class SummaryReporter extends BaseReporter {
   // in Node.js 0.10 and still persists in Node.js 6.7+.
   // Let's print the test failure summary character by character which is safer
   // when hundreds of tests are failing.
-  _write(string: string) {
+  _write(string        ) {
     for (let i = 0; i < string.length; i++) {
       process.stderr.write(string.charAt(i));
     }
   }
 
   onRunStart(
-    aggregatedResults: AggregatedResult,
-    options: ReporterOnStartOptions,
+    aggregatedResults                  ,
+    options                        ,
   ) {
     super.onRunStart(aggregatedResults, options);
     this._estimatedTime = options.estimatedTime;
   }
 
-  onRunComplete(contexts: Set<Context>, aggregatedResults: AggregatedResult) {
+  onRunComplete(contexts              , aggregatedResults                  ) {
     const {numTotalTestSuites, testResults, wasInterrupted} = aggregatedResults;
     if (numTotalTestSuites) {
       const lastResult = testResults[testResults.length - 1];
@@ -116,8 +116,8 @@ export default class SummaryReporter extends BaseReporter {
   }
 
   _printSnapshotSummary(
-    snapshots: SnapshotSummary,
-    globalConfig: GlobalConfig,
+    snapshots                 ,
+    globalConfig              ,
   ) {
     if (
       snapshots.added ||
@@ -161,8 +161,8 @@ export default class SummaryReporter extends BaseReporter {
   }
 
   _printSummary(
-    aggregatedResults: AggregatedResult,
-    globalConfig: GlobalConfig,
+    aggregatedResults                  ,
+    globalConfig              ,
   ) {
     // If there were any failing tests and there was a large number of tests
     // executed, re-print the failing results at the end of execution output.
@@ -188,7 +188,7 @@ export default class SummaryReporter extends BaseReporter {
     }
   }
 
-  _getTestSummary(contexts: Set<Context>, globalConfig: GlobalConfig) {
+  _getTestSummary(contexts              , globalConfig              ) {
     const getMatchingTestsInfo = () => {
       const prefix = globalConfig.findRelatedTests
         ? ' related to files matching '

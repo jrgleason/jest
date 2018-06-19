@@ -11,7 +11,7 @@
 const ConditionalTest = require('../../../../../scripts/ConditionalTest');
 
 jest.mock('child_process', () => ({
-  spawn: jest.fn((cmd, args) => {
+  spawn: jest.fn((cmd) => {
     let closeCallback;
     return {
       stdout: {

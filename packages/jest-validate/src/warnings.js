@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {ValidationOptions} from './types';
+                                               
 
 import chalk from 'chalk';
 import {
@@ -18,11 +18,11 @@ import {
 } from './utils';
 
 export const unknownOptionWarning = (
-  config: Object,
-  exampleConfig: Object,
-  option: string,
-  options: ValidationOptions,
-): void => {
+  config        ,
+  exampleConfig        ,
+  option        ,
+  options                   ,
+)       => {
   const didYouMean = createDidYouMeanMessage(
     option,
     Object.keys(exampleConfig),

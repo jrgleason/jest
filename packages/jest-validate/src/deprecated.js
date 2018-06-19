@@ -4,14 +4,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {ValidationOptions} from './types';
+                                               
 
 import {logValidationWarning, DEPRECATION} from './utils';
 
-const deprecationMessage = (message: string, options: ValidationOptions) => {
+const deprecationMessage = (message        , options                   ) => {
   const comment = options.comment;
   const name = (options.title && options.title.deprecation) || DEPRECATION;
 
@@ -19,11 +19,11 @@ const deprecationMessage = (message: string, options: ValidationOptions) => {
 };
 
 export const deprecationWarning = (
-  config: Object,
-  option: string,
-  deprecatedOptions: Object,
-  options: ValidationOptions,
-): boolean => {
+  config        ,
+  option        ,
+  deprecatedOptions        ,
+  options                   ,
+)          => {
   if (option in deprecatedOptions) {
     deprecationMessage(deprecatedOptions[option](config), options);
 

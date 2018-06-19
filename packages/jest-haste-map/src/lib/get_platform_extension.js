@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 const SUPPORTED_PLATFORM_EXTS = {
@@ -16,9 +16,9 @@ const SUPPORTED_PLATFORM_EXTS = {
 
 // Extract platform extension: index.ios.js -> ios
 export default function getPlatformExtension(
-  file: string,
-  platforms?: Array<string>,
-): ?string {
+  file        ,
+  platforms                ,
+)          {
   const last = file.lastIndexOf('.');
   const secondToLast = file.lastIndexOf('.', last - 1);
   if (secondToLast === -1) {

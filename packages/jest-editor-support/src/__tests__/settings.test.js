@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
@@ -42,7 +42,7 @@ describe('Settings', () => {
       version: '19.0.0',
     };
 
-    const mockProcess: any = new EventEmitter();
+    const mockProcess      = new EventEmitter();
     mockProcess.stdout = new EventEmitter();
     const createProcess = () => mockProcess;
     const buffer = makeBuffer(JSON.stringify(json));
@@ -71,7 +71,7 @@ describe('Settings', () => {
       version: '21.0.0',
     };
 
-    const mockProcess: any = new EventEmitter();
+    const mockProcess      = new EventEmitter();
     mockProcess.stdout = new EventEmitter();
     const createProcess = () => mockProcess;
     const buffer = makeBuffer(JSON.stringify(json));
@@ -100,7 +100,7 @@ describe('Settings', () => {
       version: '21.0.0',
     };
 
-    const mockProcess: any = new EventEmitter();
+    const mockProcess      = new EventEmitter();
     mockProcess.stdout = new EventEmitter();
     const createProcess = () => mockProcess;
     const buffer = makeBuffer(JSON.stringify(json));
@@ -124,7 +124,7 @@ describe('Settings', () => {
     );
     const completed = jest.fn();
 
-    const mockProcess: any = new EventEmitter();
+    const mockProcess      = new EventEmitter();
     mockProcess.stdout = new EventEmitter();
     const createProcess = () => mockProcess;
     const settings = new Settings(workspace, {createProcess});
@@ -152,7 +152,7 @@ describe('Settings', () => {
       stdout: new EventEmitter(),
     });
 
-    const options: any = {
+    const options      = {
       createProcess,
       shell: true,
     };
@@ -172,7 +172,7 @@ describe('Settings', () => {
   });
 });
 
-const makeBuffer = (content: string) => {
+const makeBuffer = (content        ) => {
   // Buffer.from is not supported in < Node 5.10
   if (typeof Buffer.from === 'function') {
     return Buffer.from(content);

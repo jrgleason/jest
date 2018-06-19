@@ -5,14 +5,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {GlobalConfig, ProjectConfig} from 'types/Config';
+                                                              
 
-declare var jestGlobalConfig: GlobalConfig;
-declare var jestProjectConfig: ProjectConfig;
-declare var jest: Object;
+                                           
+                                             
+                         
 
 import path from 'path';
 import repl from 'repl';
@@ -20,7 +20,7 @@ import vm from 'vm';
 
 let transformer;
 
-const evalCommand = (cmd, context, filename, callback, config) => {
+const evalCommand = (cmd, context, filename, callback) => {
   let result;
   try {
     if (transformer) {

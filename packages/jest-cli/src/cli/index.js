@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {AggregatedResult} from 'types/TestResult';
-import type {Argv} from 'types/Argv';
-import type {GlobalConfig, Path, ProjectConfig} from 'types/Config';
+                                                       
+                                     
+                                                                    
 
 import {Console, clearLine, createDirectory} from 'jest-util';
 import {validateCLIOptions} from 'jest-validate';
@@ -33,9 +33,9 @@ import yargs from 'yargs';
 import rimraf from 'rimraf';
 import {sync as realpath} from 'realpath-native';
 
-export async function run(maybeArgv?: Argv, project?: Path) {
+export async function run(maybeArgv       , project       ) {
   try {
-    const argv: Argv = buildArgv(maybeArgv, project);
+    const argv       = buildArgv(maybeArgv, project);
     const projects = getProjectListFromCLIArgs(argv, project);
 
     const {results, globalConfig} = await runCLI(argv, projects);
@@ -50,9 +50,9 @@ export async function run(maybeArgv?: Argv, project?: Path) {
 }
 
 export const runCLI = async (
-  argv: Argv,
-  projects: Array<Path>,
-): Promise<{results: AggregatedResult, globalConfig: GlobalConfig}> => {
+  argv      ,
+  projects             ,
+)                                                                   => {
   const realFs = require('fs');
   const fs = require('graceful-fs');
   fs.gracefulify(realFs);
@@ -84,7 +84,7 @@ export const runCLI = async (
     configs,
     hasDeprecationWarnings,
     outputStream,
-    (r: AggregatedResult) => (results = r),
+    (r                  ) => (results = r),
   );
 
   if (argv.watch || argv.watchAll) {
@@ -117,8 +117,8 @@ export const runCLI = async (
 };
 
 const readResultsAndExit = (
-  result: ?AggregatedResult,
-  globalConfig: GlobalConfig,
+  result                   ,
+  globalConfig              ,
 ) => {
   const code = !result || result.success ? 0 : globalConfig.testFailureExitCode;
 
@@ -153,8 +153,8 @@ const readResultsAndExit = (
   }
 };
 
-const buildArgv = (maybeArgv: ?Argv, project: ?Path) => {
-  const argv: Argv = yargs(maybeArgv || process.argv.slice(2))
+const buildArgv = (maybeArgv       , project       ) => {
+  const argv       = yargs(maybeArgv || process.argv.slice(2))
     .usage(args.usage)
     .alias('help', 'h')
     .options(args.options)
@@ -169,7 +169,7 @@ const buildArgv = (maybeArgv: ?Argv, project: ?Path) => {
   return argv;
 };
 
-const getProjectListFromCLIArgs = (argv, project: ?Path) => {
+const getProjectListFromCLIArgs = (argv, project       ) => {
   const projects = argv.projects ? argv.projects : [];
 
   if (project) {
@@ -244,19 +244,19 @@ This usually means that your ${chalk.bold(
 // If no projects are specified, process.cwd() will be used as the default
 // (and only) project.
 const getConfigs = (
-  projectsFromCLIArgs: Array<Path>,
-  argv: Argv,
+  projectsFromCLIArgs             ,
+  argv      ,
   outputStream,
-): {
-  globalConfig: GlobalConfig,
-  configs: Array<ProjectConfig>,
-  hasDeprecationWarnings: boolean,
-} => {
+)   
+                             
+                                
+                                  
+  => {
   let globalConfig;
   let hasDeprecationWarnings;
-  let configs: Array<ProjectConfig> = [];
+  let configs                       = [];
   let projects = projectsFromCLIArgs;
-  let configPath: ?Path;
+  let configPath       ;
 
   if (projectsFromCLIArgs.length === 1) {
     const parsedConfig = readConfig(argv, projects[0]);

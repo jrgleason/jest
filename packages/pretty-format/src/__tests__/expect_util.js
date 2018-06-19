@@ -4,24 +4,24 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
 
-import type {OptionsReceived, Plugins} from 'types/PrettyFormat';
+                                                                 
 
 const diff = require('jest-diff');
 const prettyFormat = require('../');
 
-export const getPrettyPrint = (plugins: Plugins) =>
-  function(received: any, expected: any, options?: OptionsReceived) {
+export const getPrettyPrint = (plugins         ) =>
+  function(received     , expected     , options                  ) {
     const prettyFormatted = prettyFormat(
       received,
       Object.assign(
         ({
           plugins,
-        }: OptionsReceived),
+        }                 ),
         options,
       ),
     );

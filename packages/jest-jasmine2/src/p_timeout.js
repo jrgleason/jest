@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 // Try getting the real promise object from the context, if available. Someone
@@ -14,12 +14,12 @@ const Promise = global[Symbol.for('jest-native-promise')] || global.Promise;
 // A specialized version of `p-timeout` that does not touch globals.
 // It does not throw on timeout.
 export default function pTimeout(
-  promise: Promise<any>,
-  ms: number,
-  clearTimeout: (timeoutID: number) => void,
-  setTimeout: (func: () => void, delay: number) => number,
-  onTimeout: () => any,
-): Promise<any> {
+  promise              ,
+  ms        ,
+  clearTimeout                             ,
+  setTimeout                                             ,
+  onTimeout           ,
+)               {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => resolve(onTimeout()), ms);
     promise.then(

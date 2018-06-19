@@ -4,27 +4,27 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {
-  AggregatedResult,
-  AssertionResult,
-  CodeCoverageFormatter,
-  CodeCoverageReporter,
-  FormattedAssertionResult,
-  FormattedTestResult,
-  FormattedTestResults,
-  TestResult,
-} from 'types/TestResult';
+             
+                   
+                  
+                        
+                       
+                           
+                      
+                       
+             
+                          
 
 const formatResult = (
-  testResult: TestResult,
-  codeCoverageFormatter: CodeCoverageFormatter,
-  reporter: CodeCoverageReporter,
-): FormattedTestResult => {
+  testResult            ,
+  codeCoverageFormatter                       ,
+  reporter                      ,
+)                      => {
   const now = Date.now();
-  const output: FormattedTestResult = {
+  const output                      = {
     assertionResults: [],
     coverage: {},
     endTime: now,
@@ -56,9 +56,9 @@ const formatResult = (
 };
 
 function formatTestAssertion(
-  assertion: AssertionResult,
-): FormattedAssertionResult {
-  const result: FormattedAssertionResult = {
+  assertion                 ,
+)                           {
+  const result                           = {
     ancestorTitles: assertion.ancestorTitles,
     failureMessages: null,
     fullName: assertion.fullName,
@@ -73,17 +73,17 @@ function formatTestAssertion(
 }
 
 export default function formatTestResults(
-  results: AggregatedResult,
-  codeCoverageFormatter?: CodeCoverageFormatter,
-  reporter?: CodeCoverageReporter,
-): FormattedTestResults {
+  results                  ,
+  codeCoverageFormatter                        ,
+  reporter                       ,
+)                       {
   const formatter = codeCoverageFormatter || (coverage => coverage);
 
   const testResults = results.testResults.map(testResult =>
     formatResult(testResult, formatter, reporter),
   );
 
-  return Object.assign((Object.create(null): any), results, {
+  return Object.assign((Object.create(null)     ), results, {
     testResults,
   });
 }

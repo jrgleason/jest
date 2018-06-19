@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {HasteFS} from 'types/HasteMap';
-import type {MatcherState} from 'types/Matchers';
-import type {Path, SnapshotUpdateState} from 'types/Config';
+                                            
+                                                 
+                                                            
 
 import fs from 'fs';
 import path from 'path';
@@ -19,10 +19,10 @@ import SnapshotState from './State';
 import {addSerializer, getSerializers} from './plugins';
 import * as utils from './utils';
 
-const fileExists = (filePath: Path, hasteFS: HasteFS): boolean =>
+const fileExists = (filePath      , hasteFS         )          =>
   hasteFS.exists(filePath) || fs.existsSync(filePath);
 
-const cleanup = (hasteFS: HasteFS, update: SnapshotUpdateState) => {
+const cleanup = (hasteFS         , update                     ) => {
   const pattern = '\\.' + utils.SNAPSHOT_EXTENSION + '$';
   const files = hasteFS.matchFiles(pattern);
   const filesRemoved = files
@@ -49,14 +49,14 @@ const cleanup = (hasteFS: HasteFS, update: SnapshotUpdateState) => {
 };
 
 const toMatchSnapshot = function(
-  received: any,
-  propertyMatchers?: any,
-  testName?: string,
+  received     ,
+  propertyMatchers      ,
+  testName         ,
 ) {
   this.dontThrow && this.dontThrow();
   testName = typeof propertyMatchers === 'string' ? propertyMatchers : testName;
 
-  const {currentTestName, isNot, snapshotState}: MatcherState = this;
+  const {currentTestName, isNot, snapshotState}               = this;
 
   if (isNot) {
     throw new Error('Jest: `.not` cannot be used with `.toMatchSnapshot()`.');
@@ -149,9 +149,9 @@ const toMatchSnapshot = function(
 };
 
 const toThrowErrorMatchingSnapshot = function(
-  received: any,
-  testName?: string,
-  fromPromise: boolean,
+  received     ,
+  testName         ,
+  fromPromise         ,
 ) {
   this.dontThrow && this.dontThrow();
 

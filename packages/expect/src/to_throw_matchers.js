@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {MatchersObject} from 'types/Matchers';
+                                                   
 
 import getType from 'jest-get-type';
 import {escapeStrForRegex} from 'jest-regex-util';
@@ -22,9 +22,9 @@ import {
 import {equals} from './jasmine_utils';
 import {isError} from './utils';
 
-export const createMatcher = (matcherName: string, fromPromise?: boolean) => (
-  actual: Function,
-  expected: string | Error | RegExp,
+export const createMatcher = (matcherName        , fromPromise          ) => (
+  actual          ,
+  expected                         ,
 ) => {
   const value = expected;
   let error;
@@ -60,11 +60,11 @@ export const createMatcher = (matcherName: string, fromPromise?: boolean) => (
     return toThrowMatchingStringOrRegexp(
       matcherName,
       error,
-      (expected: any),
+      (expected     ),
       value,
     );
   } else if (expected && typeof expected === 'object') {
-    return toThrowMatchingErrorInstance(matcherName, error, (expected: any));
+    return toThrowMatchingErrorInstance(matcherName, error, (expected     ));
   } else if (expected === undefined) {
     const pass = error !== undefined;
     return {
@@ -94,16 +94,16 @@ export const createMatcher = (matcherName: string, fromPromise?: boolean) => (
   }
 };
 
-const matchers: MatchersObject = {
+const matchers                 = {
   toThrow: createMatcher('.toThrow'),
   toThrowError: createMatcher('.toThrowError'),
 };
 
 const toThrowMatchingStringOrRegexp = (
-  name: string,
-  error: ?Error,
-  pattern: RegExp,
-  value: RegExp | string | Error,
+  name        ,
+  error        ,
+  pattern        ,
+  value                         ,
 ) => {
   if (error && !error.message && !error.name) {
     error = new Error(error);
@@ -128,9 +128,9 @@ const toThrowMatchingStringOrRegexp = (
 };
 
 const toThrowMatchingErrorInstance = (
-  name: string,
-  error: ?Error,
-  expectedError: Error,
+  name        ,
+  error        ,
+  expectedError       ,
 ) => {
   if (error && !error.message && !error.name) {
     error = new Error(error);
@@ -155,9 +155,9 @@ const toThrowMatchingErrorInstance = (
 };
 
 const toThrowMatchingError = (
-  name: string,
-  error: ?Error,
-  ErrorClass: typeof Error,
+  name        ,
+  error        ,
+  ErrorClass              ,
 ) => {
   const pass = !!(error && error instanceof ErrorClass);
   const message = pass

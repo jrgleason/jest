@@ -4,25 +4,25 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {ScrollOptions} from 'types/Watch';
+                                               
 
 import {KEYS} from '../constants';
 
 export default class Prompt {
-  _entering: boolean;
-  _value: string;
-  _onChange: Function;
-  _onSuccess: Function;
-  _onCancel: Function;
-  _offset: number;
-  _promptLength: number;
-  _selection: string | null;
+                     
+                 
+                      
+                       
+                      
+                  
+                        
+                            
 
   constructor() {
-    (this: any)._onResize = this._onResize.bind(this);
+    (this     )._onResize = this._onResize.bind(this);
   }
 
   _onResize() {
@@ -30,9 +30,9 @@ export default class Prompt {
   }
 
   enter(
-    onChange: (pattern: string, options: ScrollOptions) => void,
-    onSuccess: Function,
-    onCancel: Function,
+    onChange                                                   ,
+    onSuccess          ,
+    onCancel          ,
   ) {
     this._entering = true;
     this._value = '';
@@ -52,15 +52,15 @@ export default class Prompt {
     process.stdout.on('resize', this._onResize);
   }
 
-  setPromptLength(length: number) {
+  setPromptLength(length        ) {
     this._promptLength = length;
   }
 
-  setPromptSelection(selected: string) {
+  setPromptSelection(selected        ) {
     this._selection = selected;
   }
 
-  put(key: string) {
+  put(key        ) {
     switch (key) {
       case KEYS.ENTER:
         this._entering = false;

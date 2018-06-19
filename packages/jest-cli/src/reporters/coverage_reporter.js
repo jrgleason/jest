@@ -4,21 +4,21 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {
-  AggregatedResult,
-  CoverageMap,
-  FileCoverage,
-  CoverageSummary,
-  TestResult,
-} from 'types/TestResult';
-import typeof {worker} from './coverage_worker';
+             
+                   
+              
+               
+                  
+             
+                          
+                                                
 
-import type {GlobalConfig} from 'types/Config';
-import type {Context} from 'types/Context';
-import type {Test} from 'types/TestRunner';
+                                               
+                                           
+                                           
 
 import {clearLine, isInteractive} from 'jest-util';
 import {createReporter} from 'istanbul-api';
@@ -33,14 +33,14 @@ import glob from 'glob';
 const FAIL_COLOR = chalk.bold.red;
 const RUNNING_TEST_COLOR = chalk.bold.dim;
 
-type CoverageWorker = {worker: worker};
+                                       
 
 export default class CoverageReporter extends BaseReporter {
-  _coverageMap: CoverageMap;
-  _globalConfig: GlobalConfig;
-  _sourceMapStore: any;
+                            
+                              
+                       
 
-  constructor(globalConfig: GlobalConfig) {
+  constructor(globalConfig              ) {
     super();
     this._coverageMap = istanbulCoverage.createCoverageMap({});
     this._globalConfig = globalConfig;
@@ -48,9 +48,9 @@ export default class CoverageReporter extends BaseReporter {
   }
 
   onTestResult(
-    test: Test,
-    testResult: TestResult,
-    aggregatedResults: AggregatedResult,
+    test      ,
+    testResult            ,
+    aggregatedResults                  ,
   ) {
     if (testResult.coverage) {
       this._coverageMap.merge(testResult.coverage);
@@ -58,9 +58,9 @@ export default class CoverageReporter extends BaseReporter {
       delete testResult.coverage;
 
       Object.keys(testResult.sourceMaps).forEach(sourcePath => {
-        let inputSourceMap: ?Object;
+        let inputSourceMap         ;
         try {
-          const coverage: FileCoverage = this._coverageMap.fileCoverageFor(
+          const coverage               = this._coverageMap.fileCoverageFor(
             sourcePath,
           );
           ({inputSourceMap} = coverage.toJSON());
@@ -79,8 +79,8 @@ export default class CoverageReporter extends BaseReporter {
   }
 
   async onRunComplete(
-    contexts: Set<Context>,
-    aggregatedResults: AggregatedResult,
+    contexts              ,
+    aggregatedResults                  ,
   ) {
     await this._addUntestedFiles(this._globalConfig, contexts);
     const {map, sourceFinder} = this._sourceMapStore.transformCoverage(
@@ -119,9 +119,9 @@ export default class CoverageReporter extends BaseReporter {
   }
 
   async _addUntestedFiles(
-    globalConfig: GlobalConfig,
-    contexts: Set<Context>,
-  ): Promise<void> {
+    globalConfig              ,
+    contexts              ,
+  )                {
     const files = [];
 
     contexts.forEach(context => {
@@ -151,7 +151,7 @@ export default class CoverageReporter extends BaseReporter {
       );
     }
 
-    let worker: CoverageWorker;
+    let worker                ;
 
     if (this._globalConfig.maxWorkers <= 1) {
       worker = require('./coverage_worker');
@@ -212,7 +212,7 @@ export default class CoverageReporter extends BaseReporter {
     }
   }
 
-  _checkThreshold(globalConfig: GlobalConfig, map: CoverageMap) {
+  _checkThreshold(globalConfig              , map             ) {
     if (globalConfig.coverageThreshold) {
       function check(name, thresholds, actuals) {
         return ['statements', 'branches', 'lines', 'functions'].reduce(
@@ -304,8 +304,8 @@ export default class CoverageReporter extends BaseReporter {
           .map(filePath => map.fileCoverageFor(filePath))
           .reduce(
             (
-              combinedCoverage: ?CoverageSummary,
-              nextFileCoverage: FileCoverage,
+              combinedCoverage                  ,
+              nextFileCoverage              ,
             ) => {
               if (combinedCoverage === undefined || combinedCoverage === null) {
                 return nextFileCoverage.toSummary();
@@ -382,7 +382,7 @@ export default class CoverageReporter extends BaseReporter {
   }
 
   // Only exposed for the internal runner. Should not be used
-  getCoverageMap(): CoverageMap {
+  getCoverageMap()              {
     return this._coverageMap;
   }
 }

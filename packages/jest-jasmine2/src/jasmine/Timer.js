@@ -28,7 +28,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/* @flow */
+/*       */
 /* eslint-disable sort-keys */
 
 const defaultNow = (function(Date) {
@@ -37,7 +37,7 @@ const defaultNow = (function(Date) {
   };
 })(Date);
 
-export default function Timer(options: Object) {
+export default function Timer(options        ) {
   options = options || {};
 
   const now = options.now || defaultNow;

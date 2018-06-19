@@ -4,36 +4,36 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import {readFileSync} from 'fs';
 
 import {parse as babylonParse} from 'babylon';
 import {Expect, ItBlock} from './parser_nodes';
-import type {File as BabylonFile} from 'babylon';
+                                                 
 
-export type BabylonParserResult = {
-  expects: Array<Expect>,
-  itBlocks: Array<ItBlock>,
-};
+                                   
+                         
+                           
+  
 
-export const getASTfor = (file: string): BabylonFile => {
+export const getASTfor = (file        )              => {
   const data = readFileSync(file).toString();
   const config = {plugins: ['*'], sourceType: 'module'};
   return babylonParse(data, config);
 };
 
-export const parse = (file: string): BabylonParserResult => {
-  const itBlocks: ItBlock[] = [];
-  const expects: Expect[] = [];
+export const parse = (file        )                      => {
+  const itBlocks            = [];
+  const expects           = [];
 
   const ast = getASTfor(file);
 
   // An `it`/`test` was found in the AST
   // So take the AST node and create an object for us
   // to store for later usage
-  const foundItNode = (node: any, file: string) => {
+  const foundItNode = (node     , file        ) => {
     const block = new ItBlock();
     block.name = node.expression.arguments[0].value;
     block.start = node.loc.start;
@@ -48,7 +48,7 @@ export const parse = (file: string): BabylonParserResult => {
   // An `expect` was found in the AST
   // So take the AST node and create an object for us
   // to store for later usage
-  const foundExpectNode = (node: any, file: string) => {
+  const foundExpectNode = (node     , file        ) => {
     const expect = new Expect();
     expect.start = node.loc.start;
     expect.end = node.loc.end;
@@ -68,7 +68,7 @@ export const parse = (file: string): BabylonParserResult => {
     );
   };
 
-  const isFunctionDeclaration = (nodeType: string) => {
+  const isFunctionDeclaration = (nodeType        ) => {
     return (
       nodeType === 'ArrowFunctionExpression' ||
       nodeType === 'FunctionExpression'
@@ -122,7 +122,7 @@ export const parse = (file: string): BabylonParserResult => {
   };
 
   // A recursive AST parser
-  const searchNodes = (root: any, file: string) => {
+  const searchNodes = (root     , file        ) => {
     // Look through the node's children
     for (const node in root.body) {
       if (!root.body.hasOwnProperty(node)) {

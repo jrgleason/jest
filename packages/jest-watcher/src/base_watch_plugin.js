@@ -4,38 +4,35 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
-import type {GlobalConfig} from 'types/Config';
-import type {JestHookSubscriber} from 'types/JestHooks';
-import type {WatchPlugin, UsageData} from './types';
+                                               
+                                                        
+                                                    
 
-class BaseWatchPlugin implements WatchPlugin {
-  _stdin: stream$Readable | tty$ReadStream;
-  _stdout: stream$Writable | tty$WriteStream;
+class BaseWatchPlugin                        {
+                                           
+                                             
   constructor({
     stdin,
     stdout,
-  }: {
-    stdin: stream$Readable | tty$ReadStream,
-    stdout: stream$Writable | tty$WriteStream,
-  }) {
+  }   
+                                            
+                                              
+   ) {
     this._stdin = stdin;
     this._stdout = stdout;
   }
 
-  apply(hooks: JestHookSubscriber) {}
+  apply() {}
 
-  getUsageInfo(globalConfig: GlobalConfig): ?UsageData {
+  getUsageInfo(){
     return null;
   }
 
-  onKey(value: string) {}
+  onKey() {}
 
-  run(
-    globalConfig: GlobalConfig,
-    updateConfigAndRun: Function,
-  ): Promise<void | boolean> {
+  run()                          {
     return Promise.resolve();
   }
 }

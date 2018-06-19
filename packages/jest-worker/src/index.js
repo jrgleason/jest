@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
@@ -13,8 +13,8 @@ import mergeStream from 'merge-stream';
 import os from 'os';
 import path from 'path';
 
-import type {FarmOptions} from './types';
-import type {Readable} from 'stream';
+                                         
+                                     
 
 import {CHILD_MESSAGE_CALL, CHILD_MESSAGE_END} from './types';
 import Worker from './worker';
@@ -48,15 +48,15 @@ const emptyMethod = () => {};
  *   caching results.
  */
 export default class {
-  _stdout: Readable;
-  _stderr: Readable;
-  _ending: boolean;
-  _cacheKeys: {[string]: Worker, __proto__: null};
-  _options: FarmOptions;
-  _workers: Array<Worker>;
-  _offset: number;
+                    
+                    
+                   
+                                                  
+                        
+                          
+                  
 
-  constructor(workerPath: string, options?: FarmOptions = {}) {
+  constructor(workerPath        , options               = {}) {
     const numWorkers = options.numWorkers || os.cpus().length - 1;
     const workers = new Array(numWorkers);
     const stdout = mergeStream();
@@ -129,11 +129,11 @@ export default class {
     this._offset = 0;
   }
 
-  getStdout(): Readable {
+  getStdout()           {
     return this._stdout;
   }
 
-  getStderr(): Readable {
+  getStderr()           {
     return this._stderr;
   }
 
@@ -154,7 +154,7 @@ export default class {
   }
 
   // eslint-disable-next-line no-unclear-flowtypes
-  _makeCall(method: string, ...args: Array<any>): Promise<any> {
+  _makeCall(method        , ...args            )               {
     if (this._ending) {
       throw new Error('Farm is ended, no more calls can be done to it');
     }

@@ -4,13 +4,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Context} from 'types/Context';
-import type {Test} from 'types/TestRunner';
-import type {ScrollOptions} from 'types/Watch';
-import type SearchSource from './search_source';
+                                           
+                                           
+                                               
+                                                
 
 import {
   PatternPrompt,
@@ -19,31 +19,31 @@ import {
   printRestoredPatternCaret,
 } from 'jest-watcher';
 
-type SearchSources = Array<{|
-  context: Context,
-  searchSource: SearchSource,
-|}>;
+                             
+                   
+                             
+    
 
 export default class TestPathPatternPrompt extends PatternPrompt {
-  _searchSources: SearchSources;
+                                
 
-  constructor(pipe: stream$Writable | tty$WriteStream, prompt: Prompt) {
+  constructor(pipe                                   , prompt        ) {
     super(pipe, prompt);
     this._entityName = 'filenames';
   }
 
-  _onChange(pattern: string, options: ScrollOptions) {
+  _onChange(pattern        , options               ) {
     super._onChange(pattern, options);
     this._printPrompt(pattern, options);
   }
 
-  _printPrompt(pattern: string, options: ScrollOptions) {
+  _printPrompt(pattern        , options               ) {
     const pipe = this._pipe;
     printPatternCaret(pattern, pipe);
     printRestoredPatternCaret(pattern, this._currentUsageRows, pipe);
   }
 
-  _getMatchedTests(pattern: string): Array<Test> {
+  _getMatchedTests(pattern        )              {
     let regex;
 
     try {
@@ -60,7 +60,7 @@ export default class TestPathPatternPrompt extends PatternPrompt {
     return tests;
   }
 
-  updateSearchSources(searchSources: SearchSources) {
+  updateSearchSources(searchSources               ) {
     this._searchSources = searchSources;
   }
 }

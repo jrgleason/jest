@@ -4,24 +4,24 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow strict-local
+ *       strict-local
  */
 
-import type {Environment} from 'types/Environment';
-import type {GlobalConfig, ProjectConfig} from 'types/Config';
-import type {TestResult} from 'types/TestResult';
-import type Runtime from 'jest-runtime';
+                                                   
+                                                              
+                                                 
+                                        
 
 const FRAMEWORK_INITIALIZER = require.resolve('./jest_adapter_init');
 import path from 'path';
 
 const jestAdapter = async (
-  globalConfig: GlobalConfig,
-  config: ProjectConfig,
-  environment: Environment,
-  runtime: Runtime,
-  testPath: string,
-): Promise<TestResult> => {
+  globalConfig              ,
+  config               ,
+  environment             ,
+  runtime         ,
+  testPath        ,
+)                      => {
   const {
     initialize,
     runAndTransformResultsToJestFormat,
@@ -80,7 +80,7 @@ const jestAdapter = async (
   return _addSnapshotData(results, snapshotState);
 };
 
-const _addSnapshotData = (results: TestResult, snapshotState) => {
+const _addSnapshotData = (results            , snapshotState) => {
   results.testResults.forEach(({fullName, status}) => {
     if (status === 'pending' || status === 'failed') {
       // if test is skipped or failed, we don't want to mark

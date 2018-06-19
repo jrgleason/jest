@@ -9,7 +9,5 @@
 /* globals fail */
 
 test('fail', () => {
-  if (true) {
     fail('The truth hurts!');
-  }
 });

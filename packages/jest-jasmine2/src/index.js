@@ -4,15 +4,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Environment} from 'types/Environment';
-import type {GlobalConfig, ProjectConfig} from 'types/Config';
-import type {SnapshotState} from 'jest-snapshot';
-import type {TestResult} from 'types/TestResult';
+                                                   
+                                                              
+                                                 
+                                                 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import type Runtime from 'jest-runtime';
+                                        
 
 import path from 'path';
 import installEach from './each';
@@ -24,12 +24,12 @@ import {install as jasmineAsyncInstall} from './jasmine_async';
 const JASMINE = require.resolve('./jasmine/jasmine_light.js');
 
 async function jasmine2(
-  globalConfig: GlobalConfig,
-  config: ProjectConfig,
-  environment: Environment,
-  runtime: Runtime,
-  testPath: string,
-): Promise<TestResult> {
+  globalConfig              ,
+  config               ,
+  environment             ,
+  runtime         ,
+  testPath        ,
+)                      {
   const reporter = new JasmineReporter(globalConfig, config, testPath);
   const jasmineFactory = runtime.requireInternalModule(JASMINE);
   const jasmine = jasmineFactory.create({
@@ -117,7 +117,7 @@ async function jasmine2(
     });
   }
 
-  const snapshotState: SnapshotState = runtime
+  const snapshotState                = runtime
     .requireInternalModule(path.resolve(__dirname, './setup_jest_globals.js'))
     .default({
       config,

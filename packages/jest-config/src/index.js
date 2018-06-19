@@ -4,16 +4,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Argv} from 'types/Argv';
-import type {
-  GlobalConfig,
-  InitialOptions,
-  Path,
-  ProjectConfig,
-} from 'types/Config';
+                                     
+             
+               
+                 
+       
+                
+                      
 
 import path from 'path';
 import {isJSONString, replaceRootDirInPath} from './utils';
@@ -28,20 +28,20 @@ export {replaceRootDirInPath} from './utils';
 export {default as defaults} from './defaults';
 
 export function readConfig(
-  argv: Argv,
-  packageRootOrConfig: Path | InitialOptions,
+  argv      ,
+  packageRootOrConfig                       ,
   // Whether it needs to look into `--config` arg passed to CLI.
   // It only used to read initial config. If the initial config contains
   // `project` property, we don't want to read `--config` value and rather
   // read individual configs for every project.
-  skipArgvConfigOption?: boolean,
-  parentConfigPath: ?Path,
-): {
-  configPath: ?Path,
-  globalConfig: GlobalConfig,
-  hasDeprecationWarnings: boolean,
-  projectConfig: ProjectConfig,
-} {
+  skipArgvConfigOption          ,
+  parentConfigPath       ,
+)   
+                    
+                             
+                                  
+                               
+  {
   let rawOptions;
   let configPath = null;
 
@@ -94,8 +94,8 @@ export function readConfig(
 }
 
 const getConfigs = (
-  options: Object,
-): {globalConfig: GlobalConfig, projectConfig: ProjectConfig} => {
+  options        ,
+)                                                             => {
   return {
     globalConfig: Object.freeze({
       bail: options.bail,

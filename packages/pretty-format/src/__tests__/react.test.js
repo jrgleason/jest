@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {OptionsReceived} from 'types/PrettyFormat';
+                                                        
 
 const React = require('react');
 const renderer = require('react-test-renderer');
@@ -19,32 +19,32 @@ const testSymbol = Symbol.for('react.test.json');
 const prettyFormat = require('..');
 const {ReactElement, ReactTestComponent} = prettyFormat.plugins;
 
-const formatElement = (element: any, options?: OptionsReceived) =>
+const formatElement = (element     , options                  ) =>
   prettyFormat(
     element,
     Object.assign(
       ({
         plugins: [ReactElement],
-      }: OptionsReceived),
+      }                 ),
       options,
     ),
   );
 
-const formatTestObject = (object: any, options?: OptionsReceived) =>
+const formatTestObject = (object     , options                  ) =>
   prettyFormat(
     object,
     Object.assign(
       ({
         plugins: [ReactTestComponent, ReactElement],
-      }: OptionsReceived),
+      }                 ),
       options,
     ),
   );
 
 function assertPrintedJSX(
-  val: any,
-  expected: string,
-  options?: OptionsReceived,
+  val     ,
+  expected        ,
+  options                  ,
 ) {
   expect(formatElement(val, options)).toEqual(expected);
   expect(formatTestObject(renderer.create(val).toJSON(), options)).toEqual(

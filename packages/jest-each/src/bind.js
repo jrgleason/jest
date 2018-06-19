@@ -4,28 +4,28 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import util from 'util';
 import chalk from 'chalk';
 import pretty from 'pretty-format';
 
-type Table = Array<Array<any>>;
-type PrettyArgs = {
-  args: Array<mixed>,
-  title: string,
-};
+                               
+                   
+                     
+                
+  
 
 const EXPECTED_COLOR = chalk.green;
 const RECEIVED_COLOR = chalk.red;
 const SUPPORTED_PLACEHOLDERS = /%[sdifjoOp%]/g;
 const PRETTY_PLACEHOLDER = '%p';
 
-export default (cb: Function) => (...args: any) =>
-  function eachBind(title: string, test: Function): void {
+export default (cb          ) => (...args     ) =>
+  function eachBind(title        , test          )       {
     if (args.length === 1) {
-      const table: Table = args[0].every(Array.isArray)
+      const table        = args[0].every(Array.isArray)
         ? args[0]
         : args[0].map(entry => [entry]);
       return table.forEach(row =>
@@ -81,7 +81,7 @@ const arrayFormat = (title, ...args) => {
   const prettyIndexes = getPrettyIndexes(placeholders);
 
   const {title: prettyTitle, args: remainingArgs} = args.reduce(
-    (acc: PrettyArgs, arg, index) => {
+    (acc            , arg, index) => {
       if (prettyIndexes.indexOf(index) !== -1) {
         return {
           args: acc.args,
@@ -106,20 +106,20 @@ const arrayFormat = (title, ...args) => {
   );
 };
 
-const applyRestParams = (params: Array<any>, test: Function) => {
+const applyRestParams = (params            , test          ) => {
   if (params.length < test.length) return done => test(...params, done);
 
   return () => test(...params);
 };
 
-const getHeadingKeys = (headings: string): Array<string> =>
+const getHeadingKeys = (headings        )                =>
   headings.replace(/\s/g, '').split('|');
 
 const buildTable = (
-  data: Array<any>,
-  rowSize: number,
-  keys: Array<string>,
-): Array<any> =>
+  data            ,
+  rowSize        ,
+  keys               ,
+)             =>
   Array.from({length: data.length / rowSize})
     .map((_, index) => data.slice(index * rowSize, index * rowSize + rowSize))
     .map(row =>
@@ -129,18 +129,18 @@ const buildTable = (
       ),
     );
 
-const interpolate = (title: string, data: any) =>
+const interpolate = (title        , data     ) =>
   Object.keys(data).reduce(
     (acc, key) =>
       acc.replace('$' + key, pretty(data[key], {maxDepth: 1, min: true})),
     title,
   );
 
-const applyObjectParams = (obj: any, test: Function) => {
+const applyObjectParams = (obj     , test          ) => {
   if (test.length > 1) return done => test(obj, done);
 
   return () => test(obj);
 };
 
-const pluralize = (word: string, count: number) =>
+const pluralize = (word        , count        ) =>
   word + (count === 1 ? '' : 's');

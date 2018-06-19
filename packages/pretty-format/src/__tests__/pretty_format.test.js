@@ -4,14 +4,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
 
 const prettyFormat = require('../');
 
-function returnArguments(...args) {
+function returnArguments() {
   return arguments;
 }
 
@@ -247,7 +247,7 @@ describe('prettyFormat()', () => {
   });
 
   it('prints an object with properties and symbols', () => {
-    const val: any = {};
+    const val      = {};
     val[Symbol('symbol1')] = 'value2';
     val[Symbol('symbol2')] = 'value3';
     val.prop = 'value1';
@@ -633,7 +633,7 @@ describe('prettyFormat()', () => {
       prettyFormat(val, {
         plugins: [
           {
-            print(val, print) {
+            print() {
               return '[called]';
             },
             test(val) {
@@ -698,7 +698,7 @@ describe('prettyFormat()', () => {
 
   it('calls toJSON on Sets', () => {
     const set = new Set([1]);
-    (set: Object).toJSON = () => 'map';
+    (set        ).toJSON = () => 'map';
     expect(prettyFormat(set)).toEqual('"map"');
   });
 
@@ -706,7 +706,7 @@ describe('prettyFormat()', () => {
     const value = {apple: 'banana', toJSON: jest.fn(() => '1')};
     const name = value.toJSON.name || 'anonymous';
     const set = new Set([value]);
-    (set: Object).toJSON = jest.fn(() => 'map');
+    (set        ).toJSON = jest.fn(() => 'map');
     expect(
       prettyFormat(set, {
         callToJSON: false,
@@ -716,7 +716,7 @@ describe('prettyFormat()', () => {
         name +
         '],\n  },\n}',
     );
-    expect((set: Object).toJSON).not.toBeCalled();
+    expect((set        ).toJSON).not.toBeCalled();
     expect(value.toJSON).not.toBeCalled();
   });
 

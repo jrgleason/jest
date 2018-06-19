@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import chalk from 'chalk';
@@ -14,7 +14,7 @@ import colorize from './colorize';
 const DOTS = '...';
 const ENTER = '⏎';
 
-export default (testName: string, pattern: string, width: number) => {
+export default (testName        , pattern        , width        ) => {
   const inlineTestName = testName.replace(/(\r\n|\n|\r)/gm, ENTER);
 
   let regexp;

@@ -4,20 +4,20 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {GlobalConfig} from 'types/Config';
-import type {
-  OnTestFailure,
-  OnTestStart,
-  OnTestSuccess,
-  Test,
-  TestRunnerOptions,
-  TestWatcher,
-} from 'types/TestRunner';
+                                               
+             
+                
+              
+                
+       
+                    
+              
+                          
 
-import typeof {worker} from './test_worker';
+                                            
 
 import exit from 'exit';
 import runTest from './run_test';
@@ -26,23 +26,23 @@ import Worker from 'jest-worker';
 
 const TEST_WORKER_PATH = require.resolve('./test_worker');
 
-type WorkerInterface = Worker & {worker: worker};
+                                                 
 
 class TestRunner {
-  _globalConfig: GlobalConfig;
+                              
 
-  constructor(globalConfig: GlobalConfig) {
+  constructor(globalConfig              ) {
     this._globalConfig = globalConfig;
   }
 
   async runTests(
-    tests: Array<Test>,
-    watcher: TestWatcher,
-    onStart: OnTestStart,
-    onResult: OnTestSuccess,
-    onFailure: OnTestFailure,
-    options: TestRunnerOptions,
-  ): Promise<void> {
+    tests             ,
+    watcher             ,
+    onStart             ,
+    onResult               ,
+    onFailure               ,
+    options                   ,
+  )                {
     return await (options.serial
       ? this._createInBandTestRun(tests, watcher, onStart, onResult, onFailure)
       : this._createParallelTestRun(
@@ -55,11 +55,11 @@ class TestRunner {
   }
 
   async _createInBandTestRun(
-    tests: Array<Test>,
-    watcher: TestWatcher,
-    onStart: OnTestStart,
-    onResult: OnTestSuccess,
-    onFailure: OnTestFailure,
+    tests             ,
+    watcher             ,
+    onStart             ,
+    onResult               ,
+    onFailure               ,
   ) {
     process.env.JEST_WORKER_ID = '1';
     const mutex = throat(1);
@@ -88,14 +88,14 @@ class TestRunner {
   }
 
   async _createParallelTestRun(
-    tests: Array<Test>,
-    watcher: TestWatcher,
-    onStart: OnTestStart,
-    onResult: OnTestSuccess,
-    onFailure: OnTestFailure,
+    tests             ,
+    watcher             ,
+    onStart             ,
+    onResult               ,
+    onFailure               ,
   ) {
     // $FlowFixMe: class object is augmented with worker when instantiating.
-    const worker: WorkerInterface = new Worker(TEST_WORKER_PATH, {
+    const worker                  = new Worker(TEST_WORKER_PATH, {
       exposedMethods: ['worker'],
       forkOptions: {stdio: 'inherit'},
       maxRetries: 3,
@@ -157,7 +157,7 @@ class TestRunner {
 }
 
 class CancelRun extends Error {
-  constructor(message: ?string) {
+  constructor(message         ) {
     super(message);
     this.name = 'CancelRun';
   }

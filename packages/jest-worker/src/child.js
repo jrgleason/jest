@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
@@ -32,7 +32,7 @@ let file = null;
  * If an invalid message is detected, the child will exit (by throwing) with a
  * non-zero exit code.
  */
-process.on('message', (request: any /* Should be ChildMessage */) => {
+process.on('message', (request      /* Should be ChildMessage */) => {
   switch (request[0]) {
     case CHILD_MESSAGE_INITIALIZE:
       file = request[2];
@@ -53,7 +53,7 @@ process.on('message', (request: any /* Should be ChildMessage */) => {
   }
 });
 
-function reportSuccess(result: any) {
+function reportSuccess(result     ) {
   if (!process || !process.send) {
     throw new Error('Child can only be used on a forked process');
   }
@@ -61,7 +61,7 @@ function reportSuccess(result: any) {
   process.send([PARENT_MESSAGE_OK, result]);
 }
 
-function reportError(error: Error) {
+function reportError(error       ) {
   if (!process || !process.send) {
     throw new Error('Child can only be used on a forked process');
   }
@@ -80,7 +80,7 @@ function reportError(error: Error) {
   ]);
 }
 
-function execMethod(method: string, args: $ReadOnlyArray<any>): void {
+function execMethod(method        , args                     )       {
   // $FlowFixMe: This has to be a dynamic require.
   const main = require(file);
   let result;

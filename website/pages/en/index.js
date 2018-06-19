@@ -28,7 +28,6 @@ class Button extends React.Component {
     );
   }
 }
-
 Button.defaultProps = {
   target: '_self',
 };
@@ -117,7 +116,7 @@ class Index extends React.Component {
         </a>
       );
     });
-
+    var style1 = {textAlign: 'center'};
     return (
       <div>
         <HomeSplash language={this.props.language} config={siteConfig} />
@@ -167,7 +166,7 @@ class Index extends React.Component {
 
           <div
             className="productShowcaseSection paddingBottom"
-            style={{textAlign: 'center'}}
+            style={style1}
           >
             <h2>
               <translate>Zero configuration testing platform</translate>
@@ -175,8 +174,8 @@ class Index extends React.Component {
             <MarkdownBlock>
               <translate>
                 Jest is used by Facebook to test all JavaScript code including
-                React applications. One of Jest's philosophies is to provide an
-                integrated \"zero-configuration\" experience. We observed that
+                React applications. One of Jest&apos;s philosophies is to provide an
+                integrated &quot;zero-configuration&quot; experience. We observed that
                 when engineers are provided with ready-to-use tools, they end up
                 writing more tests, which in turn results in more stable and
                 healthy code bases.
@@ -263,7 +262,7 @@ class Index extends React.Component {
                       [repl.it](https://repl.it/languages/jest). Consider a
                       function, `add()`, that adds two numbers. We can use a
                       basic test in `add-test.js` to verify that 1 + 2 equals 3.
-                      Hit \"run\" to try it out!
+                      Hit &quot;run&quot; to try it out!
                     </translate>
                   </MarkdownBlock>
                 </div>
@@ -364,7 +363,7 @@ class Index extends React.Component {
 
           <div className="productShowcaseSection paddingBottom">
             <h2>
-              <translate>Who's using Jest?</translate>
+              <translate>Who&apos;s using Jest?</translate>
             </h2>
             <p>
               <translate>

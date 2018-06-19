@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
@@ -40,7 +40,7 @@ test('--showConfig outputs config info and exits', () => {
     .replace(/"version": "(.+)"/g, '"version": "[version]"')
     .replace(/"maxWorkers": (\d+)/g, '"maxWorkers": "[maxWorkers]"')
     .replace(/"\S*show_config_test/gm, '"<<REPLACED_ROOT_DIR>>')
-    .replace(/\"\S*\/jest\/packages/gm, '"<<REPLACED_JEST_PACKAGES_DIR>>');
+    .replace(/"\S*\/jest\/packages/gm, '"<<REPLACED_JEST_PACKAGES_DIR>>');
 
   expect(stdout).toMatchSnapshot();
 });

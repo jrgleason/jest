@@ -20,20 +20,20 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-@flow
+     
 */
 
 /* eslint-disable */
 
-type Tester = (a: any, b: any) => boolean | typeof undefined;
+                                                             
 
 // Extracted out of jasmine 2.5.2
 export function equals(
-  a: any,
-  b: any,
-  customTesters?: Array<Tester>,
-  strictCheck?: boolean,
-): boolean {
+  a     ,
+  b     ,
+  customTesters                ,
+  strictCheck          ,
+)          {
   customTesters = customTesters || [];
   return eq(a, b, [], [], customTesters, strictCheck ? hasKey : hasDefinedKey);
 }
@@ -61,7 +61,7 @@ function asymmetricMatch(a, b) {
 
 // Equality function lovingly adapted from isEqual in
 //   [Underscore](http://underscorejs.org)
-function eq(a, b, aStack, bStack, customTesters, hasKey): boolean {
+function eq(a, b, aStack, bStack, customTesters, hasKey)          {
   var result = true;
 
   var asymmetricResult = asymmetricMatch(a, b);
@@ -210,7 +210,7 @@ function keys(obj, isArray, hasKey) {
       }
     }
     return keys.concat(
-      (Object.getOwnPropertySymbols(o): Array<any>).filter(
+      (Object.getOwnPropertySymbols(o)            ).filter(
         //$FlowFixMe Jest complains about nullability, but we know for sure that property 'symbol' does exist.
         symbol => Object.getOwnPropertyDescriptor(o, symbol).enumerable,
       ),
@@ -244,7 +244,7 @@ function hasKey(obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
 
-export function isA(typeName: string, value: any) {
+export function isA(typeName        , value     ) {
   return Object.prototype.toString.apply(value) === '[object ' + typeName + ']';
 }
 
@@ -257,7 +257,7 @@ function isDomNode(obj) {
   );
 }
 
-export function fnNameFor(func: Function) {
+export function fnNameFor(func          ) {
   if (func.name) {
     return func.name;
   }
@@ -266,7 +266,7 @@ export function fnNameFor(func: Function) {
   return matches ? matches[1] : '<anonymous>';
 }
 
-export function isUndefined(obj: any) {
+export function isUndefined(obj     ) {
   return obj === void 0;
 }
 
@@ -282,7 +282,7 @@ function getPrototype(obj) {
   return obj.constructor.prototype;
 }
 
-export function hasProperty(obj: Object | null, property: string) {
+export function hasProperty(obj               , property        ) {
   if (!obj) {
     return false;
   }
@@ -299,7 +299,7 @@ const IS_KEYED_SENTINEL = '@@__IMMUTABLE_KEYED__@@';
 const IS_SET_SENTINEL = '@@__IMMUTABLE_SET__@@';
 const IS_ORDERED_SENTINEL = '@@__IMMUTABLE_ORDERED__@@';
 
-export function isImmutableUnorderedKeyed(maybeKeyed: any) {
+export function isImmutableUnorderedKeyed(maybeKeyed     ) {
   return !!(
     maybeKeyed &&
     maybeKeyed[IS_KEYED_SENTINEL] &&
@@ -307,7 +307,7 @@ export function isImmutableUnorderedKeyed(maybeKeyed: any) {
   );
 }
 
-export function isImmutableUnorderedSet(maybeSet: any) {
+export function isImmutableUnorderedSet(maybeSet     ) {
   return !!(
     maybeSet &&
     maybeSet[IS_SET_SENTINEL] &&

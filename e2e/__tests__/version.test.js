@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
@@ -26,7 +26,7 @@ test('works with jest.config.js', () => {
   });
 
   const {status, stdout, stderr} = runJest(DIR, ['--version']);
-  expect(stdout).toMatch(/\d{2}\.\d{1,2}\.\d{1,2}[\-\S]*$/);
+  expect(stdout).toMatch(/\d{2}\.\d{1,2}\.\d{1,2}[-\S]*$/);
   // Only version gets printed and nothing else
   expect(stdout.split(/\n/)).toHaveLength(1);
   expect(stderr).toBe('');

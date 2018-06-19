@@ -4,15 +4,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Context} from 'types/Context';
-import type {ChangedFilesPromise} from 'types/ChangedFiles';
-import type {GlobalConfig} from 'types/Config';
-import type {AggregatedResult} from 'types/TestResult';
-import type {JestHookEmitter} from 'types/JestHooks';
-import type TestWatcher from './test_watcher';
+                                           
+                                                            
+                                               
+                                                       
+                                                     
+                                              
 
 import micromatch from 'micromatch';
 import chalk from 'chalk';
@@ -127,17 +127,17 @@ export default (async function runJest({
   changedFilesPromise,
   onComplete,
   failedTestsCache,
-}: {
-  globalConfig: GlobalConfig,
-  contexts: Array<Context>,
-  outputStream: stream$Writable | tty$WriteStream,
-  testWatcher: TestWatcher,
-  jestHooks?: JestHookEmitter,
-  startRun: (globalConfig: GlobalConfig) => *,
-  changedFilesPromise: ?ChangedFilesPromise,
-  onComplete: (testResults: AggregatedResult) => any,
-  failedTestsCache: ?FailedTestsCache,
-}) {
+}   
+                             
+                           
+                                                  
+                           
+                              
+                                              
+                                            
+                                                     
+                                      
+ ) {
   const sequencer = new TestSequencer();
   let allTests = [];
 

@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {InitialOptions} from 'types/Config';
+                                                 
 
 import {replacePathSepForRegex} from 'jest-regex-util';
 import {NODE_MODULES} from './constants';
@@ -109,4 +109,4 @@ export default ({
   watchPathIgnorePatterns: [],
   watchPlugins: [],
   watchman: true,
-}: InitialOptions);
+}                );

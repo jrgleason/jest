@@ -8,6 +8,6 @@
 
 'use strict';
 
-module.exports = function userResolver(path, options) {
+module.exports = function userResolver() {
   return 'module';
 };

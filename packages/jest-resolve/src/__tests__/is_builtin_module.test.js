@@ -1,4 +1,4 @@
-// @flow
+//      
 
 import isBuiltinModule from '../is_builtin_module';
 

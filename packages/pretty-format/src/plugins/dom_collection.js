@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Config, NewPlugin, Printer, Refs} from 'types/PrettyFormat';
+                                                                         
 
 import {printObjectProperties} from '../collections';
 
@@ -15,12 +15,12 @@ const SPACE = ' ';
 
 const COLLECTION_NAMES = ['DOMStringMap', 'NamedNodeMap'];
 
-export const test = (val: any) =>
+export const test = (val     ) =>
   val &&
   val.constructor &&
   COLLECTION_NAMES.indexOf(val.constructor.name) !== -1;
 
-const convertCollectionToObject = (collection: any) => {
+const convertCollectionToObject = (collection     ) => {
   let result = {};
 
   if (collection.constructor.name === 'NamedNodeMap') {
@@ -35,13 +35,13 @@ const convertCollectionToObject = (collection: any) => {
 };
 
 export const serialize = (
-  collection: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string => {
+  collection     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         => {
   if (++depth > config.maxDepth) {
     return '[' + collection.constructor.name + ']';
   }
@@ -62,4 +62,4 @@ export const serialize = (
   );
 };
 
-export default ({serialize, test}: NewPlugin);
+export default ({serialize, test}           );

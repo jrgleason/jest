@@ -4,17 +4,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {GlobalConfig, Path, ProjectConfig} from 'types/Config';
-import type {
-  AssertionResult,
-  FailedAssertion,
-  Milliseconds,
-  Status,
-  TestResult,
-} from 'types/TestResult';
+                                                                    
+             
+                  
+                  
+               
+         
+             
+                          
 
 // Try getting the real promise object from the context, if available. Someone
 // could have overridden it in a test.
@@ -22,36 +22,36 @@ const Promise = global[Symbol.for('jest-native-promise')] || global.Promise;
 
 import {formatResultsErrors} from 'jest-message-util';
 
-type Suite = {
-  description: string,
-};
+              
+                      
+  
 
-type SpecResult = {
-  __callsite?: Object,
-  description: string,
-  duration?: Milliseconds,
-  failedExpectations: Array<FailedAssertion>,
-  fullName: string,
-  id: string,
-  status: Status,
-};
+                   
+                      
+                      
+                          
+                                             
+                   
+             
+                 
+  
 
-type Microseconds = number;
+                           
 
 export default class Jasmine2Reporter {
-  _testResults: Array<AssertionResult>;
-  _globalConfig: GlobalConfig;
-  _config: ProjectConfig;
-  _currentSuites: Array<string>;
-  _resolve: any;
-  _resultsPromise: Promise<TestResult>;
-  _startTimes: Map<string, Microseconds>;
-  _testPath: Path;
+                                       
+                              
+                         
+                                
+                
+                                       
+                                         
+                  
 
   constructor(
-    globalConfig: GlobalConfig,
-    config: ProjectConfig,
-    testPath: Path,
+    globalConfig              ,
+    config               ,
+    testPath      ,
   ) {
     this._globalConfig = globalConfig;
     this._config = config;
@@ -63,25 +63,25 @@ export default class Jasmine2Reporter {
     this._startTimes = new Map();
   }
 
-  specStarted(spec: {id: string}) {
+  specStarted(spec              ) {
     this._startTimes.set(spec.id, Date.now());
   }
 
-  specDone(result: SpecResult): void {
+  specDone(result            )       {
     this._testResults.push(
       this._extractSpecResults(result, this._currentSuites.slice(0)),
     );
   }
 
-  suiteStarted(suite: Suite): void {
+  suiteStarted(suite       )       {
     this._currentSuites.push(suite.description);
   }
 
-  suiteDone(): void {
+  suiteDone()       {
     this._currentSuites.pop();
   }
 
-  jasmineDone(): void {
+  jasmineDone()       {
     let numFailingTests = 0;
     let numPassingTests = 0;
     let numPendingTests = 0;
@@ -126,11 +126,11 @@ export default class Jasmine2Reporter {
     this._resolve(testResult);
   }
 
-  getResults(): Promise<TestResult> {
+  getResults()                      {
     return this._resultsPromise;
   }
 
-  _addMissingMessageToStack(stack: string, message: ?string) {
+  _addMissingMessageToStack(stack        , message         ) {
     // Some errors (e.g. Angular injection error) don't prepend error.message
     // to stack, instead the first line of the stack is just plain 'Error'
     const ERROR_REGEX = /^Error\s*\n/;
@@ -146,9 +146,9 @@ export default class Jasmine2Reporter {
   }
 
   _extractSpecResults(
-    specResult: SpecResult,
-    ancestorTitles: Array<string>,
-  ): AssertionResult {
+    specResult            ,
+    ancestorTitles               ,
+  )                  {
     const start = this._startTimes.get(specResult.id);
     const duration = start ? Date.now() - start : undefined;
     const status =

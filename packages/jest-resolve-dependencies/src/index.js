@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {HasteFS} from 'types/HasteMap';
-import type {Path} from 'types/Config';
-import type {Resolver, ResolveModuleConfig} from 'types/Resolve';
+                                            
+                                       
+                                                                 
 import Snapshot from 'jest-snapshot';
 
 import {replacePathSepForRegex} from 'jest-regex-util';
@@ -18,7 +18,7 @@ const snapshotDirRegex = new RegExp(replacePathSepForRegex('/__snapshots__/'));
 const snapshotFileRegex = new RegExp(
   replacePathSepForRegex(`__snapshots__/(.*).${Snapshot.EXTENSION}`),
 );
-const isSnapshotPath = (path: string): boolean =>
+const isSnapshotPath = (path        )          =>
   !!path.match(snapshotDirRegex);
 
 /**
@@ -26,15 +26,15 @@ const isSnapshotPath = (path: string): boolean =>
  * to retrieve a list of all transitive inverse dependencies.
  */
 class DependencyResolver {
-  _hasteFS: HasteFS;
-  _resolver: Resolver;
+                    
+                      
 
-  constructor(resolver: Resolver, hasteFS: HasteFS) {
+  constructor(resolver          , hasteFS         ) {
     this._resolver = resolver;
     this._hasteFS = hasteFS;
   }
 
-  resolve(file: Path, options?: ResolveModuleConfig): Array<Path> {
+  resolve(file      , options                      )              {
     const dependencies = this._hasteFS.getDependencies(file);
     if (!dependencies) {
       return [];
@@ -54,10 +54,10 @@ class DependencyResolver {
   }
 
   resolveInverse(
-    paths: Set<Path>,
-    filter: (file: Path) => boolean,
-    options?: ResolveModuleConfig,
-  ): Array<Path> {
+    paths           ,
+    filter                         ,
+    options                      ,
+  )              {
     if (!paths.size) {
       return [];
     }

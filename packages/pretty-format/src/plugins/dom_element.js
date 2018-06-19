@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Config, NewPlugin, Printer, Refs} from 'types/PrettyFormat';
+                                                                         
 
 import {
   printChildren,
@@ -18,25 +18,25 @@ import {
   printText,
 } from './lib/markup';
 
-type Attribute = {
-  name: string,
-  value: string,
-};
+                  
+               
+                
+  
 
-type Element = {
-  attributes: Array<Attribute>,
-  childNodes: Array<Element | Text | Comment>,
-  nodeType: 1,
-  tagName: string,
-};
-type Text = {
-  data: string,
-  nodeType: 3,
-};
-type Comment = {
-  data: string,
-  nodeType: 8,
-};
+                
+                               
+                                              
+              
+                  
+  
+             
+               
+              
+  
+                
+               
+              
+  
 
 const ELEMENT_NODE = 1;
 const TEXT_NODE = 3;
@@ -44,12 +44,12 @@ const COMMENT_NODE = 8;
 
 const ELEMENT_REGEXP = /^((HTML|SVG)\w*)?Element$/;
 
-const testNode = (nodeType: any, name: any) =>
+const testNode = (nodeType     , name     ) =>
   (nodeType === ELEMENT_NODE && ELEMENT_REGEXP.test(name)) ||
   (nodeType === TEXT_NODE && name === 'Text') ||
   (nodeType === COMMENT_NODE && name === 'Comment');
 
-export const test = (val: any) =>
+export const test = (val     ) =>
   val &&
   val.constructor &&
   val.constructor.name &&
@@ -63,13 +63,13 @@ const propsReducer = (props, attribute) => {
 };
 
 export const serialize = (
-  node: Element | Text | Comment,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string => {
+  node                          ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         => {
   if (node.nodeType === TEXT_NODE) {
     return printText(node.data, config);
   }
@@ -107,4 +107,4 @@ export const serialize = (
   );
 };
 
-export default ({serialize, test}: NewPlugin);
+export default ({serialize, test}           );

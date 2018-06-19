@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {MatchersObject} from 'types/Matchers';
+                                                   
 
 const CALL_PRINT_LIMIT = 3;
 const RETURN_PRINT_LIMIT = 5;
@@ -92,9 +92,9 @@ const createToReturnMatcher = matcherName => (received, expected) => {
   return {message, pass};
 };
 
-const createToBeCalledTimesMatcher = (matcherName: string) => (
-  received: any,
-  expected: number,
+const createToBeCalledTimesMatcher = (matcherName        ) => (
+  received     ,
+  expected        ,
 ) => {
   ensureExpectedIsNumber(expected, matcherName);
   ensureMock(received, matcherName);
@@ -127,9 +127,9 @@ const createToBeCalledTimesMatcher = (matcherName: string) => (
   return {message, pass};
 };
 
-const createToReturnTimesMatcher = (matcherName: string) => (
-  received: any,
-  expected: number,
+const createToReturnTimesMatcher = (matcherName        ) => (
+  received     ,
+  expected        ,
 ) => {
   ensureExpectedIsNumber(expected, matcherName);
   ensureMock(received, matcherName);
@@ -165,8 +165,8 @@ const createToReturnTimesMatcher = (matcherName: string) => (
 };
 
 const createToBeCalledWithMatcher = matcherName => (
-  received: any,
-  ...expected: any
+  received     ,
+  ...expected     
 ) => {
   ensureMock(received, matcherName);
 
@@ -203,8 +203,8 @@ const createToBeCalledWithMatcher = matcherName => (
 };
 
 const createToReturnWithMatcher = matcherName => (
-  received: any,
-  expected: any,
+  received     ,
+  expected     ,
 ) => {
   ensureMock(received, matcherName);
 
@@ -247,8 +247,8 @@ const createToReturnWithMatcher = matcherName => (
 };
 
 const createLastCalledWithMatcher = matcherName => (
-  received: any,
-  ...expected: any
+  received     ,
+  ...expected     
 ) => {
   ensureMock(received, matcherName);
 
@@ -280,8 +280,8 @@ const createLastCalledWithMatcher = matcherName => (
 };
 
 const createLastReturnedMatcher = matcherName => (
-  received: any,
-  expected: any,
+  received     ,
+  expected     ,
 ) => {
   ensureMock(received, matcherName);
 
@@ -322,10 +322,10 @@ const createLastReturnedMatcher = matcherName => (
   return {message, pass};
 };
 
-const createNthCalledWithMatcher = (matcherName: string) => (
-  received: any,
-  nth: number,
-  ...expected: any
+const createNthCalledWithMatcher = (matcherName        ) => (
+  received     ,
+  nth        ,
+  ...expected     
 ) => {
   ensureMock(received, matcherName);
 
@@ -374,10 +374,10 @@ const createNthCalledWithMatcher = (matcherName: string) => (
   return {message, pass};
 };
 
-const createNthReturnedWithMatcher = (matcherName: string) => (
-  received: any,
-  nth: number,
-  expected: any,
+const createNthReturnedWithMatcher = (matcherName        ) => (
+  received     ,
+  nth        ,
+  expected     ,
 ) => {
   ensureMock(received, matcherName);
 
@@ -429,7 +429,7 @@ const createNthReturnedWithMatcher = (matcherName: string) => (
   return {message, pass};
 };
 
-const spyMatchers: MatchersObject = {
+const spyMatchers                 = {
   lastCalledWith: createLastCalledWithMatcher('.lastCalledWith'),
   lastReturnedWith: createLastReturnedMatcher('.lastReturnedWith'),
   nthCalledWith: createNthCalledWithMatcher('.nthCalledWith'),
@@ -475,11 +475,11 @@ const ensureMock = (mockOrSpy, matcherName) => {
 };
 
 const getPrintedCalls = (
-  calls: any[],
-  limit: number,
-  sep: string,
-  fn: Function,
-): string => {
+  calls       ,
+  limit        ,
+  sep        ,
+  fn          ,
+)         => {
   const result = [];
   let i = calls.length;
 
@@ -490,7 +490,7 @@ const getPrintedCalls = (
   return result.join(sep);
 };
 
-const getPrintedReturnValues = (calls: any[], limit: number): string => {
+const getPrintedReturnValues = (calls       , limit        )         => {
   const result = [];
 
   for (let i = 0; i < calls.length && i < limit; i += 1) {
@@ -578,7 +578,7 @@ const formatMismatchedArgs = (expected, received) => {
   return printedArgs.join('\n');
 };
 
-const nthToString = (nth: number) => {
+const nthToString = (nth        ) => {
   switch (nth) {
     case 1:
       return 'first';

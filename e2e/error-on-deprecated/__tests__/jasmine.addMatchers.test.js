@@ -5,10 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 'use strict';
+import Jasmine from 'jasmine';
 
+let jasmine = new Jasmine();
 jasmine.addMatchers({
   theSpanishInquisition: () => ({
-    compare: (actual, expected) => ({
+    compare: () => ({
       message: 'Nobdy expects the Spanish Inquisition!',
       pass: false,
     }),

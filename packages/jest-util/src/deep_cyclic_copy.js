@@ -4,15 +4,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 const EMPTY = new Set();
 
-export type DeepCyclicCopyOptions = {|
-  blacklist: Set<string>,
-  keepPrototype: boolean,
-|};
+                                      
+                         
+                         
+   
 
 // $FlowFixMe: Node 6 does not have gOPDs, so we define a simple polyfill for it.
 if (!Object.getOwnPropertyDescriptors) {
@@ -30,10 +30,10 @@ if (!Object.getOwnPropertyDescriptors) {
 }
 
 export default function deepCyclicCopy(
-  value: any,
-  options?: DeepCyclicCopyOptions = {blacklist: EMPTY, keepPrototype: false},
-  cycles: WeakMap<any, any> = new WeakMap(),
-): any {
+  value     ,
+  options                         = {blacklist: EMPTY, keepPrototype: false},
+  cycles                    = new WeakMap(),
+)      {
   if (typeof value !== 'object' || value === null) {
     return value;
   } else if (cycles.has(value)) {
@@ -46,10 +46,10 @@ export default function deepCyclicCopy(
 }
 
 function deepCyclicCopyObject(
-  object: Object,
-  options: DeepCyclicCopyOptions,
-  cycles: WeakMap<any, any>,
-): Object {
+  object        ,
+  options                       ,
+  cycles                   ,
+)         {
   const newObject = options.keepPrototype
     ? Object.create(Object.getPrototypeOf(object))
     : {};
@@ -81,10 +81,10 @@ function deepCyclicCopyObject(
 }
 
 function deepCyclicCopyArray(
-  array: Array<any>,
-  options: DeepCyclicCopyOptions,
-  cycles: WeakMap<any, any>,
-): Array<any> {
+  array            ,
+  options                       ,
+  cycles                   ,
+)             {
   const newArray = options.keepPrototype
     ? // $FlowFixMe: getPrototypeOf an array is OK.
       new (Object.getPrototypeOf(array)).constructor(array.length)

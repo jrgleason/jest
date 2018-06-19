@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {DiffOptions} from './diff_strings';
+                                                
 
 import prettyFormat from 'pretty-format';
 import chalk from 'chalk';
@@ -49,7 +49,7 @@ const FALLBACK_FORMAT_OPTIONS_0 = Object.assign({}, FALLBACK_FORMAT_OPTIONS, {
 
 // Generate a string that will highlight the difference between two values
 // with green and red. (similar to how github does code diffing)
-function diff(a: any, b: any, options: ?DiffOptions): ?string {
+function diff(a     , b     , options              )          {
   if (a === b) {
     return NO_DIFF_MESSAGE;
   }
@@ -107,7 +107,7 @@ function sortSet(set) {
   return new Set(Array.from(set.values()).sort());
 }
 
-function compareObjects(a: Object, b: Object, options: ?DiffOptions) {
+function compareObjects(a        , b        , options              ) {
   let diffMessage;
   let hasThrown = false;
 

@@ -4,31 +4,31 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow strict-local
+ *       strict-local
  */
 
-import type {
-  BlockFn,
-  HookFn,
-  HookType,
-  TestFn,
-  BlockMode,
-  BlockName,
-  TestName,
-} from 'types/Circus';
+             
+          
+         
+           
+         
+            
+            
+           
+                      
 import {bind as bindEach} from 'jest-each';
 import {dispatch} from './state';
 
-type THook = (fn: HookFn, timeout?: number) => void;
+                                                    
 
-const describe = (blockName: BlockName, blockFn: BlockFn) =>
+const describe = (blockName           , blockFn         ) =>
   _dispatchDescribe(blockFn, blockName);
-describe.only = (blockName: BlockName, blockFn: BlockFn) =>
+describe.only = (blockName           , blockFn         ) =>
   _dispatchDescribe(blockFn, blockName, 'only');
-describe.skip = (blockName: BlockName, blockFn: BlockFn) =>
+describe.skip = (blockName           , blockFn         ) =>
   _dispatchDescribe(blockFn, blockName, 'skip');
 
-const _dispatchDescribe = (blockFn, blockName, mode?: BlockMode) => {
+const _dispatchDescribe = (blockFn, blockName, mode            ) => {
   dispatch({
     asyncError: new Error(),
     blockName,
@@ -39,7 +39,7 @@ const _dispatchDescribe = (blockFn, blockName, mode?: BlockMode) => {
   dispatch({blockName, mode, name: 'finish_describe_definition'});
 };
 
-const _addHook = (fn: HookFn, hookType: HookType, hookFn, timeout: ?number) => {
+const _addHook = (fn        , hookType          , hookFn, timeout         ) => {
   const asyncError = new Error();
   if (Error.captureStackTrace) {
     Error.captureStackTrace(asyncError, hookFn);
@@ -48,16 +48,16 @@ const _addHook = (fn: HookFn, hookType: HookType, hookFn, timeout: ?number) => {
 };
 
 // Hooks have to pass themselves to the HOF in order for us to trim stack traces.
-const beforeEach: THook = (fn, timeout) =>
+const beforeEach        = (fn, timeout) =>
   _addHook(fn, 'beforeEach', beforeEach, timeout);
-const beforeAll: THook = (fn, timeout) =>
+const beforeAll        = (fn, timeout) =>
   _addHook(fn, 'beforeAll', beforeAll, timeout);
-const afterEach: THook = (fn, timeout) =>
+const afterEach        = (fn, timeout) =>
   _addHook(fn, 'afterEach', afterEach, timeout);
-const afterAll: THook = (fn, timeout) =>
+const afterAll        = (fn, timeout) =>
   _addHook(fn, 'afterAll', afterAll, timeout);
 
-const test = (testName: TestName, fn: TestFn, timeout?: number) => {
+const test = (testName          , fn        , timeout         ) => {
   if (typeof testName !== 'string') {
     throw new Error(
       `Invalid first argument, ${testName}. It must be a string.`,
@@ -86,7 +86,7 @@ const test = (testName: TestName, fn: TestFn, timeout?: number) => {
   });
 };
 const it = test;
-test.skip = (testName: TestName, fn?: TestFn, timeout?: number) => {
+test.skip = (testName          , fn         , timeout         ) => {
   const asyncError = new Error();
   if (Error.captureStackTrace) {
     Error.captureStackTrace(asyncError, test);
@@ -101,7 +101,7 @@ test.skip = (testName: TestName, fn?: TestFn, timeout?: number) => {
     timeout,
   });
 };
-test.only = (testName: TestName, fn: TestFn, timeout?: number) => {
+test.only = (testName          , fn        , timeout         ) => {
   const asyncError = new Error();
   if (Error.captureStackTrace) {
     Error.captureStackTrace(asyncError, test);

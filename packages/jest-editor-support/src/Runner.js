@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Options, MessageType, SpawnOptions} from './types';
+                                                                
 import {messageTypes} from './types';
 
 import {ChildProcess, spawn} from 'child_process';
@@ -21,20 +21,20 @@ import {createProcess} from './Process';
 // passes out events when it understands what data is being
 // pass sent out of the process
 export default class Runner extends EventEmitter {
-  debugprocess: ChildProcess;
-  outputPath: string;
-  workspace: ProjectWorkspace;
-  _createProcess: (
-    workspace: ProjectWorkspace,
-    args: Array<string>,
-    options?: SpawnOptions,
-  ) => ChildProcess;
-  watchMode: boolean;
-  watchAll: boolean;
-  options: Options;
-  prevMessageTypes: MessageType[];
+                             
+                     
+                              
+                   
+                                
+                        
+                           
+                    
+                     
+                    
+                   
+                                  
 
-  constructor(workspace: ProjectWorkspace, options?: Options) {
+  constructor(workspace                  , options          ) {
     super();
 
     this._createProcess = (options && options.createProcess) || createProcess;
@@ -44,7 +44,7 @@ export default class Runner extends EventEmitter {
     this.prevMessageTypes = [];
   }
 
-  start(watchMode: boolean = true, watchAll: boolean = false) {
+  start(watchMode          = true, watchAll          = false) {
     if (this.debugprocess) {
       return;
     }
@@ -81,7 +81,7 @@ export default class Runner extends EventEmitter {
     };
 
     this.debugprocess = this._createProcess(this.workspace, args, options);
-    this.debugprocess.stdout.on('data', (data: Buffer) => {
+    this.debugprocess.stdout.on('data', (data        ) => {
       // Make jest save to a file, otherwise we get chunked data
       // and it can be hard to put it back together.
       const stringValue = data.toString().trim();
@@ -102,7 +102,7 @@ export default class Runner extends EventEmitter {
       this.prevMessageTypes.length = 0;
     });
 
-    this.debugprocess.stderr.on('data', (data: Buffer) => {
+    this.debugprocess.stderr.on('data', (data        ) => {
       const type = this.findMessageType(data);
       if (type === messageTypes.unknown) {
         this.prevMessageTypes.length = 0;
@@ -118,7 +118,7 @@ export default class Runner extends EventEmitter {
       this.prevMessageTypes.length = 0;
     });
 
-    this.debugprocess.on('error', (error: Error) => {
+    this.debugprocess.on('error', (error       ) => {
       this.emit('terminalError', 'Process failed: ' + error.message);
       this.prevMessageTypes.length = 0;
     });
@@ -129,7 +129,7 @@ export default class Runner extends EventEmitter {
     });
   }
 
-  runJestWithUpdateForSnapshots(completion: any, args: string[]) {
+  runJestWithUpdateForSnapshots(completion     , args          ) {
     const defaultArgs = ['--updateSnapshot'];
 
     const options = {shell: this.options.shell};
@@ -156,7 +156,7 @@ export default class Runner extends EventEmitter {
     delete this.debugprocess;
   }
 
-  findMessageType(buf: Buffer) {
+  findMessageType(buf        ) {
     const str = buf.toString('utf8', 0, 58);
     if (str === 'No tests found related to files changed since last commit.') {
       return messageTypes.noTests;

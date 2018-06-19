@@ -1,4 +1,4 @@
-// @flow
+//      
 /**
  * Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
  *
@@ -12,45 +12,45 @@ import {NO_DIFF_MESSAGE} from './constants.js';
 
 const DIFF_CONTEXT_DEFAULT = 5;
 
-export type DiffOptions = {|
-  aAnnotation?: string,
-  bAnnotation?: string,
-  expand?: boolean,
-  contextLines?: number,
-|};
+                            
+                       
+                       
+                   
+                        
+   
 
-type Original = {|
-  a: string,
-  b: string,
-|};
+                  
+            
+            
+   
 
-type Diff = string | null;
+                          
 
-type Hunk = {|
-  lines: Array<string>,
-  newLines: number,
-  newStart: number,
-  oldLines: number,
-  oldStart: number,
-|};
+              
+                       
+                   
+                   
+                   
+                   
+   
 
-type DIFF_DIGIT = -1 | 1 | 0; // removed | added | equal
+                              // removed | added | equal
 
 // Given diff digit, return array which consists of:
 // if compared line is removed or added: corresponding original line
 // if compared line is equal: original received and expected lines
-type GetOriginal = (digit: DIFF_DIGIT) => Array<string>;
+                                                        
 
 // Given chunk, return diff character.
-const getDiffChar = (chunk): string =>
+const getDiffChar = (chunk)         =>
   chunk.removed ? '-' : chunk.added ? '+' : ' ';
 
 // Given diff character in line of hunk or computed from properties of chunk.
-const getDiffDigit = (char: string): DIFF_DIGIT =>
+const getDiffDigit = (char        )             =>
   char === '-' ? -1 : char === '+' ? 1 : 0;
 
 // Color for text of line.
-const getColor = (digit: DIFF_DIGIT, onlyIndentationChanged?: boolean) => {
+const getColor = (digit            , onlyIndentationChanged          ) => {
   if (digit === -1) {
     return chalk.green; // removed
   }
@@ -63,18 +63,18 @@ const getColor = (digit: DIFF_DIGIT, onlyIndentationChanged?: boolean) => {
 // Do NOT color leading or trailing spaces if original lines are equal:
 
 // Background color for leading or trailing spaces.
-const getBgColor = (digit: DIFF_DIGIT, onlyIndentationChanged?: boolean) =>
+const getBgColor = (digit            , onlyIndentationChanged          ) =>
   digit === 0 && !onlyIndentationChanged ? chalk.bgYellow : chalk.inverse;
 
 // ONLY trailing if expected value is snapshot or multiline string.
-const highlightTrailingSpaces = (line: string, bgColor: Function): string =>
+const highlightTrailingSpaces = (line        , bgColor          )         =>
   line.replace(/\s+$/, bgColor('$&'));
 
 // BOTH leading AND trailing if expected value is data structure.
 const highlightLeadingTrailingSpaces = (
-  line: string,
-  bgColor: Function,
-): string =>
+  line        ,
+  bgColor          ,
+)         =>
   // If line consists of ALL spaces: highlight all of them.
   highlightTrailingSpaces(line, bgColor).replace(
     // If line has an ODD length of leading spaces: highlight only the LAST.
@@ -82,7 +82,7 @@ const highlightLeadingTrailingSpaces = (
     '$1' + bgColor('$2'),
   );
 
-const getAnnotation = (options: ?DiffOptions): string =>
+const getAnnotation = (options              )         =>
   chalk.green('- ' + ((options && options.aAnnotation) || 'Expected')) +
   '\n' +
   chalk.red('+ ' + ((options && options.bAnnotation) || 'Received')) +
@@ -101,9 +101,9 @@ const splitIntoLines = string => {
 
 // Given diff character and compared line, return original line with colors.
 const formatLine = (
-  char: string,
-  lineCompared: string,
-  getOriginal?: GetOriginal,
+  char        ,
+  lineCompared        ,
+  getOriginal              ,
 ) => {
   const digit = getDiffDigit(char);
 
@@ -134,14 +134,14 @@ const formatLine = (
 
 // Given original lines, return callback function
 // which given diff digit, returns array.
-const getterForChunks = (original: Original) => {
+const getterForChunks = (original          ) => {
   const linesExpected = splitIntoLines(original.a);
   const linesReceived = splitIntoLines(original.b);
 
   let iExpected = 0;
   let iReceived = 0;
 
-  return (digit: DIFF_DIGIT) => {
+  return (digit            ) => {
     if (digit === -1) {
       return [linesExpected[iExpected++]];
     }
@@ -154,7 +154,7 @@ const getterForChunks = (original: Original) => {
 };
 
 // jest --expand
-const formatChunks = (a: string, b: string, original?: Original): Diff => {
+const formatChunks = (a        , b        , original           )       => {
   const chunks = diffLines(a, b);
   if (chunks.every(chunk => !chunk.removed && !chunk.added)) {
     return null;
@@ -179,10 +179,10 @@ const formatChunks = (a: string, b: string, original?: Original): Diff => {
 // `hunk.oldLines` or a new string to `hunk.newLines`.
 // If the `oldLinesCount` is greater than `hunk.oldLines`
 // we can be sure that at least 1 line has been "hidden".
-const shouldShowPatchMarks = (hunk: Hunk, oldLinesCount: number): boolean =>
+const shouldShowPatchMarks = (hunk      , oldLinesCount        )          =>
   oldLinesCount > hunk.oldLines;
 
-const createPatchMark = (hunk: Hunk): string => {
+const createPatchMark = (hunk      )         => {
   const markOld = `-${hunk.oldStart},${hunk.oldLines}`;
   const markNew = `+${hunk.newStart},${hunk.newLines}`;
   return chalk.yellow(`@@ ${markOld} ${markNew} @@`);
@@ -190,11 +190,11 @@ const createPatchMark = (hunk: Hunk): string => {
 
 // Given original lines, return callback function which given indexes for hunk,
 // returns another callback function which given diff digit, returns array.
-const getterForHunks = (original: Original) => {
+const getterForHunks = (original          ) => {
   const linesExpected = splitIntoLines(original.a);
   const linesReceived = splitIntoLines(original.b);
 
-  return (iExpected: number, iReceived: number) => (digit: DIFF_DIGIT) => {
+  return (iExpected        , iReceived        ) => (digit            ) => {
     if (digit === -1) {
       return [linesExpected[iExpected++]];
     }
@@ -208,11 +208,11 @@ const getterForHunks = (original: Original) => {
 
 // jest --no-expand
 const formatHunks = (
-  a: string,
-  b: string,
-  contextLines?: number,
-  original?: Original,
-): Diff => {
+  a        ,
+  b        ,
+  contextLines         ,
+  original           ,
+)       => {
   const options = {
     context:
       typeof contextLines === 'number' && contextLines >= 0
@@ -228,7 +228,7 @@ const formatHunks = (
   const getter = original && getterForHunks(original);
   const oldLinesCount = (a.match(/\n/g) || []).length;
   return hunks
-    .reduce((lines, hunk: Hunk) => {
+    .reduce((lines, hunk      ) => {
       if (shouldShowPatchMarks(hunk, oldLinesCount)) {
         lines.push(createPatchMark(hunk));
       }
@@ -246,11 +246,11 @@ const formatHunks = (
 };
 
 export default function diffStrings(
-  a: string,
-  b: string,
-  options: ?DiffOptions,
-  original?: Original,
-): string {
+  a        ,
+  b        ,
+  options              ,
+  original           ,
+)         {
   // Because `formatHunks` and `formatChunks` ignore one trailing newline,
   // always append newline to strings:
   a += '\n';

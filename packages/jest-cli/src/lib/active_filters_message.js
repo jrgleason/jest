@@ -4,14 +4,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
-import type {GlobalConfig} from 'types/Config';
+                                               
 import chalk from 'chalk';
 
 const activeFilters = (
-  globalConfig: GlobalConfig,
-  delimiter: string = '\n',
+  globalConfig              ,
+  delimiter         = '\n',
 ) => {
   const {testNamePattern, testPathPattern} = globalConfig;
   if (testNamePattern || testPathPattern) {

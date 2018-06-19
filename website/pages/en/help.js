@@ -19,7 +19,7 @@ class Help extends React.Component {
       {
         content: (
           <translate>
-            Find what you're looking for in our detailed documentation and
+            Find what you&apos;re looking for in our detailed documentation and
             guides.\n\n- Learn how to [get
             started](/jest/docs/en/getting-started.html) with Jest.\n-
             [Troubleshoot](/jest/docs/en/troubleshooting.html) problems with
@@ -48,7 +48,7 @@ class Help extends React.Component {
       {
         content: (
           <translate>
-            Find out what's new with Jest.\n\n- Follow
+            Find out what&apos;s new with Jest.\n\n- Follow
             [Jest](https://twitter.com/fbjest) on Twitter.\n- Subscribe to the
             [Jest blog](/jest/blog/).\n- Look at the
             [changelog](https://github.com/facebook/jest/blob/master/CHANGELOG.md).
@@ -69,7 +69,7 @@ class Help extends React.Component {
             </header>
             <p>
               <translate>
-                Jest is worked on full-time by Facebook's JavaScript Foundation
+                Jest is worked on full-time by Facebook&apos;s JavaScript Foundation
                 team. Team members are often around and available for questions.
               </translate>
             </p>

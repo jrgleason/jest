@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 /**
@@ -16,7 +16,7 @@ export default class ProjectWorkspace {
    *
    * @type {string}
    */
-  rootPath: string;
+                   
 
   /**
    * The path to Jest, this is normally a file path like
@@ -29,14 +29,14 @@ export default class ProjectWorkspace {
    *
    * @type {string}
    */
-  pathToJest: string;
+                     
 
   /**
    * Path to a local Jest config file.
    *
    * @type {string}
    */
-  pathToConfig: string;
+                       
 
   /**
    * local Jest major release version, as the runner could run against
@@ -44,21 +44,21 @@ export default class ProjectWorkspace {
    *
    * @type {number}
    */
-  localJestMajorVersion: number;
+                                
 
   /**
    * Whether test coverage should be (automatically) collected.
    *
    * @type {boolean}
    */
-  collectCoverage: ?boolean;
+                            
 
   constructor(
-    rootPath: string,
-    pathToJest: string,
-    pathToConfig: string,
-    localJestMajorVersion: number,
-    collectCoverage: ?boolean,
+    rootPath        ,
+    pathToJest        ,
+    pathToConfig        ,
+    localJestMajorVersion        ,
+    collectCoverage          ,
   ) {
     this.rootPath = rootPath;
     this.pathToJest = pathToJest;

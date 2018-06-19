@@ -4,25 +4,25 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Path, ProjectConfig, GlobalConfig} from 'types/Config';
-import type {AggregatedResult} from 'types/TestResult';
+                                                                    
+                                                       
 
 import path from 'path';
 import chalk from 'chalk';
 import slash from 'slash';
 
-type SummaryOptions = {|
-  estimatedTime?: number,
-  roundTime?: boolean,
-  width?: number,
-|};
+                        
+                         
+                      
+                 
+   
 
 const PROGRESS_BAR_WIDTH = 40;
 
-export const printDisplayName = (config: ProjectConfig) => {
+export const printDisplayName = (config               ) => {
   const {displayName} = config;
 
   if (displayName) {
@@ -35,11 +35,11 @@ export const printDisplayName = (config: ProjectConfig) => {
 };
 
 export const trimAndFormatPath = (
-  pad: number,
-  config: ProjectConfig | GlobalConfig,
-  testPath: Path,
-  columns: number,
-): string => {
+  pad        ,
+  config                              ,
+  testPath      ,
+  columns        ,
+)         => {
   const maxLength = columns - pad;
   const relative = relativePath(config, testPath);
   const {basename} = relative;
@@ -72,16 +72,16 @@ export const trimAndFormatPath = (
 };
 
 export const formatTestPath = (
-  config: GlobalConfig | ProjectConfig,
-  testPath: Path,
+  config                              ,
+  testPath      ,
 ) => {
   const {dirname, basename} = relativePath(config, testPath);
   return slash(chalk.dim(dirname + path.sep) + chalk.bold(basename));
 };
 
 export const relativePath = (
-  config: GlobalConfig | ProjectConfig,
-  testPath: Path,
+  config                              ,
+  testPath      ,
 ) => {
   // this function can be called with ProjectConfigs or GlobalConfigs. GlobalConfigs
   // do not have config.cwd, only config.rootDir. Try using config.cwd, fallback
@@ -92,12 +92,12 @@ export const relativePath = (
   return {basename, dirname};
 };
 
-export const pluralize = (word: string, count: number) =>
+export const pluralize = (word        , count        ) =>
   `${count} ${word}${count === 1 ? '' : 's'}`;
 
 export const getSummary = (
-  aggregatedResults: AggregatedResult,
-  options?: SummaryOptions,
+  aggregatedResults                  ,
+  options                 ,
 ) => {
   let runTime = (Date.now() - aggregatedResults.startTime) / 1000;
   if (options && options.roundTime) {
@@ -211,7 +211,7 @@ const renderTime = (runTime, estimatedTime, width) => {
 
 // word-wrap a string that contains ANSI escape sequences.
 // ANSI escape sequences do not add to the string length.
-export const wrapAnsiString = (string: string, terminalWidth: number) => {
+export const wrapAnsiString = (string        , terminalWidth        ) => {
   if (terminalWidth === 0) {
     // if the terminal width is zero, don't bother word-wrapping
     return string;

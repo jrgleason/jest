@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import chalk from 'chalk';
@@ -56,7 +56,7 @@ export const SUGGEST_TO_CONTAIN_EQUAL = chalk.dim(
   'Looks like you wanted to test for object/array equality with the stricter `toContain` matcher. You probably need to use `toContainEqual` instead.',
 );
 
-export const stringify = (object: any, maxDepth?: number = 10): string => {
+export const stringify = (object     , maxDepth          = 10)         => {
   const MAX_LENGTH = 10000;
   let result;
 
@@ -80,18 +80,18 @@ export const stringify = (object: any, maxDepth?: number = 10): string => {
     : result;
 };
 
-export const highlightTrailingWhitespace = (text: string): string =>
+export const highlightTrailingWhitespace = (text        )         =>
   text.replace(/\s+$/gm, chalk.inverse('$&'));
 
-export const printReceived = (object: any) =>
+export const printReceived = (object     ) =>
   RECEIVED_COLOR(highlightTrailingWhitespace(stringify(object)));
-export const printExpected = (value: any) =>
+export const printExpected = (value     ) =>
   EXPECTED_COLOR(highlightTrailingWhitespace(stringify(value)));
 
 export const printWithType = (
-  name: string,
-  received: any,
-  print: (value: any) => string,
+  name        ,
+  received     ,
+  print                        ,
 ) => {
   const type = getType(received);
   return (
@@ -102,7 +102,7 @@ export const printWithType = (
   );
 };
 
-export const ensureNoExpected = (expected: any, matcherName: string) => {
+export const ensureNoExpected = (expected     , matcherName        ) => {
   matcherName || (matcherName = 'This');
   if (typeof expected !== 'undefined') {
     throw new Error(
@@ -114,7 +114,7 @@ export const ensureNoExpected = (expected: any, matcherName: string) => {
   }
 };
 
-export const ensureActualIsNumber = (actual: any, matcherName: string) => {
+export const ensureActualIsNumber = (actual     , matcherName        ) => {
   matcherName || (matcherName = 'This matcher');
   if (typeof actual !== 'number') {
     throw new Error(
@@ -126,7 +126,7 @@ export const ensureActualIsNumber = (actual: any, matcherName: string) => {
   }
 };
 
-export const ensureExpectedIsNumber = (expected: any, matcherName: string) => {
+export const ensureExpectedIsNumber = (expected     , matcherName        ) => {
   matcherName || (matcherName = 'This matcher');
   if (typeof expected !== 'number') {
     throw new Error(
@@ -139,27 +139,27 @@ export const ensureExpectedIsNumber = (expected: any, matcherName: string) => {
 };
 
 export const ensureNumbers = (
-  actual: any,
-  expected: any,
-  matcherName: string,
+  actual     ,
+  expected     ,
+  matcherName        ,
 ) => {
   ensureActualIsNumber(actual, matcherName);
   ensureExpectedIsNumber(expected, matcherName);
 };
 
-export const pluralize = (word: string, count: number) =>
+export const pluralize = (word        , count        ) =>
   (NUMBERS[count] || count) + ' ' + word + (count === 1 ? '' : 's');
 
 export const matcherHint = (
-  matcherName: string,
-  received: string = 'received',
-  expected: string = 'expected',
-  options: {
-    comment?: string,
-    isDirectExpectCall?: boolean,
-    isNot?: boolean,
-    secondArgument?: ?string,
-  } = {},
+  matcherName        ,
+  received         = 'received',
+  expected         = 'expected',
+  options   
+                     
+                                 
+                    
+                             
+    = {},
 ) => {
   const {comment, isDirectExpectCall, isNot, secondArgument} = options;
   return (

@@ -41,7 +41,6 @@ const JS_FILES_PATTERN = '**/*.js';
 const IGNORE_PATTERN = '**/__{tests,mocks}__/**';
 const PACKAGES_DIR = path.resolve(__dirname, '../packages');
 
-const INLINE_REQUIRE_BLACKLIST = /packages\/expect|(jest-(circus|diff|get-type|jasmine2|matcher-utils|message-util|regex-util|snapshot))|pretty-format\//;
 
 const transformOptions = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '..', '.babelrc'), 'utf8')

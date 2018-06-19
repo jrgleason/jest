@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {SnapshotSummary} from 'types/TestResult';
-import type {GlobalConfig} from 'types/Config';
+                                                      
+                                               
 
 import chalk from 'chalk';
 import {formatTestPath, pluralize} from './utils';
@@ -25,10 +25,10 @@ const SNAPSHOT_SUMMARY = chalk.bold;
 const SNAPSHOT_UPDATED = chalk.bold.green;
 
 export default (
-  snapshots: SnapshotSummary,
-  globalConfig: GlobalConfig,
-  updateCommand: string,
-): Array<string> => {
+  snapshots                 ,
+  globalConfig              ,
+  updateCommand        ,
+)                => {
   const summary = [];
   summary.push(SNAPSHOT_SUMMARY('Snapshot Summary'));
   if (snapshots.added) {

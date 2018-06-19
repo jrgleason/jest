@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import mkdirp from 'mkdirp';
@@ -24,7 +24,7 @@ import setGlobal from './set_global';
 import deepCyclicCopy from './deep_cyclic_copy';
 import convertDescriptorToString from './convert_descriptor_to_string';
 
-const createDirectory = (path: string) => {
+const createDirectory = (path        ) => {
   try {
     mkdirp.sync(path, '777');
   } catch (e) {

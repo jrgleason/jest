@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
@@ -12,7 +12,7 @@
 import fs from 'fs';
 import v8 from 'v8';
 
-import type {Path} from 'types/Config';
+                                       
 
 // JSON and V8 serializers are both stable when it comes to compatibility. The
 // current JSON specification is well defined in RFC 8259, and V8 ensures that
@@ -23,7 +23,7 @@ const JS_TYPE = '__$t__';
 const JS_VALUE = '__$v__';
 const JS_VF = '__$f__';
 
-function replacer(key: string, value: any): any {
+function replacer(key        , value     )      {
   // NaN cannot be in a switch statement, because NaN !== NaN.
   if (Number.isNaN(value)) {
     return {[JS_TYPE]: 'n'};
@@ -60,7 +60,7 @@ function replacer(key: string, value: any): any {
   return value;
 }
 
-function reviver(key: string, value: any): any {
+function reviver(key        , value     )      {
   if (!value || (typeof value !== 'object' && !value.hasOwnProperty(JS_TYPE))) {
     return value;
   }
@@ -131,14 +131,14 @@ function jsonParse(content) {
 
 // In memory functions.
 
-export function deserialize(buffer: Buffer): any {
+export function deserialize(buffer        )      {
   // $FlowFixMe - Node 8+ only
   return v8.deserialize
     ? v8.deserialize(buffer)
     : jsonParse(buffer.toString('utf8'));
 }
 
-export function serialize(content: any): Buffer {
+export function serialize(content     )         {
   // $FlowFixMe - Node 8+ only
   return v8.serialize
     ? v8.serialize(content)
@@ -147,14 +147,14 @@ export function serialize(content: any): Buffer {
 
 // Synchronous filesystem functions.
 
-export function readFileSync(filePath: Path): any {
+export function readFileSync(filePath      )      {
   // $FlowFixMe - Node 8+ only
   return v8.deserialize
     ? v8.deserialize(fs.readFileSync(filePath))
     : jsonParse(fs.readFileSync(filePath, 'utf8'));
 }
 
-export function writeFileSync(filePath: Path, content: any) {
+export function writeFileSync(filePath      , content     ) {
   // $FlowFixMe - Node 8+ only
   return v8.serialize
     ? fs.writeFileSync(filePath, v8.serialize(content))

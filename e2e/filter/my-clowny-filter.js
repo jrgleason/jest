@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(tests) {
+module.exports = function() {
   return {
     filtered: 'potato',
   };

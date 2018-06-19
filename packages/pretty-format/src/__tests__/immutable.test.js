@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
@@ -872,7 +872,7 @@ describe('Immutable.Seq', () => {
   });
 
   it('supports a non-empty sequence from arguments', () => {
-    function returnArguments(...args) {
+    function returnArguments() {
       return arguments;
     }
     expect(Immutable.Seq(returnArguments(0, 1, 2))).toPrettyPrintTo(

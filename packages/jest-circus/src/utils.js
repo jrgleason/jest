@@ -4,24 +4,24 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow strict-local
+ *       strict-local
  */
 
-import type {
-  AsyncFn,
-  BlockMode,
-  BlockName,
-  DescribeBlock,
-  Exception,
-  Hook,
-  RunResult,
-  TestEntry,
-  TestContext,
-  TestFn,
-  TestMode,
-  TestName,
-  TestResults,
-} from 'types/Circus';
+             
+          
+            
+            
+                
+            
+       
+            
+            
+              
+         
+           
+           
+              
+                      
 import {convertDescriptorToString} from 'jest-util';
 import isGeneratorFn from 'is-generator-fn';
 import co from 'co';
@@ -41,10 +41,10 @@ export const getOriginalPromise = () => Promise;
 const stackUtils = new StackUtils({cwd: 'A path that does not exist'});
 
 export const makeDescribe = (
-  name: BlockName,
-  parent: ?DescribeBlock,
-  mode?: BlockMode,
-): DescribeBlock => {
+  name           ,
+  parent                ,
+  mode            ,
+)                => {
   let _mode = mode;
   if (parent && !mode) {
     // If not set explicitly, inherit from the parent describe.
@@ -62,13 +62,13 @@ export const makeDescribe = (
 };
 
 export const makeTest = (
-  fn: ?TestFn,
-  mode: TestMode,
-  name: TestName,
-  parent: DescribeBlock,
-  timeout: ?number,
-  asyncError: Exception,
-): TestEntry => {
+  fn         ,
+  mode          ,
+  name          ,
+  parent               ,
+  timeout         ,
+  asyncError           ,
+)            => {
   let _mode = mode;
   if (!mode) {
     // if not set explicitly, inherit from its parent describe
@@ -89,7 +89,7 @@ export const makeTest = (
   };
 };
 
-const hasEnabledTest = (describeBlock: DescribeBlock): boolean => {
+const hasEnabledTest = (describeBlock               )          => {
   const {hasFocusedTests, testNamePattern} = getState();
   return describeBlock.tests.some(
     test =>
@@ -102,8 +102,8 @@ const hasEnabledTest = (describeBlock: DescribeBlock): boolean => {
 };
 
 export const getAllHooksForDescribe = (
-  describe: DescribeBlock,
-): {[key: 'beforeAll' | 'afterAll']: Array<Hook>} => {
+  describe               ,
+)                                                 => {
   const result = {afterAll: [], beforeAll: []};
 
   if (hasEnabledTest(describe)) {
@@ -123,8 +123,8 @@ export const getAllHooksForDescribe = (
 };
 
 export const getEachHooksForTest = (
-  test: TestEntry,
-): {[key: 'beforeEach' | 'afterEach']: Array<Hook>} => {
+  test           ,
+)                                                   => {
   const result = {afterEach: [], beforeEach: []};
   let {parent: block} = test;
 
@@ -145,7 +145,7 @@ export const getEachHooksForTest = (
   return result;
 };
 
-export const describeBlockHasTests = (describe: DescribeBlock) => {
+export const describeBlockHasTests = (describe               ) => {
   return describe.tests.length || describe.children.some(describeBlockHasTests);
 };
 
@@ -159,10 +159,10 @@ const _makeTimeoutMessage = (timeout, isHook) =>
 const {setTimeout, clearTimeout} = global;
 
 export const callAsyncFn = (
-  fn: AsyncFn,
-  testContext: ?TestContext,
-  {isHook, timeout}: {isHook?: ?boolean, timeout: number},
-): Promise<mixed> => {
+  fn         ,
+  testContext              ,
+  {isHook, timeout}                                      ,
+)                 => {
   let timeoutID;
 
   return new Promise((resolve, reject) => {
@@ -174,7 +174,7 @@ export const callAsyncFn = (
     // If this fn accepts `done` callback we return a promise that fulfills as
     // soon as `done` called.
     if (fn.length) {
-      const done = (reason?: Error | string): void => {
+      const done = (reason                 )       => {
         // $FlowFixMe: It doesn't approve of .stack
         const isError = reason && reason.message && reason.stack;
         return reason
@@ -238,22 +238,22 @@ export const callAsyncFn = (
     });
 };
 
-export const getTestDuration = (test: TestEntry): ?number => {
+export const getTestDuration = (test           )          => {
   const {startedAt} = test;
   return startedAt ? Date.now() - startedAt : null;
 };
 
 export const makeRunResult = (
-  describeBlock: DescribeBlock,
-  unhandledErrors: Array<Error>,
-): RunResult => {
+  describeBlock               ,
+  unhandledErrors              ,
+)            => {
   return {
     testResults: makeTestResults(describeBlock),
     unhandledErrors: unhandledErrors.map(_formatError),
   };
 };
 
-const makeTestResults = (describeBlock: DescribeBlock, config): TestResults => {
+const makeTestResults = (describeBlock               , config)              => {
   const {includeTestLocationInResult} = getState();
   let testResults = [];
   for (const test of describeBlock.tests) {
@@ -294,7 +294,7 @@ const makeTestResults = (describeBlock: DescribeBlock, config): TestResults => {
 
 // Return a string that identifies the test (concat of parent describe block
 // names + test title)
-export const getTestID = (test: TestEntry) => {
+export const getTestID = (test           ) => {
   const titles = [];
   let parent = test;
   do {
@@ -305,7 +305,7 @@ export const getTestID = (test: TestEntry) => {
   return titles.join(' ');
 };
 
-const _formatError = (errors: ?Exception | [?Exception, Exception]): string => {
+const _formatError = (errors                                      )         => {
   let error;
   let asyncError;
 
@@ -332,9 +332,9 @@ const _formatError = (errors: ?Exception | [?Exception, Exception]): string => {
 };
 
 export const addErrorToEachTestUnderDescribe = (
-  describeBlock: DescribeBlock,
-  error: Exception,
-  asyncError: Exception,
+  describeBlock               ,
+  error           ,
+  asyncError           ,
 ) => {
   for (const test of describeBlock.tests) {
     test.errors.push([error, asyncError]);
@@ -345,7 +345,7 @@ export const addErrorToEachTestUnderDescribe = (
   }
 };
 
-export const invariant = (condition: *, message: string) => {
+export const invariant = (condition   , message        ) => {
   if (!condition) {
     throw new Error(message);
   }

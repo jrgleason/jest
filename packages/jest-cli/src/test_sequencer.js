@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {AggregatedResult} from 'types/TestResult';
-import type {Context} from 'types/Context';
-import type {Test} from 'types/TestRunner';
+                                                       
+                                           
+                                           
 
 import fs from 'fs';
 // $FlowFixMe: Missing ESM export
@@ -18,23 +18,23 @@ import {getCacheFilePath} from 'jest-haste-map';
 const FAIL = 0;
 const SUCCESS = 1;
 
-type Cache = {
-  [key: string]: [0 | 1, number],
-};
+              
+                                 
+  
 
 export default class TestSequencer {
-  _cache: Map<Context, Cache>;
+                              
 
   constructor() {
     this._cache = new Map();
   }
 
-  _getCachePath(context: Context) {
+  _getCachePath(context         ) {
     const {config} = context;
     return getCacheFilePath(config.cacheDirectory, 'perf-cache-' + config.name);
   }
 
-  _getCache(test: Test) {
+  _getCache(test      ) {
     const {context} = test;
     if (!this._cache.has(context) && context.config.cache) {
       const cachePath = this._getCachePath(context);
@@ -65,7 +65,7 @@ export default class TestSequencer {
   // After a test run we store the time it took to run a test and on
   // subsequent runs we use that to run the slowest tests first, yielding the
   // fastest results.
-  sort(tests: Array<Test>): Array<Test> {
+  sort(tests             )              {
     const stats = {};
     const fileSize = test =>
       stats[test.path] || (stats[test.path] = fs.statSync(test.path).size);
@@ -93,7 +93,7 @@ export default class TestSequencer {
     });
   }
 
-  cacheResults(tests: Array<Test>, results: AggregatedResult) {
+  cacheResults(tests             , results                  ) {
     const map = Object.create(null);
     tests.forEach(test => (map[test.path] = test));
     results.testResults.forEach(testResult => {

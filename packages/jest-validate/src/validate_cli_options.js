@@ -4,24 +4,24 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Argv} from 'types/Argv';
+                                     
 
 import chalk from 'chalk';
 import {createDidYouMeanMessage, format, ValidationError} from './utils';
 import {deprecationWarning} from './deprecated';
 import defaultConfig from './default_config';
 
-const BULLET: string = chalk.bold('\u25cf');
+const BULLET         = chalk.bold('\u25cf');
 export const DOCUMENTATION_NOTE = `  ${chalk.bold('CLI Options Documentation:')}
   https://facebook.github.io/jest/docs/en/cli.html
 `;
 
 const createCLIValidationError = (
-  unrecognizedOptions: Array<string>,
-  allowedOptions: Set<string>,
+  unrecognizedOptions               ,
+  allowedOptions             ,
 ) => {
   let title = `${BULLET} Unrecognized CLI Parameter`;
   let message;
@@ -49,9 +49,9 @@ const createCLIValidationError = (
 };
 
 const logDeprecatedOptions = (
-  deprecatedOptions: Array<string>,
-  deprecationEntries: Object,
-  argv: Argv,
+  deprecatedOptions               ,
+  deprecationEntries        ,
+  argv      ,
 ) => {
   deprecatedOptions.forEach(opt => {
     deprecationWarning(
@@ -65,7 +65,7 @@ const logDeprecatedOptions = (
   });
 };
 
-export default function validateCLIOptions(argv: Argv, options: Object) {
+export default function validateCLIOptions(argv      , options        ) {
   const yargsSpecialOptions = ['$0', '_', 'help', 'h'];
   const deprecationEntries = options.deprecationEntries || {};
   const allowedOptions = Object.keys(options).reduce(

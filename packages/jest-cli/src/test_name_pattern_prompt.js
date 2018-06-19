@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {TestResult} from 'types/TestResult';
-import type {ScrollOptions} from 'types/Watch';
+                                                 
+                                               
 
 import {
   PatternPrompt,
@@ -18,26 +18,26 @@ import {
 } from 'jest-watcher';
 
 export default class TestNamePatternPrompt extends PatternPrompt {
-  _cachedTestResults: Array<TestResult>;
+                                        
 
-  constructor(pipe: stream$Writable | tty$WriteStream, prompt: Prompt) {
+  constructor(pipe                                   , prompt        ) {
     super(pipe, prompt);
     this._entityName = 'tests';
     this._cachedTestResults = [];
   }
 
-  _onChange(pattern: string, options: ScrollOptions) {
+  _onChange(pattern        , options               ) {
     super._onChange(pattern, options);
     this._printPrompt(pattern, options);
   }
 
-  _printPrompt(pattern: string, options: ScrollOptions) {
+  _printPrompt(pattern        , options               ) {
     const pipe = this._pipe;
     printPatternCaret(pattern, pipe);
     printRestoredPatternCaret(pattern, this._currentUsageRows, pipe);
   }
 
-  _getMatchedTests(pattern: string) {
+  _getMatchedTests(pattern        ) {
     let regex;
 
     try {
@@ -59,7 +59,7 @@ export default class TestNamePatternPrompt extends PatternPrompt {
     return matchedTests;
   }
 
-  updateCachedTestResults(testResults: Array<TestResult> = []) {
+  updateCachedTestResults(testResults                    = []) {
     this._cachedTestResults = testResults;
   }
 }

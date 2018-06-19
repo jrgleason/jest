@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {ProjectConfig} from 'types/Config';
-import type {Global} from 'types/Global';
-import type {ModuleMocker} from 'types/Mock';
+                                                
+                                         
+                                             
 
 import {formatStackTrace} from 'jest-message-util';
 import setGlobal from './set_global';
@@ -20,66 +20,66 @@ import setGlobal from './set_global';
  */
 
 /* eslint-disable flowtype/no-weak-types */
-type Callback = (...args: any) => void;
+                                       
 /* eslint-enable flowtype/no-weak-types */
 
-type TimerID = string;
+                      
 
-type Tick = {|
-  uuid: string,
-  callback: Callback,
-|};
+              
+               
+                     
+   
 
-type Timer = {|
-  type: string,
-  callback: Callback,
-  expiry: number,
-  interval: ?number,
-|};
+               
+               
+                     
+                 
+                    
+   
 
-type TimerAPI = {
-  clearImmediate(timeoutId?: number): void,
-  clearInterval(intervalId?: number): void,
-  clearTimeout(timeoutId?: number): void,
-  nextTick: (callback: Callback) => void,
+                 
+                                           
+                                           
+                                         
+                                         
 
-  /**
-   * The additional arguments in the following methods are passed to the
-   * callback and thus we don't know their types ahead of time as they can be
-   * anything, which  is why we are disabling the flowtype/no-weak-types rule
-   * here.
-   */
+     
+                                                                        
+                                                                             
+                                                                             
+          
+     
 
-  /* eslint-disable flowtype/no-weak-types */
-  setImmediate(callback: Callback, ms?: number, ...args: Array<any>): number,
-  setInterval(callback: Callback, ms?: number, ...args: Array<any>): number,
-  setTimeout(callback: Callback, ms?: number, ...args: Array<any>): number,
-  /* eslint-enable flowtype/no-weak-types */
-};
+                                             
+                                                                             
+                                                                            
+                                                                           
+                                            
+  
 
-type TimerConfig<Ref> = {|
-  idToRef: (id: number) => Ref,
-  refToId: (ref: Ref) => ?number,
-|};
+                          
+                               
+                                 
+   
 
 const MS_IN_A_YEAR = 31536000000;
 
-export default class FakeTimers<TimerRef> {
-  _cancelledImmediates: {[key: TimerID]: boolean};
-  _cancelledTicks: {[key: TimerID]: boolean};
-  _config: ProjectConfig;
-  _disposed: boolean;
-  _fakeTimerAPIs: TimerAPI;
-  _global: Global;
-  _immediates: Array<Tick>;
-  _maxLoops: number;
-  _moduleMocker: ModuleMocker;
-  _now: number;
-  _ticks: Array<Tick>;
-  _timerAPIs: TimerAPI;
-  _timers: {[key: TimerID]: Timer};
-  _uuidCounter: number;
-  _timerConfig: TimerConfig<TimerRef>;
+export default class FakeTimers           {
+                                                  
+                                             
+                         
+                     
+                           
+                  
+                           
+                    
+                              
+               
+                      
+                       
+                                   
+                       
+                                      
 
   constructor({
     global,
@@ -87,13 +87,13 @@ export default class FakeTimers<TimerRef> {
     timerConfig,
     config,
     maxLoops,
-  }: {
-    global: Global,
-    moduleMocker: ModuleMocker,
-    timerConfig: TimerConfig<TimerRef>,
-    config: ProjectConfig,
-    maxLoops?: number,
-  }) {
+  }   
+                   
+                               
+                                       
+                          
+                      
+   ) {
     this._global = global;
     this._timerConfig = timerConfig;
     this._config = config;
@@ -200,7 +200,7 @@ export default class FakeTimers<TimerRef> {
     }
   }
 
-  _runImmediate(immediate: Tick) {
+  _runImmediate(immediate      ) {
     if (!this._cancelledImmediates.hasOwnProperty(immediate.uuid)) {
       // Callback may throw, so update the map prior calling.
       this._cancelledImmediates[immediate.uuid] = true;
@@ -257,7 +257,7 @@ export default class FakeTimers<TimerRef> {
       .forEach(this._runTimerHandle, this);
   }
 
-  advanceTimersByTime(msToRun: number) {
+  advanceTimersByTime(msToRun        ) {
     this._checkFakeTimers();
     // Only run a generous number of timers and then bail.
     // This is just to help avoid recursive loops
@@ -293,7 +293,7 @@ export default class FakeTimers<TimerRef> {
     }
   }
 
-  runWithRealTimers(cb: Callback) {
+  runWithRealTimers(cb          ) {
     const prevClearImmediate = this._global.clearImmediate;
     const prevClearInterval = this._global.clearInterval;
     const prevClearTimeout = this._global.clearTimeout;
@@ -384,7 +384,7 @@ export default class FakeTimers<TimerRef> {
     };
   }
 
-  _fakeClearTimer(timerRef: TimerRef) {
+  _fakeClearTimer(timerRef          ) {
     const uuid = this._timerConfig.refToId(timerRef);
 
     if (uuid && this._timers.hasOwnProperty(uuid)) {
@@ -392,11 +392,11 @@ export default class FakeTimers<TimerRef> {
     }
   }
 
-  _fakeClearImmediate(uuid: TimerID) {
+  _fakeClearImmediate(uuid         ) {
     this._cancelledImmediates[uuid] = true;
   }
 
-  _fakeNextTick(callback: Callback) {
+  _fakeNextTick(callback          ) {
     if (this._disposed) {
       return;
     }
@@ -423,7 +423,7 @@ export default class FakeTimers<TimerRef> {
     });
   }
 
-  _fakeSetImmediate(callback: Callback) {
+  _fakeSetImmediate(callback          ) {
     if (this._disposed) {
       return null;
     }
@@ -452,7 +452,7 @@ export default class FakeTimers<TimerRef> {
     return uuid;
   }
 
-  _fakeSetInterval(callback: Callback, intervalDelay?: number) {
+  _fakeSetInterval(callback          , intervalDelay         ) {
     if (this._disposed) {
       return null;
     }
@@ -478,7 +478,7 @@ export default class FakeTimers<TimerRef> {
     return this._timerConfig.idToRef(uuid);
   }
 
-  _fakeSetTimeout(callback: Callback, delay?: number) {
+  _fakeSetTimeout(callback          , delay         ) {
     if (this._disposed) {
       return null;
     }
@@ -519,7 +519,7 @@ export default class FakeTimers<TimerRef> {
     return nextTimerHandle;
   }
 
-  _runTimerHandle(timerHandle: TimerID) {
+  _runTimerHandle(timerHandle         ) {
     const timer = this._timers[timerHandle];
 
     if (!timer) {

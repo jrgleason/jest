@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {TestResult} from 'types/TestResult';
+                                                 
 
 const chalk = require('chalk');
 
@@ -21,9 +21,9 @@ const SNAPSHOT_UPDATED = chalk.bold.green;
 const SNAPSHOT_OUTDATED = chalk.bold.yellow;
 
 export default (
-  snapshot: $PropertyType<TestResult, 'snapshot'>,
-  afterUpdate: boolean,
-): Array<string> => {
+  snapshot                                       ,
+  afterUpdate         ,
+)                => {
   const statuses = [];
 
   if (snapshot.added) {

@@ -4,35 +4,35 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Path} from 'types/Config';
-import type {
-  DuplicatesSet,
-  HTypeValue,
-  ModuleMetaData,
-  RawModuleMap,
-} from 'types/HasteMap';
+                                       
+             
+                
+             
+                 
+               
+                        
 
 import H from './constants';
 
 const EMPTY_MAP = {};
 
 export default class ModuleMap {
-  _raw: RawModuleMap;
-  static DuplicateHasteCandidatesError: Class<DuplicateHasteCandidatesError>;
+                     
+                                                                             
 
-  constructor(raw: RawModuleMap) {
+  constructor(raw              ) {
     this._raw = raw;
   }
 
   getModule(
-    name: string,
-    platform: ?string,
-    supportsNativePlatform: ?boolean,
-    type: ?HTypeValue,
-  ): ?Path {
+    name        ,
+    platform         ,
+    supportsNativePlatform          ,
+    type             ,
+  )        {
     if (!type) {
       type = H.MODULE;
     }
@@ -48,18 +48,17 @@ export default class ModuleMap {
   }
 
   getPackage(
-    name: string,
-    platform: ?string,
-    supportsNativePlatform: ?boolean,
-  ): ?Path {
+    name        ,
+    platform         ,
+  )        {
     return this.getModule(name, platform, null, H.PACKAGE);
   }
 
-  getMockModule(name: string): ?Path {
+  getMockModule(name        )        {
     return this._raw.mocks[name] || this._raw.mocks[name + '/index'];
   }
 
-  getRawModuleMap(): RawModuleMap {
+  getRawModuleMap()               {
     return {
       duplicates: this._raw.duplicates,
       map: this._raw.map,
@@ -76,10 +75,10 @@ export default class ModuleMap {
    * `map`, this would be a bug.
    */
   _getModuleMetadata(
-    name: string,
-    platform: ?string,
-    supportsNativePlatform: boolean,
-  ): ?ModuleMetaData {
+    name        ,
+    platform         ,
+    supportsNativePlatform         ,
+  )                  {
     const map = this._raw.map[name] || EMPTY_MAP;
     const dupMap = this._raw.duplicates[name] || EMPTY_MAP;
     if (platform != null) {
@@ -117,10 +116,10 @@ export default class ModuleMap {
   }
 
   _assertNoDuplicates(
-    name: string,
-    platform: string,
-    supportsNativePlatform: boolean,
-    set: ?DuplicatesSet,
+    name        ,
+    platform        ,
+    supportsNativePlatform         ,
+    set                ,
   ) {
     if (set == null) {
       return;
@@ -135,16 +134,16 @@ export default class ModuleMap {
 }
 
 class DuplicateHasteCandidatesError extends Error {
-  hasteName: string;
-  platform: ?string;
-  supportsNativePlatform: boolean;
-  duplicatesSet: DuplicatesSet;
+                    
+                    
+                                  
+                               
 
   constructor(
-    name: string,
-    platform: string,
-    supportsNativePlatform: boolean,
-    duplicatesSet: DuplicatesSet,
+    name        ,
+    platform        ,
+    supportsNativePlatform         ,
+    duplicatesSet               ,
   ) {
     const platformMessage = getPlatformMessage(platform);
     super(
@@ -168,14 +167,14 @@ class DuplicateHasteCandidatesError extends Error {
   }
 }
 
-function getPlatformMessage(platform: string) {
+function getPlatformMessage(platform        ) {
   if (platform === H.GENERIC_PLATFORM) {
     return 'The platform is generic (no extension).';
   }
   return `The platform extension is \`${platform}\`.`;
 }
 
-function getTypeMessage(type: number) {
+function getTypeMessage(type        ) {
   switch (type) {
     case H.MODULE:
       return 'module';

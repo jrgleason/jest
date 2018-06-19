@@ -4,15 +4,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Argv} from 'types/Argv';
+                                     
 
 import {isJSONString} from 'jest-config';
 import isCI from 'is-ci';
 
-export const check = (argv: Argv) => {
+export const check = (argv      ) => {
   if (argv.runInBand && argv.hasOwnProperty('maxWorkers')) {
     throw new Error(
       'Both --runInBand and --maxWorkers were specified, but these two ' +

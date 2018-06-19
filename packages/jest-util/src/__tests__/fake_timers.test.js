@@ -20,8 +20,8 @@ describe('FakeTimers', () => {
     moduleMocker = new mock.ModuleMocker(global);
 
     timerConfig = {
-      idToRef: (id: number) => id,
-      refToId: (ref: number) => ref,
+      idToRefi: (id) => id,
+      refToId: (ref) => ref,
     };
   });
 

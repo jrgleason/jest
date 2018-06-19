@@ -4,34 +4,34 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-type Options = {
-  nodeComplete: (suite: TreeNode) => void,
-  nodeStart: (suite: TreeNode) => void,
-  queueRunnerFactory: any,
-  runnableIds: Array<string>,
-  tree: TreeNode,
-};
+                
+                                          
+                                       
+                          
+                             
+                 
+  
 
-type TreeNode = {
-  afterAllFns: Array<any>,
-  beforeAllFns: Array<any>,
-  disabled?: boolean,
-  execute: (onComplete: () => void, enabled: boolean) => void,
-  id: string,
-  onException: (error: Error) => void,
-  sharedUserContext: () => any,
-  children?: Array<TreeNode>,
-};
+                 
+                          
+                           
+                     
+                                                              
+             
+                                      
+                               
+                             
+  
 
 // Try getting the real promise object from the context, if available. Someone
 // could have overridden it in a test. Async functions return it implicitly.
 // eslint-disable-next-line no-unused-vars
 const Promise = global[Symbol.for('jest-native-promise')] || global.Promise;
 
-export default function treeProcessor(options: Options) {
+export default function treeProcessor(options         ) {
   const {
     nodeComplete,
     nodeStart,
@@ -44,21 +44,21 @@ export default function treeProcessor(options: Options) {
     return parentEnabled || runnableIds.indexOf(node.id) !== -1;
   }
 
-  function getNodeHandler(node: TreeNode, parentEnabled: boolean) {
+  function getNodeHandler(node          , parentEnabled         ) {
     const enabled = isEnabled(node, parentEnabled);
     return node.children
       ? getNodeWithChildrenHandler(node, enabled)
       : getNodeWithoutChildrenHandler(node, enabled);
   }
 
-  function getNodeWithoutChildrenHandler(node: TreeNode, enabled: boolean) {
-    return function fn(done: (error?: any) => void = () => {}) {
+  function getNodeWithoutChildrenHandler(node          , enabled         ) {
+    return function fn(done                        = () => {}) {
       node.execute(done, enabled);
     };
   }
 
-  function getNodeWithChildrenHandler(node: TreeNode, enabled: boolean) {
-    return async function fn(done: (error?: any) => void = () => {}) {
+  function getNodeWithChildrenHandler(node          , enabled         ) {
+    return async function fn(done                        = () => {}) {
       nodeStart(node);
       await queueRunnerFactory({
         onException: error => node.onException(error),
@@ -70,7 +70,7 @@ export default function treeProcessor(options: Options) {
     };
   }
 
-  function hasEnabledTest(node: TreeNode) {
+  function hasEnabledTest(node          ) {
     if (node.children) {
       if (node.children.some(hasEnabledTest)) {
         return true;
@@ -81,7 +81,7 @@ export default function treeProcessor(options: Options) {
     return false;
   }
 
-  function wrapChildren(node: TreeNode, enabled: boolean) {
+  function wrapChildren(node          , enabled         ) {
     if (!node.children) {
       throw new Error('`node.children` is not defined.');
     }

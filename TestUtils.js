@@ -9,9 +9,7 @@
 
 'use strict';
 
-import type {GlobalConfig, ProjectConfig} from 'types/Config';
-
-const DEFAULT_GLOBAL_CONFIG: GlobalConfig = {
+const DEFAULT_GLOBAL_CONFIG = {
   bail: false,
   changedFilesWithAncestor: false,
   changedSince: '',
@@ -65,7 +63,7 @@ const DEFAULT_GLOBAL_CONFIG: GlobalConfig = {
   watchman: false,
 };
 
-const DEFAULT_PROJECT_CONFIG: ProjectConfig = {
+const DEFAULT_PROJECT_CONFIG = {
   automock: false,
   browser: false,
   cache: false,
@@ -117,7 +115,7 @@ const DEFAULT_PROJECT_CONFIG: ProjectConfig = {
   watchPathIgnorePatterns: [],
 };
 
-const makeGlobalConfig = (overrides: Object = {}): GlobalConfig => {
+const makeGlobalConfig = (overrides) => {
   const overridesKeys = new Set(Object.keys(overrides));
   Object.keys(DEFAULT_GLOBAL_CONFIG).forEach(key => overridesKeys.delete(key));
 
@@ -131,7 +129,7 @@ const makeGlobalConfig = (overrides: Object = {}): GlobalConfig => {
   return Object.assign({}, DEFAULT_GLOBAL_CONFIG, overrides);
 };
 
-const makeProjectConfig = (overrides: Object = {}): ProjectConfig => {
+const makeProjectConfig = (overrides) => {
   const overridesKeys = new Set(Object.keys(overrides));
   Object.keys(DEFAULT_PROJECT_CONFIG).forEach(key => overridesKeys.delete(key));
 

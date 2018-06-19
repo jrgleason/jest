@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import {ChildProcess, spawn} from 'child_process';
 import ProjectWorkspace from './project_workspace';
-import type {SpawnOptions} from './types';
+                                          
 
 /**
  * Spawns and returns a Jest process with specific args
@@ -18,10 +18,10 @@ import type {SpawnOptions} from './types';
  * @returns {ChildProcess}
  */
 export const createProcess = (
-  workspace: ProjectWorkspace,
-  args: Array<string>,
-  options?: SpawnOptions = {},
-): ChildProcess => {
+  workspace                  ,
+  args               ,
+  options                = {},
+)               => {
   // A command could look like `npm run test`, which we cannot use as a command
   // as they can only be the first command, so take out the command, and add
   // any other bits into the args

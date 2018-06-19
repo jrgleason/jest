@@ -4,14 +4,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 'use strict';
 
-import type {ScrollOptions} from 'types/Watch';
+                                               
 
-export default function scroll(size: number, {offset, max}: ScrollOptions) {
+export default function scroll(size        , {offset, max}               ) {
   let start = 0;
   let index = Math.min(offset, size);
 

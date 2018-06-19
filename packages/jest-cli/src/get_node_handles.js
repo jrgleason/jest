@@ -4,17 +4,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {ProjectConfig} from 'types/Config';
+                                                
 
 import {formatExecError} from 'jest-message-util';
 
 // Inspired by https://github.com/mafintosh/why-is-node-running/blob/master/index.js
 // Extracted as we want to format the result ourselves
-export default function collectHandles(): () => Array<Error> {
-  const activeHandles: Map<string, Error> = new Map();
+export default function collectHandles()                     {
+  const activeHandles                     = new Map();
 
   function initHook(asyncId, type) {
     const error = new Error(type);
@@ -62,9 +62,9 @@ export default function collectHandles(): () => Array<Error> {
 }
 
 export function formatHandleErrors(
-  errors: Array<Error>,
-  config: ProjectConfig,
-): Array<string> {
+  errors              ,
+  config               ,
+)                {
   return errors.map(err =>
     formatExecError(err, config, {noStackTrace: false}, undefined, true),
   );

@@ -28,7 +28,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/* @flow */
+/*       */
 /* eslint-disable sort-keys */
 
 import {AssertionError} from 'assert';
@@ -39,7 +39,7 @@ import expectationResultFactory from '../expectation_result_factory';
 
 import assertionErrorMessage from '../assert_support';
 
-export default function Spec(attrs: Object) {
+export default function Spec(attrs        ) {
   this.resultCallback = attrs.resultCallback || function() {};
   this.id = attrs.id;
   this.description = attrs.description || '';

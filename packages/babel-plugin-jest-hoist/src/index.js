@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 function invariant(condition, message) {
@@ -79,7 +79,7 @@ const IDVisitor = {
   blacklist: ['TypeAnnotation'],
 };
 
-const FUNCTIONS: Object = Object.create(null);
+const FUNCTIONS         = Object.create(null);
 FUNCTIONS.mock = args => {
   if (args.length === 1) {
     return args[0].isStringLiteral() || args[0].isLiteral();
@@ -161,7 +161,7 @@ module.exports = () => {
   };
   return {
     visitor: {
-      ExpressionStatement(path: any) {
+      ExpressionStatement(path     ) {
         if (shouldHoistExpression(path.get('expression'))) {
           path.node._blockHoist = Infinity;
         }

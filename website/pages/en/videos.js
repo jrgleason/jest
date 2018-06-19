@@ -29,6 +29,10 @@ class Video extends React.PureComponent {
     }
   }
 }
+// Video.propTypes = {
+//     url: PropTypes.string.isRequired, 
+//     type: PropTypes.string.isRequired, 
+// }
 
 class Videos extends React.Component {
   render() {

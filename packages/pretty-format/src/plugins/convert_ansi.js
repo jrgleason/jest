@@ -4,16 +4,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Config, Printer, NewPlugin, Refs} from 'types/PrettyFormat';
+                                                                         
 
 import ansiRegex from 'ansi-regex';
 import style from 'ansi-styles';
 
 const toHumanReadableAnsi = text => {
-  return text.replace(ansiRegex(), (match, offset, string) => {
+  return text.replace(ansiRegex(), (match) => {
     switch (match) {
       case style.red.close:
       case style.green.close:
@@ -60,16 +60,16 @@ const toHumanReadableAnsi = text => {
   });
 };
 
-export const test = (val: any) =>
+export const test = (val     ) =>
   typeof val === 'string' && val.match(ansiRegex());
 
 export const serialize = (
-  val: string,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
+  val        ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
 ) => printer(toHumanReadableAnsi(val), config, indentation, depth, refs);
 
-export default ({serialize, test}: NewPlugin);
+export default ({serialize, test}           );

@@ -4,26 +4,26 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow strict-local
+ *       strict-local
  */
 // $FlowFixMe
 import { DiffOptions } from 'jest-diff/src/diff_strings';
-import type {Event, State} from 'types/Circus';
+                                               
 
 import {printExpected, printReceived} from 'jest-matcher-utils';
 import chalk from 'chalk';
 import diff from 'jest-diff';
 import prettyFormat from 'pretty-format';
 
-type AssertionError = {|
-  actual: ?string,
-  expected: ?string,
-  generatedMessage: boolean,
-  message: string,
-  name: string,
-  operator: ?string,
-  stack: string,
-|};
+                        
+                  
+                    
+                            
+                  
+               
+                    
+                
+   
 
 const assertOperatorsMap = {
   '!=': 'notEqual',
@@ -43,7 +43,7 @@ const humanReadableOperators = {
   strictEqual: 'to strictly be equal',
 };
 
-export default (event: Event, state: State) => {
+export default (event       , state       ) => {
   switch (event.name) {
     case 'test_done': {
       event.test.errors = event.test.errors.map(errors => {
@@ -73,7 +73,7 @@ export default (event: Event, state: State) => {
   }
 };
 
-const getOperatorName = (operator: ?string, stack: string) => {
+const getOperatorName = (operator         , stack        ) => {
   if (typeof operator === 'string') {
     return assertOperatorsMap[operator] || operator;
   }
@@ -86,7 +86,7 @@ const getOperatorName = (operator: ?string, stack: string) => {
   return '';
 };
 
-const operatorMessage = (operator: ?string) => {
+const operatorMessage = (operator         ) => {
   const niceOperatorName = getOperatorName(operator, '');
   // $FlowFixMe: we default to the operator itself, so holes in the map doesn't matter
   const humanReadableOperator = humanReadableOperators[niceOperatorName];
@@ -96,7 +96,7 @@ const operatorMessage = (operator: ?string) => {
     : '';
 };
 
-const assertThrowingMatcherHint = (operatorName: string) => {
+const assertThrowingMatcherHint = (operatorName        ) => {
   return (
     chalk.dim('assert') +
     chalk.dim('.' + operatorName + '(') +
@@ -105,7 +105,7 @@ const assertThrowingMatcherHint = (operatorName: string) => {
   );
 };
 
-const assertMatcherHint = (operator: ?string, operatorName: string) => {
+const assertMatcherHint = (operator         , operatorName        ) => {
   let message =
     chalk.dim('assert') +
     chalk.dim('.' + operatorName + '(') +
@@ -126,7 +126,7 @@ const assertMatcherHint = (operator: ?string, operatorName: string) => {
   return message;
 };
 
-function assertionErrorMessage(error: AssertionError, options: DiffOptions) {
+function assertionErrorMessage(error                , options             ) {
   const {expected, actual, generatedMessage, message, operator, stack} = error;
   const diffString = diff(expected, actual, options);
   const hasCustomMessage = !generatedMessage;

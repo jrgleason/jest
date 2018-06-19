@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 'use strict';
 
@@ -61,8 +61,9 @@ const initialTestData = fs.readFileSync(snapshotEscapeTestFile, 'utf8');
 const fileExists = filePath => {
   try {
     return fs.statSync(filePath).isFile();
-  } catch (e) {}
-  return false;
+  } catch (e) {
+    return false;
+  }
 };
 const getSnapshotOfCopy = () => {
   const exports = Object.create(null);
@@ -134,7 +135,7 @@ describe('Snapshot', () => {
 
     // Write the second snapshot
     const testData =
-      `test('escape strings two', () => expect('two: \\\'\"').` +
+      `test('escape strings two', () => expect('two: \\'"').` +
       `toMatchSnapshot());`;
     const newTestData = initialTestData + testData;
     fs.writeFileSync(snapshotEscapeTestFile, newTestData, 'utf8');

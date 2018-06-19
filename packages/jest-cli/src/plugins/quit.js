@@ -4,17 +4,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 import {BaseWatchPlugin} from 'jest-watcher';
 
 class QuitPlugin extends BaseWatchPlugin {
-  isInternal: true;
+                   
 
-  constructor(options: {
-    stdin: stream$Readable | tty$ReadStream,
-    stdout: stream$Writable | tty$WriteStream,
-  }) {
+  constructor(options   
+                                            
+                                              
+   ) {
     super(options);
     this.isInternal = true;
   }

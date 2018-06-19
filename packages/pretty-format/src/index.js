@@ -4,20 +4,20 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {
-  Colors,
-  Config,
-  Options,
-  OptionsReceived,
-  Plugin,
-  Plugins,
-  Refs,
-  StringOrNull,
-  Theme,
-} from 'types/PrettyFormat';
+             
+         
+         
+          
+                  
+         
+          
+       
+               
+        
+                            
 
 import style from 'ansi-styles';
 
@@ -62,7 +62,7 @@ class PrettyFormatPluginError extends Error {
   }
 }
 
-function isToStringedArrayType(toStringed: string): boolean {
+function isToStringedArrayType(toStringed        )          {
   return (
     toStringed === '[object Array]' ||
     toStringed === '[object ArrayBuffer]' ||
@@ -79,30 +79,30 @@ function isToStringedArrayType(toStringed: string): boolean {
   );
 }
 
-function printNumber(val: number): string {
+function printNumber(val        )         {
   return Object.is(val, -0) ? '-0' : String(val);
 }
 
-function printFunction(val: Function, printFunctionName: boolean): string {
+function printFunction(val          , printFunctionName         )         {
   if (!printFunctionName) {
     return '[Function]';
   }
   return '[Function ' + (val.name || 'anonymous') + ']';
 }
 
-function printSymbol(val: Symbol): string {
+function printSymbol(val        )         {
   return symbolToString.call(val).replace(SYMBOL_REGEXP, 'Symbol($1)');
 }
 
-function printError(val: Error): string {
+function printError(val       )         {
   return '[' + errorToString.call(val) + ']';
 }
 
 function printBasicValue(
-  val: any,
-  printFunctionName: boolean,
-  escapeRegex: boolean,
-): StringOrNull {
+  val     ,
+  printFunctionName         ,
+  escapeRegex         ,
+)               {
   if (val === true || val === false) {
     return '' + val;
   }
@@ -167,13 +167,13 @@ function printBasicValue(
 }
 
 function printComplexValue(
-  val: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  hasCalledToJSON?: boolean,
-): string {
+  val     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  hasCalledToJSON          ,
+)         {
   if (refs.indexOf(val) !== -1) {
     return '[Circular]';
   }
@@ -251,13 +251,13 @@ function printComplexValue(
 }
 
 function printPlugin(
-  plugin: Plugin,
-  val: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-): string {
+  plugin        ,
+  val     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+)         {
   let printed;
 
   try {
@@ -291,7 +291,7 @@ function printPlugin(
   return printed;
 }
 
-function findPlugin(plugins: Plugins, val: any) {
+function findPlugin(plugins         , val     ) {
   for (let p = 0; p < plugins.length; p++) {
     try {
       if (plugins[p].test(val)) {
@@ -306,13 +306,13 @@ function findPlugin(plugins: Plugins, val: any) {
 }
 
 function printer(
-  val: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  hasCalledToJSON?: boolean,
-): string {
+  val     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  hasCalledToJSON          ,
+)         {
   const plugin = findPlugin(config.plugins, val);
   if (plugin !== null) {
     return printPlugin(plugin, val, config, indentation, depth, refs);
@@ -337,7 +337,7 @@ function printer(
   );
 }
 
-const DEFAULT_THEME: Theme = {
+const DEFAULT_THEME        = {
   comment: 'gray',
   content: 'reset',
   prop: 'yellow',
@@ -347,7 +347,7 @@ const DEFAULT_THEME: Theme = {
 
 const DEFAULT_THEME_KEYS = Object.keys(DEFAULT_THEME);
 
-const DEFAULT_OPTIONS: Options = {
+const DEFAULT_OPTIONS          = {
   callToJSON: true,
   escapeRegex: false,
   highlight: false,
@@ -359,7 +359,7 @@ const DEFAULT_OPTIONS: Options = {
   theme: DEFAULT_THEME,
 };
 
-function validateOptions(options: OptionsReceived) {
+function validateOptions(options                 ) {
   Object.keys(options).forEach(key => {
     if (!DEFAULT_OPTIONS.hasOwnProperty(key)) {
       throw new Error(`pretty-format: Unknown option "${key}".`);
@@ -385,7 +385,7 @@ function validateOptions(options: OptionsReceived) {
   }
 }
 
-const getColorsHighlight = (options: OptionsReceived): Colors =>
+const getColorsHighlight = (options                 )         =>
   // $FlowFixMe: Flow thinks keys from `Colors` are missing from `DEFAULT_THEME_KEYS`
   DEFAULT_THEME_KEYS.reduce((colors, key) => {
     const value =
@@ -407,24 +407,24 @@ const getColorsHighlight = (options: OptionsReceived): Colors =>
     return colors;
   }, Object.create(null));
 
-const getColorsEmpty = (): Colors =>
+const getColorsEmpty = ()         =>
   // $FlowFixMe: Flow thinks keys from `Colors` are missing from `DEFAULT_THEME_KEYS`
   DEFAULT_THEME_KEYS.reduce((colors, key) => {
     colors[key] = {close: '', open: ''};
     return colors;
   }, Object.create(null));
 
-const getPrintFunctionName = (options?: OptionsReceived) =>
+const getPrintFunctionName = (options                  ) =>
   options && options.printFunctionName !== undefined
     ? options.printFunctionName
     : DEFAULT_OPTIONS.printFunctionName;
 
-const getEscapeRegex = (options?: OptionsReceived) =>
+const getEscapeRegex = (options                  ) =>
   options && options.escapeRegex !== undefined
     ? options.escapeRegex
     : DEFAULT_OPTIONS.escapeRegex;
 
-const getConfig = (options?: OptionsReceived): Config => ({
+const getConfig = (options                  )         => ({
   callToJSON:
     options && options.callToJSON !== undefined
       ? options.callToJSON
@@ -456,11 +456,11 @@ const getConfig = (options?: OptionsReceived): Config => ({
   spacingOuter: options && options.min ? '' : '\n',
 });
 
-function createIndent(indent: number): string {
+function createIndent(indent        )         {
   return new Array(indent + 1).join(' ');
 }
 
-function prettyFormat(val: any, options?: OptionsReceived): string {
+function prettyFormat(val     , options                  )         {
   if (options) {
     validateOptions(options);
     if (options.plugins) {

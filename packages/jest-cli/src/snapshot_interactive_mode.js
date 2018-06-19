@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * @flow
+ *      
  */
 
-import type {AggregatedResult, AssertionLocation} from 'types/TestResult';
+                                                                          
 
 import chalk from 'chalk';
 import ansiEscapes from 'ansi-escapes';
@@ -18,17 +18,17 @@ import {pluralize} from './reporters/utils';
 import {ARROW} from './constants';
 
 export default class SnapshotInteractiveMode {
-  _pipe: stream$Writable | tty$WriteStream;
-  _isActive: boolean;
-  _updateTestRunnerConfig: (
-    assertion: ?AssertionLocation,
-    shouldUpdateSnapshot: boolean,
-  ) => *;
-  _testAssertions: Array<AssertionLocation>;
-  _countPaths: number;
-  _skippedNum: number;
+                                           
+                     
+                            
+                                  
+                                  
+         
+                                            
+                      
+                      
 
-  constructor(pipe: stream$Writable | tty$WriteStream) {
+  constructor(pipe                                   ) {
     this._pipe = pipe;
     this._isActive = false;
     this._skippedNum = 0;
@@ -158,7 +158,7 @@ export default class SnapshotInteractiveMode {
     return this._drawUIProgress();
   }
 
-  put(key: string) {
+  put(key        ) {
     switch (key) {
       case 's':
         if (this._skippedNum === this._testAssertions.length) break;
@@ -207,7 +207,7 @@ export default class SnapshotInteractiveMode {
     this._run(false);
   }
 
-  updateWithResults(results: AggregatedResult) {
+  updateWithResults(results                  ) {
     const hasSnapshotFailure = !!results.snapshot.failure;
     if (hasSnapshotFailure) {
       this._drawUIOverlay();
@@ -224,17 +224,17 @@ export default class SnapshotInteractiveMode {
     this._run(false);
   }
 
-  _run(shouldUpdateSnapshot: boolean) {
+  _run(shouldUpdateSnapshot         ) {
     const testAssertion = this._testAssertions[0];
     this._updateTestRunnerConfig(testAssertion, shouldUpdateSnapshot);
   }
 
   run(
-    failedSnapshotTestAssertions: Array<AssertionLocation>,
-    onConfigChange: (
-      assertion: ?AssertionLocation,
-      shouldUpdateSnapshot: boolean,
-    ) => *,
+    failedSnapshotTestAssertions                          ,
+    onConfigChange   
+                                    
+                                    
+          ,
   ) {
     if (!failedSnapshotTestAssertions.length) {
       return;

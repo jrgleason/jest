@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Path, ProjectConfig} from 'types/Config';
-import type {Options} from './script_transformer';
+                                                      
+                                                  
 
 import path from 'path';
 import {escapePathForRegex} from 'jest-regex-util';
@@ -19,10 +19,10 @@ const MOCKS_PATTERN = new RegExp(
 );
 
 export default function shouldInstrument(
-  filename: Path,
-  options: Options,
-  config: ProjectConfig,
-): boolean {
+  filename      ,
+  options         ,
+  config               ,
+)          {
   if (!options.collectCoverage) {
     return false;
   }

@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Path, SnapshotUpdateState} from 'types/Config';
+                                                            
 
 import fs from 'fs';
 import {
@@ -20,27 +20,27 @@ import {
   unescape,
 } from './utils';
 
-export type SnapshotStateOptions = {|
-  updateSnapshot: SnapshotUpdateState,
-  snapshotPath?: string,
-  expand?: boolean,
-|};
+                                     
+                                      
+                        
+                   
+   
 
 export default class SnapshotState {
-  _counters: Map<string, number>;
-  _dirty: boolean;
-  _index: number;
-  _updateSnapshot: SnapshotUpdateState;
-  _snapshotData: {[key: string]: string};
-  _snapshotPath: Path;
-  _uncheckedKeys: Set<string>;
-  added: number;
-  expand: boolean;
-  matched: number;
-  unmatched: number;
-  updated: number;
+                                 
+                  
+                 
+                                       
+                                         
+                      
+                              
+                
+                  
+                  
+                    
+                  
 
-  constructor(testPath: Path, options: SnapshotStateOptions) {
+  constructor(testPath      , options                      ) {
     this._snapshotPath = options.snapshotPath || getSnapshotPath(testPath);
     const {data, dirty} = getSnapshotData(
       this._snapshotPath,
@@ -59,7 +59,7 @@ export default class SnapshotState {
     this.updated = 0;
   }
 
-  markSnapshotsAsCheckedForTest(testName: string) {
+  markSnapshotsAsCheckedForTest(testName        ) {
     this._uncheckedKeys.forEach(uncheckedKey => {
       if (keyToTestName(uncheckedKey) === testName) {
         this._uncheckedKeys.delete(uncheckedKey);
@@ -67,7 +67,7 @@ export default class SnapshotState {
     });
   }
 
-  _addSnapshot(key: string, receivedSerialized: string) {
+  _addSnapshot(key        , receivedSerialized        ) {
     this._dirty = true;
     this._snapshotData[key] = receivedSerialized;
   }
@@ -92,15 +92,15 @@ export default class SnapshotState {
     return status;
   }
 
-  getUncheckedCount(): number {
+  getUncheckedCount()         {
     return this._uncheckedKeys.size || 0;
   }
 
-  getUncheckedKeys(): Array<string> {
+  getUncheckedKeys()                {
     return Array.from(this._uncheckedKeys);
   }
 
-  removeUncheckedKeys(): void {
+  removeUncheckedKeys()       {
     if (this._updateSnapshot === 'all' && this._uncheckedKeys.size) {
       this._dirty = true;
       this._uncheckedKeys.forEach(key => delete this._snapshotData[key]);
@@ -108,7 +108,7 @@ export default class SnapshotState {
     }
   }
 
-  match(testName: string, received: any, key?: string) {
+  match(testName        , received     , key         ) {
     this._counters.set(testName, (this._counters.get(testName) || 0) + 1);
     const count = Number(this._counters.get(testName));
 
@@ -191,7 +191,7 @@ export default class SnapshotState {
     }
   }
 
-  fail(testName: string, received: any, key?: string) {
+  fail(testName        , received     , key         ) {
     this._counters.set(testName, (this._counters.get(testName) || 0) + 1);
     const count = Number(this._counters.get(testName));
 

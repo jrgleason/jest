@@ -4,32 +4,32 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {GlobalConfig} from 'types/Config';
-import type {AggregatedResult} from 'types/TestResult';
-import type {Context} from 'types/Context';
+                                               
+                                                       
+                                           
 
 import exit from 'exit';
 import path from 'path';
 import util from 'util';
 import notifier from 'node-notifier';
 import BaseReporter from './base_reporter';
-import type {TestSchedulerContext} from '../test_scheduler';
+                                                            
 
 const isDarwin = process.platform === 'darwin';
 
 const icon = path.resolve(__dirname, '../assets/jest_logo.png');
 
 export default class NotifyReporter extends BaseReporter {
-  _startRun: (globalConfig: GlobalConfig) => *;
-  _globalConfig: GlobalConfig;
-  _context: TestSchedulerContext;
+                                               
+                              
+                                 
   constructor(
-    globalConfig: GlobalConfig,
-    startRun: (globalConfig: GlobalConfig) => *,
-    context: TestSchedulerContext,
+    globalConfig              ,
+    startRun                                   ,
+    context                      ,
   ) {
     super();
     this._globalConfig = globalConfig;
@@ -37,7 +37,7 @@ export default class NotifyReporter extends BaseReporter {
     this._context = context;
   }
 
-  onRunComplete(contexts: Set<Context>, result: AggregatedResult): void {
+  onRunComplete(contexts              , result                  )       {
     const success =
       result.numFailedTests === 0 && result.numRuntimeErrorTestSuites === 0;
 

@@ -4,10 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Config, NewPlugin, Printer, Refs} from 'types/PrettyFormat';
+                                                                         
 
 import {printListItems, printObjectProperties} from '../collections';
 
@@ -15,13 +15,13 @@ const asymmetricMatcher = Symbol.for('jest.asymmetricMatcher');
 const SPACE = ' ';
 
 export const serialize = (
-  val: any,
-  config: Config,
-  indentation: string,
-  depth: number,
-  refs: Refs,
-  printer: Printer,
-): string => {
+  val     ,
+  config        ,
+  indentation        ,
+  depth        ,
+  refs      ,
+  printer         ,
+)         => {
   const stringedValue = val.toString();
 
   if (
@@ -88,6 +88,6 @@ export const serialize = (
   return val.toAsymmetricMatcher();
 };
 
-export const test = (val: any) => val && val.$$typeof === asymmetricMatcher;
+export const test = (val     ) => val && val.$$typeof === asymmetricMatcher;
 
-export default ({serialize, test}: NewPlugin);
+export default ({serialize, test}           );

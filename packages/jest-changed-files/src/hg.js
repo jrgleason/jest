@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
-import type {Path} from 'types/Config';
-import type {Options, SCMAdapter} from 'types/ChangedFiles';
+                                       
+                                                            
 
 import path from 'path';
 import childProcess from 'child_process';
@@ -28,11 +28,11 @@ const ANCESTORS = [
   'max(public())',
 ];
 
-const adapter: SCMAdapter = {
+const adapter             = {
   findChangedFiles: async (
-    cwd: string,
-    options: Options,
-  ): Promise<Array<Path>> => {
+    cwd        ,
+    options         ,
+  )                       => {
     return new Promise((resolve, reject) => {
       let args = ['status', '-amnu'];
       if (options && options.withAncestor) {
@@ -47,7 +47,7 @@ const adapter: SCMAdapter = {
       let stderr = '';
       child.stdout.on('data', data => (stdout += data));
       child.stderr.on('data', data => (stderr += data));
-      child.on('error', (error: Error) => reject(error));
+      child.on('error', (error       ) => reject(error));
       child.on('close', code => {
         if (code === 0) {
           stdout = stdout.trim();
@@ -67,7 +67,7 @@ const adapter: SCMAdapter = {
     });
   },
 
-  getRoot: async (cwd: Path): Promise<?Path> => {
+  getRoot: async (cwd      )                 => {
     return new Promise(resolve => {
       try {
         let stdout = '';

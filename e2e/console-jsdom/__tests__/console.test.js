@@ -28,7 +28,7 @@ test('can mock console.error calls from jsdom', () => {
     throw new Error('this is an error in an event callback');
   }
 
-  function onError(event) {}
+  function onError() {}
 
   window.addEventListener('error', onError);
   fakeNode.addEventListener(evtType, callCallback, false);

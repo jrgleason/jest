@@ -4,13 +4,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *      
  */
 
 import chalk from 'chalk';
 import prettyFormat from 'pretty-format';
 
-const format = (value: mixed) => prettyFormat(value, {min: true});
+const format = (value       ) => prettyFormat(value, {min: true});
 
 export default {
   mapCoverage: () => `  Option ${chalk.bold(
@@ -19,9 +19,9 @@ export default {
 
   Please update your configuration.`,
 
-  preprocessorIgnorePatterns: (options: {
-    preprocessorIgnorePatterns: Array<string>,
-  }) => `  Option ${chalk.bold(
+  preprocessorIgnorePatterns: (options   
+                                              
+   ) => `  Option ${chalk.bold(
     '"preprocessorIgnorePatterns"',
   )} was replaced by ${chalk.bold(
     '"transformIgnorePatterns"',
@@ -36,9 +36,9 @@ export default {
 
   Please update your configuration.`,
 
-  scriptPreprocessor: (options: {
-    scriptPreprocessor: string,
-  }) => `  Option ${chalk.bold(
+  scriptPreprocessor: (options   
+                               
+   ) => `  Option ${chalk.bold(
     '"scriptPreprocessor"',
   )} was replaced by ${chalk.bold(
     '"transform"',
@@ -53,9 +53,9 @@ export default {
 
   Please update your configuration.`,
 
-  testPathDirs: (options: {
-    testPathDirs: Array<string>,
-  }) => `  Option ${chalk.bold('"testPathDirs"')} was replaced by ${chalk.bold(
+  testPathDirs: (options   
+                                
+   ) => `  Option ${chalk.bold('"testPathDirs"')} was replaced by ${chalk.bold(
     '"roots"',
   )}.
 
