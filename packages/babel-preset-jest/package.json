@@ -8,7 +8,7 @@
   "license": "MIT",
   "main": "index.js",
   "dependencies": {
-    "babel-plugin-jest-hoist": "^23.0.1",
-    "babel-plugin-syntax-object-rest-spread": "^6.13.0"
+    "@babel/plugin-syntax-object-rest-spread": "^7.0.0-beta.51",
+    "babel-plugin-jest-hoist": "^23.0.1"
   }
 }

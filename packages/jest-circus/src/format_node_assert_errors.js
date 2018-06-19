@@ -6,8 +6,8 @@
  *
  * @flow strict-local
  */
-
-import type {DiffOptions} from 'jest-diff/src/diff_strings';
+// $FlowFixMe
+import { DiffOptions } from 'jest-diff/src/diff_strings';
 import type {Event, State} from 'types/Circus';
 
 import {printExpected, printReceived} from 'jest-matcher-utils';

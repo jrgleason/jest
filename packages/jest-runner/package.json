@@ -10,6 +10,7 @@
   "dependencies": {
     "exit": "^0.1.2",
     "graceful-fs": "^4.1.11",
+    "jest-circus": "^23.1.0",
     "jest-config": "^23.1.0",
     "jest-docblock": "^23.0.1",
     "jest-haste-map": "^23.1.0",

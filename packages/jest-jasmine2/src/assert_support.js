@@ -6,7 +6,7 @@
  *
  * @flow
  */
-
+// $FlowFixMe
 import type {DiffOptions} from 'jest-diff/src/diff_strings';
 
 import {printReceived, printExpected} from 'jest-matcher-utils';

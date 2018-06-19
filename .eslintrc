@@ -1,0 +1,77 @@
+{
+    "extends": [
+        'eslint:recommended',
+        'import',
+        'prettier',
+        'prettier/flowtype',
+        'plugin:react/recommended'
+    ],
+    "env": {
+        "jest": true,
+        "node": true,
+        "amd": true,
+        es6: true,
+    },
+	'parserOptions': {
+	    'sourceType': 'module',
+	    'ecmaVersion': 2017,
+	    'ecmaFeatures': {
+            'jsx': true
+        },
+    },
+    'plugins': [
+        'markdown',
+        'react',
+        'flowtype',
+    ],
+    'rules': {
+        'import/order': 0,
+        'no-console': 0,
+        'import/no-duplicates': 2,
+        'flowtype/boolean-style': 2,
+        'flowtype/no-primitive-constructor-types': 2,
+        'flowtype/require-valid-file-annotation': 2,
+    },
+    overrides: [
+        {
+            files: [
+                'e2e/__tests__/**/*',
+                'packages/babel-jest/**/*.test.js',
+                'packages/babel-plugin-jest-hoist/**/*.test.js',
+                'packages/babel-preset-jest/**/*.test.js',
+                'packages/eslint-config-fb-strict/**/*.test.js',
+                'packages/eslint-plugin-jest/**/*.test.js',
+                'packages/jest-changed-files/**/*.test.js',
+                'packages/jest-circus/**/*.test.js',
+                'packages/jest-diff/**/*.test.js',
+                'packages/jest-docblock/**/*.test.js',
+                'packages/jest-editor-support/**/*.test.js',
+                'packages/jest/**/*.test.js',
+                'packages/pretty-format/**/*.test.js',
+            ],
+            rules: {
+                'import/no-unresolved': "off",
+                'flowtype/require-valid-file-annotation': [2, 'always'],
+            },
+        },
+        {
+            'files': ['*.md'],
+            'rules': {
+                'import/no-unresolved': 0,
+                'no-undef': 0,
+                'no-unused-vars': 0,
+                'react/react-in-jsx-scope': 0,
+                'react/prop-types': 0,
+                'react/jsx-no-undef': 0,
+            },
+        },
+        {
+            files: [
+                'e2e/__tests__/**/*',
+            ],
+            rules: {
+                'import/no-unresolved': "off",
+            },
+        },
+    ],
+}

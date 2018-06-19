@@ -17,6 +17,7 @@ import type {
   TestResult,
 } from 'types/TestResult';
 import type Runtime from 'jest-runtime';
+// $FlowFixMe
 import type {TestWatcher as _TestWatcher} from 'jest-cli';
 
 export type Test = {|

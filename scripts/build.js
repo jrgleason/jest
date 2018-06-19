@@ -146,7 +146,7 @@ function buildFile(file, silent) {
   } else {
     const options = Object.assign({}, transformOptions);
     options.plugins = options.plugins.slice();
-
+    console.log(destPath);
 //    if (!INLINE_REQUIRE_BLACKLIST.test(file)) {
 //      // Remove normal plugin.
 //      options.plugins = options.plugins.filter(
