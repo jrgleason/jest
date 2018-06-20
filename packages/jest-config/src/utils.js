@@ -121,7 +121,9 @@ export const getTestEnvironment = (config        ) => {
 
   try {
     return require.resolve(`jest-environment-${env}`);
-  } catch (e) {}
+  } catch (e) {
+    // TODO: WTF
+  }
 
   module = Resolver.findNodeModule(env, {basedir: config.rootDir});
   if (module) {
@@ -130,7 +132,9 @@ export const getTestEnvironment = (config        ) => {
 
   try {
     return require.resolve(env);
-  } catch (e) {}
+  } catch (e) {
+    // TODO: WTF
+  }
 
   throw createValidationError(
     `  Test environment ${chalk.bold(

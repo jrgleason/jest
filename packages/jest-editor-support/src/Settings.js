@@ -8,10 +8,8 @@
  */
 
                                                    
-
-import {ChildProcess} from 'child_process';
+import {spawn} from 'child_process';
 import EventEmitter from 'events';
-import ProjectWorkspace from './project_workspace';
 import {createProcess} from './Process';
 
 // This class represents the the configuration of Jest's process

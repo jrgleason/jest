@@ -21,13 +21,13 @@ it('fail with expected non promise values and not', async () => {
 });
 
 it('fail with expected promise values', async () => {
-  await (expect(Promise.resolve([1])): any).resolves.toHaveLengthAsync(
+  await (expect(Promise.resolve([1]))).resolves.toHaveLengthAsync(
     Promise.resolve(2)
   );
 });
 
 it('fail with expected promise values and not', async () => {
-  await (expect(Promise.resolve([1, 2])).resolves.not: any).toHaveLengthAsync(
+  await (expect(Promise.resolve([1, 2])).resolves.not).toHaveLengthAsync(
     Promise.resolve(2)
   );
 });

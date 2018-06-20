@@ -36,7 +36,7 @@ class UpdateSnapshotsPlugin extends BaseWatchPlugin {
     });
   }
 
-  getUsageInfo(globalConfig              ) {
+  getUsageInfo() {
     if (this._hasSnapshotFailure) {
       return {
         key: 'u',

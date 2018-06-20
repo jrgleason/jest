@@ -11,10 +11,10 @@
 
 const config = {
   comment: '  A comment',
-  condition: => true,
-  deprecate: => false,
+  condition: () => true,
+  deprecate: () => false,
   deprecatedConfig: {
-    key: => {},
+    key: () => {},
   },
   error: () => {},
   exampleConfig: {key: 'value', test: 'case'},
@@ -23,7 +23,7 @@ const config = {
     error: 'Validation Error',
     warning: 'Validation Warning',
   },
-  unknown: => {},
+  unknown: () => {},
 };
 
 export default config;

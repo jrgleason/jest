@@ -34,7 +34,7 @@ it('is available globally', () => {
 
 it('exposes matcherUtils in context', () => {
   jestExpect.extend({
-    _shouldNotError(actual, expected) {
+    _shouldNotError() {
       const pass = this.equals(
         this.utils,
         Object.assign(matcherUtils, {
@@ -55,7 +55,7 @@ it('exposes matcherUtils in context', () => {
 
 it('is ok if there is no message specified', () => {
   jestExpect.extend({
-    toFailWithoutMessage(expected) {
+    toFailWithoutMessage() {
       return {pass: false};
     },
   });

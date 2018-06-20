@@ -1,3 +1,3 @@
-export default function pluralize(word: string, count: number, ending: string) {
+export default function pluralize(word, count, ending) {
   return `${count} ${word}${count === 1 ? '' : ending}`;
 }

@@ -83,7 +83,7 @@ describe('onRunComplete', () => {
               branches: {covered: 0, pct: 0, skipped: 0, total: 0},
               functions: {covered: 0, pct: 0, skipped: 0, total: 0},
               lines: {covered: 0, pct: 0, skipped: 0, total: 0},
-              merge(other) {
+              merge() {
                 return covSummary;
               },
               statements: {covered: 0, pct: 50, skipped: 0, total: 0},

@@ -7,7 +7,7 @@
 
 const fixtures = __dirname;
 
-function parserTests(parse: (file: string) => BabylonParserResult) {
+function parserTests(parse) = {
   describe('File parsing without throwing', () => {
     it('Should not throw', () => {
       expect(() => {

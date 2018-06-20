@@ -17,7 +17,7 @@ export const filterInteractivePlugins = (
     p => p.getUsageInfo && p.getUsageInfo(globalConfig),
   );
 
-  return watchPlugins.filter((plugin, i, array) => {
+  return watchPlugins.filter((plugin, i) => {
     if (usageInfos[i]) {
       const {key} = usageInfos[i];
       return !usageInfos.slice(i + 1).some(u => u && key === u.key);

@@ -171,7 +171,6 @@ describe('Terse Messages', () => {
 
   beforeEach(() => {
     parser = new TestReconciler();
-    const _ = reconcilerWithFile(parser, 'failing_expects.json');
   });
 
   it('handles shrinking a snapshot message', () => {

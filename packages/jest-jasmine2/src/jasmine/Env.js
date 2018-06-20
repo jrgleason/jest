@@ -40,8 +40,8 @@ import checkIsError from '../is_error';
 const Promise = global[Symbol.for('jest-native-promise')] || global.Promise;
 
 export default function(j$) {
-  function Env(options) {
-    options = options || {};
+  function Env() {
+    options = options ? options : {};
 
     const self = this;
 
@@ -91,7 +91,7 @@ export default function(j$) {
       return 'suite' + nextSuiteId++;
     };
 
-    const defaultResourcesForRunnable = function(id, parentRunnableId) {
+    const defaultResourcesForRunnable = function(id) {
       const resources = {spies: []};
 
       runnableResources[id] = resources;

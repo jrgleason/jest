@@ -14,7 +14,6 @@
 
 import {
   PatternPrompt,
-  Prompt,
   printPatternCaret,
   printRestoredPatternCaret,
 } from 'jest-watcher';
@@ -32,7 +31,7 @@ export default class TestPathPatternPrompt extends PatternPrompt {
     this._entityName = 'filenames';
   }
 
-  _onChange(pattern        , options               ) {
+  _onChange(pattern) {
     super._onChange(pattern, options);
     this._printPrompt(pattern, options);
   }
@@ -48,11 +47,13 @@ export default class TestPathPatternPrompt extends PatternPrompt {
 
     try {
       regex = new RegExp(pattern, 'i');
-    } catch (e) {}
+    } catch (e) {
+        // TODO: WTF
+    }
 
     let tests = [];
     if (regex) {
-      this._searchSources.forEach(({searchSource, context}) => {
+      this._searchSources.forEach(({searchSource}) => {
         tests = tests.concat(searchSource.findMatchingTests(pattern).tests);
       });
     }

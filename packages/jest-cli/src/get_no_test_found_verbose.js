@@ -4,7 +4,7 @@ import pluralize from './pluralize';
 export default function getNoTestFoundVerbose(
   testRunData,
   globalConfig,
-): string {
+){
   const individualResults = testRunData.map(testRun => {
     const stats = testRun.matches.stats || {};
     const config = testRun.context.config;

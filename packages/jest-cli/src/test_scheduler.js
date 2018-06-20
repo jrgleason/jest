@@ -27,7 +27,6 @@ import ReporterDispatcher from './reporter_dispatcher';
 import snapshot from 'jest-snapshot';
 import SummaryReporter from './reporters/summary_reporter';
 import TestRunner from 'jest-runner';
-import TestWatcher from './test_watcher';
 import VerboseReporter from './reporters/verbose_reporter';
 
 const SLOW_TEST_TIME = 3000;
@@ -298,7 +297,7 @@ export default class TestScheduler {
       reporterConfig => reporterConfig[0] !== 'default',
     );
 
-    customReporters.forEach((reporter, index) => {
+    customReporters.forEach((reporter) => {
       const {options, path} = this._getReporterProps(reporter);
 
       try {

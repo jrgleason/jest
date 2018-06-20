@@ -79,7 +79,9 @@ const setupPreset = (
       if (presetModule) {
         delete require.cache[require.resolve(presetModule)];
       }
-    } catch (e) {}
+    } catch (e) {
+      // TODO: WTF
+    }
 
     // $FlowFixMe
     preset = (require(presetModule)                );
@@ -161,7 +163,9 @@ const normalizeCollectCoverageFrom = (options                , key        ) => {
   if (!Array.isArray(options[key])) {
     try {
       value = JSON.parse(options[key]);
-    } catch (e) {}
+    } catch (e) {
+        //TODO: WTF
+    }
 
     Array.isArray(value) || (value = [options[key]]);
   } else {
@@ -254,7 +258,7 @@ const normalizeRootDir = (options                )                 => {
   return options;
 };
 
-const normalizeReporters = (options                , basedir) => {
+const normalizeReporters = (options) => {
   const reporters = options.reporters;
   if (!reporters || !Array.isArray(reporters)) {
     return options;
@@ -428,11 +432,12 @@ export default function normalize(options                , argv      ) {
       case 'runner':
       case 'setupTestFrameworkScriptFile':
       case 'testResultsProcessor':
-      case 'testRunner':
+      case 'testRunner':{
         value =
           options[key] &&
           resolve(newOptions.resolver, options.rootDir, key, options[key]);
         break;
+      }
       case 'moduleNameMapper':
         const moduleNameMapper = options[key];
         value =

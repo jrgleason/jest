@@ -21,18 +21,15 @@ export default class BaseReporter {
     process.stderr.write(message + '\n');
   }
 
-  onRunStart(results                  , options                        ) {
+  onRunStart() {
     preRunMessageRemove(process.stderr);
   }
 
-  onTestResult(test      , testResult            , results                  ) {}
+  onTestResult(){}
 
-  onTestStart(test      ) {}
+  onTestStart(){}
 
-  onRunComplete(
-    contexts              ,
-    aggregatedResults                  ,
-  )                 {}
+  onRunComplete(){}
 
   _setError(error       ) {
     this._error = error;

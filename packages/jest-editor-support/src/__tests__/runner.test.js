@@ -85,7 +85,7 @@ describe('Runner', () => {
       jest.resetAllMocks();
 
       (createProcess     ).mockImplementationOnce(
-        (workspace, args, options) => {
+        () => {
           const process      = new EventEmitter();
           process.stdout = new EventEmitter();
           process.stderr = new EventEmitter();

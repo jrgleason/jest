@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import pluralize from './pluralize';
 
-export default function getNoTestFound(testRunData, globalConfig): string {
+export default function getNoTestFound(testRunData, globalConfig){
   const testFiles = testRunData.reduce(
     (current, testRun) => (current += testRun.matches.total),
     0,

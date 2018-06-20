@@ -147,7 +147,7 @@ class customError extends Error {
     });
 
     describe('promise/async throws if Error-like object is returned', () => {
-      const asyncFn = async (shouldThrow?: boolean, resolve?: boolean) => {
+      const asyncFn = async (shouldThrow, resolve) => {
         let err;
         if (shouldThrow) {
           err = new Err('async apple');

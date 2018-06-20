@@ -6,14 +6,6 @@
  *
  *      
  */
-
-/* global stream$Writable, tty$WriteStream */
-
-                                                                   
-                                                                    
-                                           
-                                                            
-
 import {clearLine, getConsoleOutput, isInteractive} from 'jest-util';
 import chalk from 'chalk';
 import BaseReporter from './base_reporter';

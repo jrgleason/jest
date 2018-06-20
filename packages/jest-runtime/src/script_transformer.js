@@ -20,7 +20,7 @@ import path from 'path';
 import vm from 'vm';
 import {createDirectory} from 'jest-util';
 import fs from 'graceful-fs';
-import {transform as babelTransform} from 'babel-core';
+import {transform as babelTransform} from '@babel/core';
 import babelPluginIstanbul from 'babel-plugin-istanbul';
 import convertSourceMap from 'convert-source-map';
 import HasteMap from 'jest-haste-map';
@@ -365,7 +365,9 @@ export default class ScriptTransformer {
 const removeFile = (path      ) => {
   try {
     fs.unlinkSync(path);
-  } catch (e) {}
+  } catch (e) {
+    //TODO: WTF
+  }
 };
 
 const stripShebang = content => {

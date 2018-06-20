@@ -57,7 +57,7 @@ test('validates default jest-validate config', () => {
 
 test(`pretty prints valid config for Function`, () => {
   const config = {fn: 'test'};
-  const validConfig = {fn: => true};
+  const validConfig = {fn: ()=> true};
   expect(() =>
     validate(config, {
       exampleConfig: validConfig,

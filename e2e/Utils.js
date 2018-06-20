@@ -163,7 +163,7 @@ const extractSummary = (
 const cleanupStackTrace = (output        ) => {
   return output
     .replace(/.*(?=packages)/g, '      at ')
-    .replace(/^.*at.*[\s][(]?(\S*\:\d*\:\d*).*$/gm, '      at $1');
+    .replace(/^.*at.*[\s][(]?(\S*:\d*:\d*).*$/gm, '      at $1');
 };
 
 const normalizeIcons = (str        ) => {

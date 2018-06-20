@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const thisFunctionIsCovered = => {
+const thisFunctionIsCovered = ()=> {
   return null;
 };
 
 thisFunctionIsCovered();
 
-const thisFunctionIsNotCovered = (): void => {
+const thisFunctionIsNotCovered = () => {
   throw new Error('Never Called');
 };
 

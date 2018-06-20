@@ -527,17 +527,17 @@ export default class FakeTimers           {
     }
 
     switch (timer.type) {
-      case 'timeout':
+      case 'timeout':{
         const callback = timer.callback;
         delete this._timers[timerHandle];
         callback();
         break;
-
-      case 'interval':
+      }
+      case 'interval':{
         timer.expiry = this._now + timer.interval;
         timer.callback();
         break;
-
+      }
       default:
         throw new Error('Unexpected timer type: ' + timer.type);
     }

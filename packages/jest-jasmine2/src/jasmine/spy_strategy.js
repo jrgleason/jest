@@ -85,7 +85,7 @@ export default function SpyStrategy(options        ) {
     return getSpy();
   };
 
-  this.stub = function(fn) {
+  this.stub = function() {
     plan = function() {};
     return getSpy();
   };

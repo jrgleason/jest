@@ -10,11 +10,10 @@
                                                                 
 import {messageTypes} from './types';
 
-import {ChildProcess, spawn} from 'child_process';
+import {spawn} from 'child_process';
 import {readFile} from 'fs';
 import {tmpdir} from 'os';
 import EventEmitter from 'events';
-import ProjectWorkspace from './project_workspace';
 import {createProcess} from './Process';
 
 // This class represents the running process, and

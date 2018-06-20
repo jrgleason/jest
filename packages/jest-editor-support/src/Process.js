@@ -7,8 +7,7 @@
  *      
  */
 
-import {ChildProcess, spawn} from 'child_process';
-import ProjectWorkspace from './project_workspace';
+import {spawn} from 'child_process';
                                           
 
 /**

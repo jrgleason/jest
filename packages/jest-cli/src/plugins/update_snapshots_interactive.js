@@ -93,7 +93,7 @@ class UpdateSnapshotInteractivePlugin extends BaseWatchPlugin {
     }
   }
 
-  getUsageInfo(globalConfig              ) {
+  getUsageInfo() {
     if (
       this._failedSnapshotTestAssertions &&
       this._failedSnapshotTestAssertions.length > 0

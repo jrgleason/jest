@@ -8,6 +8,7 @@
 'use strict';
 
 function* someFunc() {
+  yield 5;
   return 3;
 }
 
