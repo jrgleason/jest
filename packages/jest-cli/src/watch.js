@@ -16,7 +16,6 @@ import chalk from 'chalk';
 import getChangedFilesPromise from './get_changed_files_promise';
 import exit from 'exit';
 import {replacePathSepForRegex} from 'jest-regex-util';
-import HasteMap from 'jest-haste-map';
 import isValidPath from './lib/is_valid_path';
 import {isInteractive} from 'jest-util';
 import {print as preRunMessagePrint} from './pre_run_message';

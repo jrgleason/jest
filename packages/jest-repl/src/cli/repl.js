@@ -12,7 +12,8 @@
 
                                            
                                              
-                         
+var jestGlobalConfig;
+var jestProjectConfig;
 
 import path from 'path';
 import repl from 'repl';

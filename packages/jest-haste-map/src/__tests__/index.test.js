@@ -1010,7 +1010,7 @@ describe('HasteMap', () => {
       Promise.reject(new Error('watchman error')),
     );
 
-    node.mockImplementation( =>
+    node.mockImplementation( ()=>
       Promise.reject(new Error('node error')),
     );
 

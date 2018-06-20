@@ -216,7 +216,8 @@ export const wrapAnsiString = (string        , terminalWidth        ) => {
     // if the terminal width is zero, don't bother word-wrapping
     return string;
   }
-
+  // TODO: Fix
+  // eslint-disable-next-line no-control-regex 
   const ANSI_REGEXP = /[\u001b\u009b]\[\d{1,2}m/g;
   const tokens = [];
   let lastIndex = 0;

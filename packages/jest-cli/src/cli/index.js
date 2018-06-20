@@ -153,7 +153,7 @@ const readResultsAndExit = (
   }
 };
 
-const buildArgv = (maybeArgv       , project       ) => {
+const buildArgv = (maybeArgv) => {
   const argv       = yargs(maybeArgv || process.argv.slice(2))
     .usage(args.usage)
     .alias('help', 'h')
@@ -206,7 +206,7 @@ const printDebugInfoAndExitIfNeeded = (
   }
 };
 
-const ensureNoDuplicateConfigs = (parsedConfigs, projects, rootConfigPath) => {
+const ensureNoDuplicateConfigs = (parsedConfigs, projects) => {
   const configPathMap = new Map();
 
   for (const config of parsedConfigs) {
@@ -247,11 +247,7 @@ const getConfigs = (
   projectsFromCLIArgs             ,
   argv      ,
   outputStream,
-)   
-                             
-                                
-                                  
-  => {
+) => {
   let globalConfig;
   let hasDeprecationWarnings;
   let configs                       = [];
@@ -388,7 +384,6 @@ const runWatch = async (
   globalConfig,
   outputStream,
   hasteMapInstances,
-  changedFilesPromise,
 ) => {
   if (hasDeprecationWarnings) {
     try {

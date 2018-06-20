@@ -46,11 +46,24 @@ export default class CoverageReporter extends BaseReporter {
     this._globalConfig = globalConfig;
     this._sourceMapStore = libSourceMaps.createSourceMapStore();
   }
-
+  combineCoverage(filePaths, map) {
+        return filePaths.map(filePath => map.fileCoverageFor(filePath))
+          .reduce(
+            (
+              combinedCoverage                  ,
+              nextFileCoverage              ,
+            ) => {
+              if (combinedCoverage === undefined || combinedCoverage === null) {
+                return nextFileCoverage.toSummary();
+              }
+              return combinedCoverage.merge(nextFileCoverage.toSummary());
+            },
+            undefined,
+          );
+  }
   onTestResult(
     test      ,
     testResult            ,
-    aggregatedResults                  ,
   ) {
     if (testResult.coverage) {
       this._coverageMap.merge(testResult.coverage);
@@ -211,10 +224,7 @@ export default class CoverageReporter extends BaseReporter {
       worker.end();
     }
   }
-
-  _checkThreshold(globalConfig              , map             ) {
-    if (globalConfig.coverageThreshold) {
-      function check(name, thresholds, actuals) {
+  check(name, thresholds, actuals) {
         return ['statements', 'branches', 'lines', 'functions'].reduce(
           (errors, key) => {
             const actual = actuals[key].pct;
@@ -239,8 +249,9 @@ export default class CoverageReporter extends BaseReporter {
           },
           [],
         );
-      }
-
+  }
+  _checkThreshold(globalConfig              , map             ) {
+    if (globalConfig.coverageThreshold) {
       const THRESHOLD_GROUP_TYPES = {
         GLOB: 'glob',
         GLOBAL: 'global',
@@ -299,34 +310,18 @@ export default class CoverageReporter extends BaseReporter {
           .filter(fileAndGroup => fileAndGroup[1] === thresholdGroup)
           .map(fileAndGroup => fileAndGroup[0]);
 
-      function combineCoverage(filePaths) {
-        return filePaths
-          .map(filePath => map.fileCoverageFor(filePath))
-          .reduce(
-            (
-              combinedCoverage                  ,
-              nextFileCoverage              ,
-            ) => {
-              if (combinedCoverage === undefined || combinedCoverage === null) {
-                return nextFileCoverage.toSummary();
-              }
-              return combinedCoverage.merge(nextFileCoverage.toSummary());
-            },
-            undefined,
-          );
-      }
-
       let errors = [];
 
       thresholdGroups.forEach(thresholdGroup => {
         switch (groupTypeByThresholdGroup[thresholdGroup]) {
           case THRESHOLD_GROUP_TYPES.GLOBAL: {
-            const coverage = combineCoverage(
+            const coverage = this.combineCoverage(
               getFilesInThresholdGroup(THRESHOLD_GROUP_TYPES.GLOBAL),
+              map,
             );
             if (coverage) {
               errors = errors.concat(
-                check(
+                this.check(
                   thresholdGroup,
                   globalConfig.coverageThreshold[thresholdGroup],
                   coverage,
@@ -336,12 +331,13 @@ export default class CoverageReporter extends BaseReporter {
             break;
           }
           case THRESHOLD_GROUP_TYPES.PATH: {
-            const coverage = combineCoverage(
+            const coverage = this.combineCoverage(
               getFilesInThresholdGroup(thresholdGroup),
+              map,
             );
             if (coverage) {
               errors = errors.concat(
-                check(
+                this.check(
                   thresholdGroup,
                   globalConfig.coverageThreshold[thresholdGroup],
                   coverage,
@@ -354,7 +350,7 @@ export default class CoverageReporter extends BaseReporter {
             getFilesInThresholdGroup(thresholdGroup).forEach(
               fileMatchingGlob => {
                 errors = errors.concat(
-                  check(
+                  this.check(
                     fileMatchingGlob,
                     globalConfig.coverageThreshold[thresholdGroup],
                     map.fileCoverageFor(fileMatchingGlob).toSummary(),

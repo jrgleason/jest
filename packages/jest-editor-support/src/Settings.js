@@ -8,7 +8,6 @@
  */
 
                                                    
-import {spawn} from 'child_process';
 import EventEmitter from 'events';
 import {createProcess} from './Process';
 

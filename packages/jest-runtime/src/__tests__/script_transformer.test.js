@@ -61,7 +61,7 @@ jest.mock(
   'css-preprocessor',
   () => {
     return {
-      getCacheKey: jest.fn( => 'cd'),
+      getCacheKey: jest.fn( () => 'cd'),
       process: (content, filename) => {
         return `
           module.exports = {

@@ -646,8 +646,6 @@ class HasteMap extends EventEmitter {
    */
   _watch(
     hasteMap                  ,
-    hasteFS         ,
-    moduleMap           ,
   )                {
     if (!this._options.watch) {
       return Promise.resolve();

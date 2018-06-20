@@ -27,7 +27,7 @@ jest.mock(
   '../search_source',
   () =>
     class {
-      findMatchingTests(pattern) {
+      findMatchingTests() {
         return {paths: []};
       }
     },

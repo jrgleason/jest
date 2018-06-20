@@ -10,20 +10,18 @@
 
 import TestScheduler from '../test_scheduler';
 import NotifyReporter from '../reporters/notify_reporter';
-import type {TestSchedulerContext} from '../test_scheduler';
-import type {AggregatedResult} from '../../../../types/TestResult';
 
 jest.mock('../reporters/default_reporter');
 jest.mock('node-notifier', () => ({
   notify: jest.fn(),
 }));
 
-const initialContext: TestSchedulerContext = {
+const initialContext = {
   firstRun: true,
   previousSuccess: false,
 };
 
-const aggregatedResultsSuccess: AggregatedResult = {
+const aggregatedResultsSuccess = {
   numFailedTestSuites: 0,
   numFailedTests: 0,
   numPassedTestSuites: 1,
@@ -34,7 +32,7 @@ const aggregatedResultsSuccess: AggregatedResult = {
   success: true,
 };
 
-const aggregatedResultsFailure: AggregatedResult = {
+const aggregatedResultsFailure = {
   numFailedTestSuites: 1,
   numFailedTests: 3,
   numPassedTestSuites: 0,
@@ -68,7 +66,7 @@ test('.addReporter() .removeReporter()', () => {
   expect(scheduler._dispatcher._reporters).not.toContain(reporter);
 });
 
-const testModes = (notifyMode: string, arl: Array<AggregatedResult>) => {
+const testModes = (notifyMode, arl) => {
   const notify = require('node-notifier');
 
   let previousContext = initialContext;

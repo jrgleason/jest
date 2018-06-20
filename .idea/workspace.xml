@@ -2,16 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8fce833-7f27-4369-b76d-c421437fa9c7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/__tests__/show_config.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e/__tests__/show_config.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/__tests__/snapshot.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e/__tests__/snapshot.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/__tests__/version.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e/__tests__/version.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/console-jsdom/__tests__/console.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e/console-jsdom/__tests__/console.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/coverage-report/SumDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e/coverage-report/SumDependency.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/custom-reporters/reporters/TestReporter.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e/custom-reporters/reporters/TestReporter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/error-on-deprecated/__tests__/fail.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/e2e/error-on-deprecated/__tests__/fail.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e2e/error-on-deprecated/__tests__/pending.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/TestRunner.js" beforeDir="false" afterPath="$PROJECT_DIR$/types/TestRunner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/typescript/CheckboxWithLabel.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/typescript/__tests__/checkbox_with_label.test.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/typescript/__tests__/sub-test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/typescript/__tests__/sum-test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/typescript/__tests__/sum.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/typescript/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/typescript/sub.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/typescript/sum.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/typescript/sum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/typescript/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fixtures/parser_tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/fixtures/parser_tests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/expect/src/__tests__/asymmetric_matchers.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/expect/src/__tests__/asymmetric_matchers.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-circus/src/format_node_assert_errors.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-circus/src/format_node_assert_errors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-circus/src/legacy_code_todo_rewrite/jest_adapter_init.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-circus/src/legacy_code_todo_rewrite/jest_adapter_init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-circus/src/run.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-circus/src/run.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-cli/src/__tests__/cli/args.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-cli/src/__tests__/cli/args.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-cli/src/__tests__/notify_reporter.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-cli/src/__tests__/notify_reporter.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-cli/src/__tests__/watch_test_name_pattern_mode.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-cli/src/__tests__/watch_test_name_pattern_mode.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-cli/src/cli/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-cli/src/cli/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-cli/src/get_no_test_found_message.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-cli/src/get_no_test_found_message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-cli/src/reporters/coverage_reporter.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-cli/src/reporters/coverage_reporter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-cli/src/reporters/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-cli/src/reporters/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-cli/src/run_jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-cli/src/run_jest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-cli/src/test_name_pattern_prompt.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-cli/src/test_name_pattern_prompt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-cli/src/test_path_pattern_prompt.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-cli/src/test_path_pattern_prompt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-cli/src/watch.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-cli/src/watch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-config/src/normalize.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-config/src/normalize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-config/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-config/src/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-editor-support/src/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-editor-support/src/Settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-editor-support/src/Snapshot.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-editor-support/src/Snapshot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-haste-map/src/__tests__/index.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-haste-map/src/__tests__/index.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-haste-map/src/crawlers/__tests__/node.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-haste-map/src/crawlers/__tests__/node.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-haste-map/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-haste-map/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-jasmine2/src/__tests__/queue_runner.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-jasmine2/src/__tests__/queue_runner.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-jasmine2/src/jasmine/Env.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-jasmine2/src/jasmine/Env.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-repl/src/cli/repl.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-repl/src/cli/repl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-resolve/src/default_resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-resolve/src/default_resolver.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-runner/src/run_test.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-runner/src/run_test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/jest-runtime/src/__tests__/script_transformer.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/jest-runtime/src/__tests__/script_transformer.test.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,8 +64,8 @@
       <file leaf-file-name="format_node_assert_errors.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/jest-circus/src/format_node_assert_errors.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            <state relative-caret-position="210">
+              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -74,11 +104,6 @@
               <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/packages/jest-runner/node_modules/jest-circus/package.json">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
@@ -513,8 +538,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/packages/jest-circus/src/format_node_assert_errors.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        <state relative-caret-position="210">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
         </state>
       </provider>
     </entry>

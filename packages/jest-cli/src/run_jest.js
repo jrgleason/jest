@@ -25,7 +25,6 @@ import SearchSource from './search_source';
 import TestScheduler from './test_scheduler';
 import TestSequencer from './test_sequencer';
 import {makeEmptyAggregatedTestResult} from './test_result_helpers';
-import FailedTestsCache from './failed_tests_cache';
 import {JestHook} from 'jest-watcher';
 import collectNodeHandles from './get_node_handles';
 

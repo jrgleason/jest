@@ -128,11 +128,10 @@ async function runTestInternal(
             map: JSON.parse(fs.readFileSync(sourceMapSource)),
             url: source,
           };
-        } catch () {
-            // TODO: What now?
+        } catch(error){
+          return null;
         }
       }
-      return null;
     },
   };
 

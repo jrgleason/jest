@@ -31,12 +31,12 @@ export default class TestPathPatternPrompt extends PatternPrompt {
     this._entityName = 'filenames';
   }
 
-  _onChange(pattern) {
+  _onChange(pattern, options) {
     super._onChange(pattern, options);
     this._printPrompt(pattern, options);
   }
 
-  _printPrompt(pattern        , options               ) {
+  _printPrompt(pattern) {
     const pipe = this._pipe;
     printPatternCaret(pattern, pipe);
     printRestoredPatternCaret(pattern, this._currentUsageRows, pipe);

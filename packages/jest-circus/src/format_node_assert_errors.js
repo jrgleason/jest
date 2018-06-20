@@ -6,10 +6,6 @@
  *
  *       strict-local
  */
-// $FlowFixMe
-import { DiffOptions } from 'jest-diff/src/diff_strings';
-                                               
-
 import {printExpected, printReceived} from 'jest-matcher-utils';
 import chalk from 'chalk';
 import diff from 'jest-diff';

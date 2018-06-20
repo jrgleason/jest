@@ -12,7 +12,6 @@
 
 import {
   PatternPrompt,
-  Prompt,
   printPatternCaret,
   printRestoredPatternCaret,
 } from 'jest-watcher';
@@ -31,7 +30,7 @@ export default class TestNamePatternPrompt extends PatternPrompt {
     this._printPrompt(pattern, options);
   }
 
-  _printPrompt(pattern        , options               ) {
+  _printPrompt(pattern) {
     const pipe = this._pipe;
     printPatternCaret(pattern, pipe);
     printRestoredPatternCaret(pattern, this._currentUsageRows, pipe);

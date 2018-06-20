@@ -87,7 +87,7 @@ describe('queueRunner', () => {
   });
 
   it('passes an error to `onException` on timeout.', async () => {
-    const fnOne = jest.fn(=> {});
+    const fnOne = jest.fn(()=> {});
     const fnTwo = jest.fn(next => next());
     const onException = jest.fn();
     const options = {

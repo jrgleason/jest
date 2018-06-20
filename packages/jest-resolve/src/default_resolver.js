@@ -40,7 +40,7 @@ export default function defaultResolver(
   });
 }
 
-const REGEX_RELATIVE_IMPORT = /^(?:\.\.?(?:/|$)|/|([A-Za-z]:)?[\\/])/;
+const REGEX_RELATIVE_IMPORT = /^(?:\.\.?(?:\/|$)|\/|([A-Za-z]:)?[\\/])/;
 
 function resolveSync(target      , options                 )       {
   const basedir = options.basedir;

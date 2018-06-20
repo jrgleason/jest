@@ -139,7 +139,7 @@ export default class Snapshot {
     let lastParent = null;
     let count = 1;
 
-    return state.found.map((snapshotNode, index) => {
+    return state.found.map((snapshotNode) => {
       const parents = snapshotNode.parents.filter(isValidParent);
       const innerAssertion = parents[parents.length - 1];
 

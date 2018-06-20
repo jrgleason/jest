@@ -41,8 +41,6 @@ const Promise = global[Symbol.for('jest-native-promise')] || global.Promise;
 
 export default function(j$) {
   function Env() {
-    options = options ? options : {};
-
     const self = this;
 
     let totalSpecsDefined = 0;

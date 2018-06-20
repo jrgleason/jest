@@ -373,9 +373,6 @@ export default function normalize(options                , argv      ) {
 
   const babelJest = setupBabelJest(options);
   const newOptions = Object.assign({}, DEFAULT_CONFIG);
-  // Cast back to exact type
-  options = (options                );
-
   if (options.resolver) {
     newOptions.resolver = resolve(
       null,
@@ -438,7 +435,7 @@ export default function normalize(options                , argv      ) {
           resolve(newOptions.resolver, options.rootDir, key, options[key]);
         break;
       }
-      case 'moduleNameMapper':
+      case 'moduleNameMapper':{
         const moduleNameMapper = options[key];
         value =
           moduleNameMapper &&
@@ -447,7 +444,8 @@ export default function normalize(options                , argv      ) {
             return item && [regex, _replaceRootDirTags(options.rootDir, item)];
           });
         break;
-      case 'transform':
+      }
+      case 'transform':{
         const transform = options[key];
         value =
           transform &&
@@ -461,6 +459,7 @@ export default function normalize(options                , argv      ) {
             ),
           ]);
         break;
+      }
       case 'coveragePathIgnorePatterns':
       case 'modulePathIgnorePatterns':
       case 'testPathIgnorePatterns':

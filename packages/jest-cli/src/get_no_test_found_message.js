@@ -6,7 +6,7 @@ import getNoTestFoundFailed from './get_no_test_found_failed';
 export default function getNoTestsFoundMessage(
   testRunData,
   globalConfig,
-): string {
+){
   if (globalConfig.onlyFailures) {
     return getNoTestFoundFailed();
   }
